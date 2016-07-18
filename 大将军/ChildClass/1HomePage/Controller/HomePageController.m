@@ -62,12 +62,15 @@
 
 
 - (void)initUserInterface {
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = BACKGROUNDCOLOR;
     
     //添加日历
     [self.view addSubview:self.calendar];
-    [self.navigationController.navigationBar addSubview:self.todayBtn];
 //    self.navigationItem.rightBarButtonItem = self.todayItem;
+    
+    [self.navigationController.navigationBar setTintColor:COLOR(255, 255, 255)];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:COLOR(250, 205, 174),NSFontAttributeName:[UIFont boldSystemFontOfSize:28]}];
     
     //添加doggy
     [self.view addSubview:self.doggyCollection];
@@ -107,12 +110,11 @@
 - (UIButton *)todayBtn {
     if (!_todayBtn) {
         _todayBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _todayBtn.bounds = CGRectMake(0, 0, SCREEN_WIDTH / 8, SCREEN_WIDTH / 8);
-        [_todayBtn setTitle:@"今天" forState:(UIControlStateNormal)];
+        _todayBtn.bounds = CGRectMake(0, 0, SCREEN_WIDTH / 12, SCREEN_WIDTH / 12);
+        [_todayBtn setImage:[UIImage imageNamed:@"today-red.png"] forState:(UIControlStateNormal)];
         [_todayBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
         _todayBtn.center = CGPointMake(SCREEN_WIDTH / 6 * 5, 20);
         [_todayBtn addTarget:self action:@selector(returnToday) forControlEvents:(UIControlEventTouchUpInside)];
-        _todayBtn.backgroundColor = [UIColor grayColor];
     }
     return _todayBtn;
 }

@@ -73,7 +73,7 @@
     NSCalendar *calender = [NSCalendar currentCalendar];
     BOOL isWeekend = [calender isDateInWeekend:beforDate];
     if (isWeekend) {
-        cell.tesView.backgroundColor = COLOR(214, 44, 45);
+        cell.tesView.backgroundColor = COLOR(191, 215, 67);
     } else {
         cell.tesView.backgroundColor = COLOR(254, 168, 195);
     }
@@ -118,7 +118,7 @@
         _collectionView.showsHorizontalScrollIndicator = NO;
         //注册原型cell
         [_collectionView registerClass:[CalendarCell class] forCellWithReuseIdentifier:@"interesting"];
-        _collectionView.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
+        _collectionView.backgroundColor = BACKGROUNDCOLOR;
     }
     return _collectionView;
 }

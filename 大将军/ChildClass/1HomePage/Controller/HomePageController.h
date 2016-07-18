@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) UIButton *drawBtn;
 
+- (void)returnToday;
+
 @end

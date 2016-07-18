@@ -10,4 +10,39 @@
 
 @implementation DoggyCell
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self initUserInterface];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self initUserInterface];
+    }
+    return self;
+}
+
+- (void)initUserInterface {
+    
+}
+
+#pragma mark - getter
+- (UIImageView *)doggyIcon {
+    if (!_doggyIcon) {
+        _doggyIcon = [[UIImageView alloc]initWithFrame:CGRectMake(5, 5, self.bounds.size.width - 10, self.bounds.size.height - 10)];
+        _doggyIcon.layer.cornerRadius = (self.bounds.size.width - 10) / 2;
+        _doggyIcon.layer.masksToBounds = YES;
+        [self.contentView addSubview:_doggyIcon];
+    }
+    return _doggyIcon;
+}
+
+
+
 @end
