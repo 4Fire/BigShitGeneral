@@ -52,8 +52,7 @@
         return;
     }
     NSManagedObjectContext *ctx = [Context context];
-    Dog *doggy = [NSEntityDescription insertNewObjectForEntityForName:@"Dog" inManagedObjectContext:ctx];
-    BOOL check = [Owner duplicateCheckingOwnerWithContext:ctx Account:self.accountTextField.text];
+       BOOL check = [Owner duplicateCheckingOwnerWithContext:ctx Account:self.accountTextField.text];
     
     if (check == NO) {
         [self showAlertWithMessage:@"用户名已存在!" dismiss:nil];
