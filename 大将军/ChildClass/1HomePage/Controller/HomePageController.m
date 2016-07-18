@@ -10,6 +10,7 @@
 #import "CalendarView.h"
 #import "DoggyCollectionView.h"
 #import "InfomationTableView.h"
+#import "Owner.h"
 
 @interface HomePageController ()
 
@@ -19,6 +20,10 @@
 @property (nonatomic, strong) DoggyCollectionView *doggyCollection;
 //信息
 @property (nonatomic, strong) InfomationTableView *infomationTable;
+
+//用户信息
+@property (nonatomic, strong) Owner *owner;
+
 
 //移动到今天
 @property (nonatomic, strong) UIButton *todayBtn;
@@ -51,8 +56,8 @@
 }
 
 - (void)initUserDataSource {
-    
-    
+    NSLog(@"text%@",self.owner);
+    NSLog(@"========%@",self.owner.dog);
 }
 
 
@@ -134,6 +139,13 @@
     return _infomationTable;
 }
 
+- (Owner *)owner {
+    if (!_owner) {
+        _owner = [DoggyModel getOwnerInfo];
+        NSLog(@"%@",_owner);
+    }
+    return _owner;
+}
 #pragma mark - other
 //imagewithColor
 - (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size {
