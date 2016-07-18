@@ -28,8 +28,8 @@
     
     LoginViewController *mainVc = [[LoginViewController alloc]init];
     
-    self.window.rootViewController = mainVc;
-//        self.window.userInteractionEnabled = YES;
+//    self.window.rootViewController = mainVc;
+    //    self.window.userInteractionEnabled = YES;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVc];
 //

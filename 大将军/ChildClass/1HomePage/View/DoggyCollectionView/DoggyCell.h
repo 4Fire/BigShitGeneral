@@ -10,4 +10,6 @@
 
 @interface DoggyCell : UICollectionViewCell
 
+@property (nonatomic, strong) UIImageView *doggyIcon;
+
 @end
