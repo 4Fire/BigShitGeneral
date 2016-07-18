@@ -46,6 +46,7 @@
 
 #pragma mark - Events
 - (void)responseToRegisterBtn {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ownerAccount"];
     if (self.accountTextField.text.length == 0 || self.passwordTextField.text.length == 0) {
         [self showAlertWithMessage:@"大将军没有称谓或密文!"  dismiss:nil];
         return;
@@ -58,7 +59,7 @@
         [self showAlertWithMessage:@"用户名已存在!" dismiss:nil];
         return;
     }
-    BOOL flag = [Owner insertOwnerToSQLiterWithContext:ctx Account:self.accountTextField.text   Password:self.passwordTextField.text Dog:doggy];
+    BOOL flag = [Owner insertOwnerToSQLiterWithContext:ctx Account:self.accountTextField.text   Password:self.passwordTextField.text];
     if (flag == YES) {
         [self.view endEditing:true];
         [self showAlertWithMessage:@"注册成功!" dismiss:^(void){

@@ -56,7 +56,9 @@
     }
     
     NSManagedObjectContext *ctx = [Context context];
-    BOOL dogExist = [Dog duplicateCheckingDogWithContext:ctx Name:name];
+    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
+    NSManagedObject *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
+    BOOL dogExist = [Dog duplicateCheckingDogWithContext:ctx Name:name owner:owner];
     
     if (dogExist == YES) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"狗狗重复啦,重新去个名字吧!" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -111,6 +113,7 @@
     }
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
         UIImage *photo = info[UIImagePickerControllerOriginalImage];
+        [[NSUserDefaults standardUserDefaults] setObject:photo forKey:@"dogImage"];
 //        NSLog(@"%@", photo);
         [self.headIcon setImage:photo forState:UIControlStateNormal];
     }

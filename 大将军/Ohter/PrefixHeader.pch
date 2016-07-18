@@ -14,6 +14,7 @@
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define COLOR(R,G,B) [UIColor colorWithRed:R / 255.0 green:G / 255.0 blue:B / 255.0 alpha:1.f]
+#define MAIN_COLOR COLOR(212, 20, 24)
 
 #define Appkey @"577f4a1e67e58eb25c0019a6"
 

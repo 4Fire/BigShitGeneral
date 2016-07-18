@@ -12,6 +12,9 @@
 #import "CircleOfFriendsController.h"
 #import "NearByController.h"
 #import "PersonalView.h"
+#import "Context.h"
+#import "Owner.h"
+#import "Dog.h"
 
 @interface MainTabbarController ()
 
@@ -60,7 +63,13 @@
 
 
 - (void)initUserDataSource {
-    
+    NSManagedObjectContext *ctx = [Context context];
+    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
+    Owner* owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
+   NSArray *dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
+    for (Dog *dog in dogs) {
+        NSLog(@"%------@@-------", dog.name);
+    }
 }
 
 - (void)initUserInterface {
