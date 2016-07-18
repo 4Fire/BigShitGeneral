@@ -72,5 +72,23 @@
     return [objs firstObject];
 }
 
++ (NSArray<Owner*> *)fetchAllOwnerSToSQLiterWithContext:(NSManagedObjectContext *)ctx {
+    //初始化查询请求
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    //设置要查询的实体
+    request.entity = [NSEntityDescription entityForName:@"Owner" inManagedObjectContext:ctx];
+    NSError *error = nil;
+    NSArray *objs = [ctx executeFetchRequest:request error:&error];
+    if (error) {
+        [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
+    }
+    //遍历数据
+//    for (NSManagedObject *obj in objs) {
+//        NSLog(@"account = %@",[obj valueForKey:@"account"]);
+//    }
+    return objs;
+}
+
+
 
 @end

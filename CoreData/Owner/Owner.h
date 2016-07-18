@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)duplicateCheckingOwnerWithContext:(NSManagedObjectContext *)ctx
                                   Account:(NSString *)account;
 
-
++ (NSArray<Owner*> *)fetchAllOwnerSToSQLiterWithContext:(NSManagedObjectContext *)ctx;
 
 @end
 
