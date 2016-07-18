@@ -26,14 +26,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
-    MainTabbarController *mainVc = [[MainTabbarController alloc]init];
+    LoginViewController *mainVc = [[LoginViewController alloc]init];
     
     self.window.rootViewController = mainVc;
-    //    self.window.userInteractionEnabled = YES;
+//        self.window.userInteractionEnabled = YES;
     
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVc];
-//    
-//    self.window.rootViewController = nav;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVc];
+//
+    self.window.rootViewController = nav;
     
     [self.window makeKeyAndVisible];
     

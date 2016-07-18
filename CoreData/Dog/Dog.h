@@ -22,13 +22,17 @@ NS_ASSUME_NONNULL_BEGIN
                               Variety:(NSString *)variety
                             Neutering:(NSNumber *)neuterying
                              Birthday:(NSDate *)birthday
-                                Owner:(NSManagedObject *)owner;
+                                Owner:(Owner *)owner;
 
-+ (Dog *)fetchDogFromSQLiterWithContext:(NSManagedObjectContext *)ctx Name:(NSString *)name;
++ (Dog *)fetchDogFromSQLiterWithContext:(NSManagedObjectContext *)ctx Name:(NSString *)name owner:(Owner *)owner;
 
-+ (void)deleteDogFromSQLiterWithContext:(NSManagedObjectContext *)ctx Name:(NSString *)name;
++ (void)deleteDogFromSQLiterWithContext:(NSManagedObjectContext *)ctx Name:(NSString *)name owner:(Owner *)owner;
+
 + (BOOL)duplicateCheckingDogWithContext:(NSManagedObjectContext *)ctx
-                                   Name:(NSString *)name;
+                                   Name:(NSString *)name
+                                  owner:(Owner *)owner;
+
++ (NSArray *)fetchAllDogsFromSQLiterWithContext:(NSManagedObjectContext *)ctx withOwner:(Owner *)owner;
 @end
 
 NS_ASSUME_NONNULL_END

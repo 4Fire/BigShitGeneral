@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18BBC17F1D3CB8A400DE8431 /* Owner+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBC17C1D3CB8A400DE8431 /* Owner+CoreDataProperties.m */; };
+		18BBC1801D3CB8A400DE8431 /* Owner.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBC17E1D3CB8A400DE8431 /* Owner.m */; };
 		3E1A48BCCEAB5A3688E03C56 /* libPods-大将军.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17994362A87CBB9C05B38F37 /* libPods-大将军.a */; };
 		5EFBE9A31D388B6400FE838A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A21D388B6400FE838A /* main.m */; };
 		5EFBE9A61D388B6400FE838A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A51D388B6400FE838A /* AppDelegate.m */; };
@@ -49,8 +51,6 @@
 		5EFBEA7A1D38946900FE838A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA551D38946900FE838A /* Model.xcdatamodeld */; };
 		5EFBEA7B1D38946900FE838A /* News+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA591D38946900FE838A /* News+CoreDataProperties.m */; };
 		5EFBEA7C1D38946900FE838A /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA5B1D38946900FE838A /* News.m */; };
-		5EFBEA7D1D38946900FE838A /* Owner+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA5E1D38946900FE838A /* Owner+CoreDataProperties.m */; };
-		5EFBEA7E1D38946900FE838A /* Owner.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA601D38946900FE838A /* Owner.m */; };
 		5EFBEA7F1D38946900FE838A /* Publish+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA631D38946900FE838A /* Publish+CoreDataProperties.m */; };
 		5EFBEA801D38946900FE838A /* Publish.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA651D38946900FE838A /* Publish.m */; };
 		5EFBEA811D38946900FE838A /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA681D38946900FE838A /* Record+CoreDataProperties.m */; };
@@ -266,6 +266,10 @@
 
 /* Begin PBXFileReference section */
 		17994362A87CBB9C05B38F37 /* libPods-大将军.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-大将军.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		18BBC17B1D3CB8A400DE8431 /* Owner+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Owner+CoreDataProperties.h"; sourceTree = "<group>"; };
+		18BBC17C1D3CB8A400DE8431 /* Owner+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Owner+CoreDataProperties.m"; sourceTree = "<group>"; };
+		18BBC17D1D3CB8A400DE8431 /* Owner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Owner.h; sourceTree = "<group>"; };
+		18BBC17E1D3CB8A400DE8431 /* Owner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Owner.m; sourceTree = "<group>"; };
 		54A7F2C553DF6965AC51BB43 /* Pods-大将军.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-大将军.release.xcconfig"; path = "Pods/Target Support Files/Pods-大将军/Pods-大将军.release.xcconfig"; sourceTree = "<group>"; };
 		5EFBE99E1D388B6400FE838A /* 大将军.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "大将军.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFBE9A21D388B6400FE838A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -347,10 +351,6 @@
 		5EFBEA591D38946900FE838A /* News+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "News+CoreDataProperties.m"; sourceTree = "<group>"; };
 		5EFBEA5A1D38946900FE838A /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		5EFBEA5B1D38946900FE838A /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
-		5EFBEA5D1D38946900FE838A /* Owner+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Owner+CoreDataProperties.h"; sourceTree = "<group>"; };
-		5EFBEA5E1D38946900FE838A /* Owner+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Owner+CoreDataProperties.m"; sourceTree = "<group>"; };
-		5EFBEA5F1D38946900FE838A /* Owner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Owner.h; sourceTree = "<group>"; };
-		5EFBEA601D38946900FE838A /* Owner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Owner.m; sourceTree = "<group>"; };
 		5EFBEA621D38946900FE838A /* Publish+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Publish+CoreDataProperties.h"; sourceTree = "<group>"; };
 		5EFBEA631D38946900FE838A /* Publish+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Publish+CoreDataProperties.m"; sourceTree = "<group>"; };
 		5EFBEA641D38946900FE838A /* Publish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Publish.h; sourceTree = "<group>"; };
@@ -1034,10 +1034,10 @@
 		5EFBEA5C1D38946900FE838A /* Owner */ = {
 			isa = PBXGroup;
 			children = (
-				5EFBEA5D1D38946900FE838A /* Owner+CoreDataProperties.h */,
-				5EFBEA5E1D38946900FE838A /* Owner+CoreDataProperties.m */,
-				5EFBEA5F1D38946900FE838A /* Owner.h */,
-				5EFBEA601D38946900FE838A /* Owner.m */,
+				18BBC17B1D3CB8A400DE8431 /* Owner+CoreDataProperties.h */,
+				18BBC17C1D3CB8A400DE8431 /* Owner+CoreDataProperties.m */,
+				18BBC17D1D3CB8A400DE8431 /* Owner.h */,
+				18BBC17E1D3CB8A400DE8431 /* Owner.m */,
 			);
 			path = Owner;
 			sourceTree = "<group>";
@@ -1678,6 +1678,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18BBC1801D3CB8A400DE8431 /* Owner.m in Sources */,
 				5EFBEA761D38946900FE838A /* Dog+CoreDataProperties.m in Sources */,
 				5EFBEA1B1D388F0900FE838A /* HeadImageCollectionViewCell.m in Sources */,
 				5EFBEA121D388F0900FE838A /* RegisterViewController.m in Sources */,
@@ -1729,11 +1730,10 @@
 				5EFBEA771D38946900FE838A /* Dog.m in Sources */,
 				5EFBEA801D38946900FE838A /* Publish.m in Sources */,
 				5EFBEA831D38946900FE838A /* Remark+CoreDataProperties.m in Sources */,
+				18BBC17F1D3CB8A400DE8431 /* Owner+CoreDataProperties.m in Sources */,
 				5EFBEA1C1D388F0900FE838A /* HeadImageModel.m in Sources */,
 				5EFBEC711D38CD2C00FE838A /* MepRecord.m in Sources */,
-				5EFBEA7E1D38946900FE838A /* Owner.m in Sources */,
 				5EFBEA8C1D38B5EC00FE838A /* DateModel.m in Sources */,
-				5EFBEA7D1D38946900FE838A /* Owner+CoreDataProperties.m in Sources */,
 				5EFBEA1F1D388F0900FE838A /* SureView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1847,6 +1847,7 @@
 			baseConfigurationReference = D01CFD577D9F55C762DC7E52 /* Pods-大将军.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/大将军/Ohter/PrefixHeader.pch";
 				INFOPLIST_FILE = "大将军/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1940,6 +1941,7 @@
 			baseConfigurationReference = 54A7F2C553DF6965AC51BB43 /* Pods-大将军.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/大将军/Ohter/PrefixHeader.pch";
 				INFOPLIST_FILE = "大将军/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

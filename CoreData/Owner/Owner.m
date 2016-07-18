@@ -2,19 +2,19 @@
 //  Owner.m
 //  大将军
 //
-//  Created by apple on 16/7/14.
+//  Created by apple on 16/7/18.
 //  Copyright © 2016年 SingYi. All rights reserved.
 //
 
 #import "Owner.h"
 #import "Dog.h"
+#import "WalkingDog.h"
 
 @implementation Owner
 
 + (BOOL)insertOwnerToSQLiterWithContext:(NSManagedObjectContext *)ctx
                                 Account:(NSString *)account
-                               Password:(NSString *)Password
-                                    Dog:(NSManagedObject *)dog {
+                               Password:(NSString *)Password {
     //传入上下文,创建Owner对象
     NSManagedObject *owner = [NSEntityDescription insertNewObjectForEntityForName:@"Owner" inManagedObjectContext:ctx];
     
@@ -22,7 +22,7 @@
     [owner setValue:account forKey:@"account"];
     [owner setValue:Password forKey:@"password"];
     //设置Dog和Owner之间的关联关系
-    [dog setValue:owner forKey:@"owner"];
+    //    [dog setValue:owner forKey:@"owner"];
     //利用上下文,将数据同步至永久化储存库
     
     NSError *error = nil;
@@ -57,7 +57,7 @@
     //设置要查询的实体
     request.entity = [NSEntityDescription entityForName:@"Owner" inManagedObjectContext:ctx];
     //设置条件过滤
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"account like %@", account];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"account == %@", account];
     request.predicate = predicate;
     //执行请求
     NSError *error = nil;
@@ -71,4 +71,6 @@
     }
     return [objs firstObject];
 }
+
+
 @end

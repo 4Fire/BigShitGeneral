@@ -22,8 +22,8 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sex" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <relationship name="dog" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Dog" inverseName="owner" inverseEntity="Dog" syncable="YES"/>
-        <relationship name="workingDog" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WalkingDog" inverseName="owner" inverseEntity="WalkingDog" syncable="YES"/>
+        <relationship name="dog" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Dog" inverseName="owner" inverseEntity="Dog" syncable="YES"/>
+        <relationship name="workingDog" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WalkingDog" inverseName="owner" inverseEntity="WalkingDog" syncable="YES"/>
     </entity>
     <entity name="Publish" representedClassName="Publish" syncable="YES"/>
     <entity name="Record" representedClassName="Record" syncable="YES">
