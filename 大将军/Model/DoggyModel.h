@@ -15,10 +15,15 @@
 
 @interface DoggyModel : NSObject
 
-//获取到用户信息
+//获取到当前用户信息
 + (Owner *)getOwnerInfo;
 
-+ (NSArray *)getDogsWithOwner:(Owner *)owner;
+//获取用户下的所有狗
++ (NSArray<Dog *> *)getAllDogsWithCurrentOwner:(Owner *)owner;
 
+//获取当前用户的某只狗
++ (Dog *)getDogWithName:(NSString *)name;
+
++ (NSArray<Owner *> *)getAllOwners;
 
 @end

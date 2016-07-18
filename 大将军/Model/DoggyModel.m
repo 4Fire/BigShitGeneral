@@ -22,13 +22,18 @@
     }
 }
 
-+ (NSArray *)getDogsWithOwner:(Owner *)owner {
-//    NSManagedObjectContext *context = [Context context];
-    
-    NSArray<Dog *> *array = owner.dog;
++ (NSArray<Dog *> *)getAllDogsWithCurrentOwner:(Owner *)owner {
+    NSArray<Dog *> *array = [Dog fetchAllDogsFromSQLiterWithContext:[Context context] withOwner:owner];
     return array;
 }
 
++ (Dog *)getDogWithName:(NSString *)name {
+    return [Dog fetchDogFromSQLiterWithContext:[Context context] Name:name owner:[DoggyModel getOwnerInfo]];
+}
+
+//+ (NSArray<Owner *> *)getAllOwners {
+
+//}
 
 
 

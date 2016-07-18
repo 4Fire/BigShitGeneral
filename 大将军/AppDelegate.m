@@ -32,7 +32,7 @@
     //    self.window.userInteractionEnabled = YES;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVc];
-    
+//
     self.window.rootViewController = nav;
     
     [self.window makeKeyAndVisible];
