@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		18BBC17F1D3CB8A400DE8431 /* Owner+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBC17C1D3CB8A400DE8431 /* Owner+CoreDataProperties.m */; };
 		18BBC1801D3CB8A400DE8431 /* Owner.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBC17E1D3CB8A400DE8431 /* Owner.m */; };
+		18BBC1831D3CCD7800DE8431 /* today-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BBC1821D3CCD7800DE8431 /* today-red.png */; };
+		18BBC1851D3CD1E600DE8431 /* dogD.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BBC1841D3CD1E600DE8431 /* dogD.png */; };
 		3E1A48BCCEAB5A3688E03C56 /* libPods-大将军.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17994362A87CBB9C05B38F37 /* libPods-大将军.a */; };
 		5ED8781E1D3C65150060F83B /* DoggyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED8781D1D3C65150060F83B /* DoggyModel.m */; };
 		5EFBE9A31D388B6400FE838A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A21D388B6400FE838A /* main.m */; };
@@ -271,6 +273,8 @@
 		18BBC17C1D3CB8A400DE8431 /* Owner+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Owner+CoreDataProperties.m"; sourceTree = "<group>"; };
 		18BBC17D1D3CB8A400DE8431 /* Owner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Owner.h; sourceTree = "<group>"; };
 		18BBC17E1D3CB8A400DE8431 /* Owner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Owner.m; sourceTree = "<group>"; };
+		18BBC1821D3CCD7800DE8431 /* today-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "today-red.png"; sourceTree = "<group>"; };
+		18BBC1841D3CD1E600DE8431 /* dogD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dogD.png; sourceTree = "<group>"; };
 		54A7F2C553DF6965AC51BB43 /* Pods-大将军.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-大将军.release.xcconfig"; path = "Pods/Target Support Files/Pods-大将军/Pods-大将军.release.xcconfig"; sourceTree = "<group>"; };
 		5ED8781C1D3C65150060F83B /* DoggyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoggyModel.h; sourceTree = "<group>"; };
 		5ED8781D1D3C65150060F83B /* DoggyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoggyModel.m; sourceTree = "<group>"; };
@@ -604,6 +608,15 @@
 				54A7F2C553DF6965AC51BB43 /* Pods-大将军.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		18BBC1811D3CCD0900DE8431 /* 4Fire */ = {
+			isa = PBXGroup;
+			children = (
+				18BBC1821D3CCD7800DE8431 /* today-red.png */,
+				18BBC1841D3CD1E600DE8431 /* dogD.png */,
+			);
+			path = 4Fire;
 			sourceTree = "<group>";
 		};
 		5EFBE9951D388B6400FE838A = {
@@ -1094,6 +1107,7 @@
 		5EFBEAB21D38CB6B00FE838A /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				18BBC1811D3CCD0900DE8431 /* 4Fire */,
 				5EFBEAB31D38CB6B00FE838A /* Icons */,
 			);
 			path = Images;
@@ -1604,6 +1618,7 @@
 				5EFBEBE11D38CB6C00FE838A /* dogs_name61s@2x.png in Resources */,
 				5EFBE9AC1D388B6400FE838A /* Main.storyboard in Resources */,
 				5EFBEBA31D38CB6C00FE838A /* dogs_name33s@2x.png in Resources */,
+				18BBC1831D3CCD7800DE8431 /* today-red.png in Resources */,
 				5EFBEBDC1D38CB6C00FE838A /* dogs_name5@2x.png in Resources */,
 				5EFBEB911D38CB6B00FE838A /* dogs_name25s@2x.png in Resources */,
 				5EFBEBDB1D38CB6C00FE838A /* dogs_name59s@2x.png in Resources */,
@@ -1623,6 +1638,7 @@
 				5EFBEBC01D38CB6C00FE838A /* dogs_name47@2x.png in Resources */,
 				5EFBEB771D38CB6B00FE838A /* dogs_name13s@2x.png in Resources */,
 				5EFBEB851D38CB6B00FE838A /* dogs_name1s@2x.png in Resources */,
+				18BBC1851D3CD1E600DE8431 /* dogD.png in Resources */,
 				5EFBEB791D38CB6B00FE838A /* dogs_name14s@2x.png in Resources */,
 				5EFBEBBF1D38CB6C00FE838A /* dogs_name46s@2x.png in Resources */,
 			);
