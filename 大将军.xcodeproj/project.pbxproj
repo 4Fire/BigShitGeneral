@@ -246,7 +246,6 @@
 		5EFBEC241D38CB6C00FE838A /* 狗1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB691D38CB6B00FE838A /* 狗1.png */; };
 		5EFBEC251D38CB6C00FE838A /* 狗爪.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB6A1D38CB6B00FE838A /* 狗爪.png */; };
 		5EFBEC261D38CB6C00FE838A /* 猫狗.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB6B1D38CB6B00FE838A /* 猫狗.png */; };
-		5EFBEC271D38CB6C00FE838A /* 生日 (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB6C1D38CB6B00FE838A /* 生日 (1).png */; };
 		5EFBEC281D38CB6C00FE838A /* 生日.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB6D1D38CB6B00FE838A /* 生日.png */; };
 		5EFBEC291D38CB6C00FE838A /* 男性未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB6E1D38CB6B00FE838A /* 男性未选中.png */; };
 		5EFBEC2A1D38CB6C00FE838A /* 男性选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB6F1D38CB6B00FE838A /* 男性选中.png */; };
@@ -558,7 +557,6 @@
 		5EFBEB691D38CB6B00FE838A /* 狗1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "狗1.png"; sourceTree = "<group>"; };
 		5EFBEB6A1D38CB6B00FE838A /* 狗爪.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "狗爪.png"; sourceTree = "<group>"; };
 		5EFBEB6B1D38CB6B00FE838A /* 猫狗.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "猫狗.png"; sourceTree = "<group>"; };
-		5EFBEB6C1D38CB6B00FE838A /* 生日 (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "生日 (1).png"; sourceTree = "<group>"; };
 		5EFBEB6D1D38CB6B00FE838A /* 生日.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "生日.png"; sourceTree = "<group>"; };
 		5EFBEB6E1D38CB6B00FE838A /* 男性未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "男性未选中.png"; sourceTree = "<group>"; };
 		5EFBEB6F1D38CB6B00FE838A /* 男性选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "男性选中.png"; sourceTree = "<group>"; };
@@ -1301,7 +1299,6 @@
 				5EFBEB691D38CB6B00FE838A /* 狗1.png */,
 				5EFBEB6A1D38CB6B00FE838A /* 狗爪.png */,
 				5EFBEB6B1D38CB6B00FE838A /* 猫狗.png */,
-				5EFBEB6C1D38CB6B00FE838A /* 生日 (1).png */,
 				5EFBEB6D1D38CB6B00FE838A /* 生日.png */,
 				5EFBEB6E1D38CB6B00FE838A /* 男性未选中.png */,
 				5EFBEB6F1D38CB6B00FE838A /* 男性选中.png */,
@@ -1560,7 +1557,6 @@
 				5EFBEB941D38CB6B00FE838A /* dogs_name27@2x.png in Resources */,
 				5EFBEB8F1D38CB6B00FE838A /* dogs_name24s@2x.png in Resources */,
 				5EFBEBA21D38CB6C00FE838A /* dogs_name33@2x.png in Resources */,
-				5EFBEC271D38CB6C00FE838A /* 生日 (1).png in Resources */,
 				5EFBEBD41D38CB6C00FE838A /* dogs_name56@2x.png in Resources */,
 				5EFBEBFD1D38CB6C00FE838A /* dogs_name74s@2x.png in Resources */,
 				5EFBEB9E1D38CB6C00FE838A /* dogs_name31@2x.png in Resources */,
