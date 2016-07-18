@@ -22,8 +22,8 @@
     }
 }
 
-+ (NSArray<Dog *> *)getAllDogsWithCurrentOwner:(Owner *)owner {
-    NSArray<Dog *> *array = [Dog fetchAllDogsFromSQLiterWithContext:[Context context] withOwner:owner];
++ (NSArray<Dog *> *)getAllDogsWithCurrentOwner {
+    NSArray<Dog *> *array = [Dog fetchAllDogsFromSQLiterWithContext:[Context context] withOwner:[DoggyModel getOwnerInfo]];
     return array;
 }
 
@@ -31,9 +31,10 @@
     return [Dog fetchDogFromSQLiterWithContext:[Context context] Name:name owner:[DoggyModel getOwnerInfo]];
 }
 
-//+ (NSArray<Owner *> *)getAllOwners {
-
-//}
+//有点问题:
++ (NSArray<Owner *> *)getAllOwners {
+    return [Owner fetchAllOwnerSToSQLiterWithContext:[Context context]];
+}
 
 
 

@@ -61,6 +61,7 @@
 #pragma mark - setter;
 - (void)setDoggyArray:(NSArray *)doggyArray {
     _doggyArray = doggyArray;
+    [self.collection reloadData];
 }
 
 #pragma mark - getter;

@@ -61,9 +61,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CalendarCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"interesting" forIndexPath:indexPath];
-    
-    cell.backgroundColor = [UIColor orangeColor];
-    
+    cell.backgroundColor = COLOR(160, 217, 229);
     NSDate *beforDate = [NSDate dateWithTimeIntervalSinceNow:60 * 60 * 24 * (-30 + indexPath.row)];
     
     NSDateFormatter *formatter = [NSDateFormatter new];
@@ -75,7 +73,9 @@
     NSCalendar *calender = [NSCalendar currentCalendar];
     BOOL isWeekend = [calender isDateInWeekend:beforDate];
     if (isWeekend) {
-        cell.backgroundColor = [UIColor redColor];
+        cell.tesView.backgroundColor = COLOR(214, 44, 45);
+    } else {
+        cell.tesView.backgroundColor = COLOR(254, 168, 195);
     }
 
 
@@ -113,14 +113,12 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         
-        _collectionView.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
-        
         _collectionView.bounces = YES;
         
         _collectionView.showsHorizontalScrollIndicator = NO;
         //注册原型cell
         [_collectionView registerClass:[CalendarCell class] forCellWithReuseIdentifier:@"interesting"];
-        _collectionView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+        _collectionView.backgroundColor = [UIColor colorWithWhite:1 alpha:1];
     }
     return _collectionView;
 }

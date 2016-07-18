@@ -19,7 +19,7 @@
 + (Owner *)getOwnerInfo;
 
 //获取用户下的所有狗
-+ (NSArray<Dog *> *)getAllDogsWithCurrentOwner:(Owner *)owner;
++ (NSArray<Dog *> *)getAllDogsWithCurrentOwner;;
 
 //获取当前用户的某只狗
 + (Dog *)getDogWithName:(NSString *)name;

@@ -12,8 +12,6 @@
 
 @property (nonatomic, strong) NSArray *doggyArray;
 
-//- (instancetype)initWithFrame:(CGRect)frame;
-
 - (instancetype)initWithFrame:(CGRect)frame WithDoggyArray:(NSArray *)array;
 
 @end

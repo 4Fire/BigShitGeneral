@@ -11,6 +11,7 @@
 #import "DoggyCollectionView.h"
 #import "InfomationTableView.h"
 #import "Owner.h"
+#import "DoggyModel.h"
 
 @interface HomePageController ()
 
@@ -56,8 +57,7 @@
 }
 
 - (void)initUserDataSource {
-    NSLog(@"text%@",self.owner);
-    NSLog(@"========%@",self.owner.dog);
+//    NSLog(@"text%@",self.owner);
 }
 
 
@@ -67,7 +67,7 @@
     //添加日历
     [self.view addSubview:self.calendar];
     [self.navigationController.navigationBar addSubview:self.todayBtn];
-    self.navigationItem.rightBarButtonItem = self.todayItem;
+//    self.navigationItem.rightBarButtonItem = self.todayItem;
     
     //添加doggy
     [self.view addSubview:self.doggyCollection];
@@ -126,7 +126,7 @@
 
 - (DoggyCollectionView *)doggyCollection {
     if (!_doggyCollection) {
-        _doggyCollection = [[DoggyCollectionView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.25, SCREEN_WIDTH, SCREEN_HEIGHT * 0.25) WithDoggyArray:@[@"1",@"2"]];
+        _doggyCollection = [[DoggyCollectionView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.25, SCREEN_WIDTH, SCREEN_HEIGHT * 0.25) WithDoggyArray:[DoggyModel getAllDogsWithCurrentOwner]];
     }
     return _doggyCollection;
 }
@@ -142,7 +142,6 @@
 - (Owner *)owner {
     if (!_owner) {
         _owner = [DoggyModel getOwnerInfo];
-        NSLog(@"%@",_owner);
     }
     return _owner;
 }

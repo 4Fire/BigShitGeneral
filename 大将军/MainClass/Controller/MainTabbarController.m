@@ -133,7 +133,7 @@
 
 - (UIBarButtonItem *)drawBtn {
     if (!_drawBtn) {
-        _drawBtn = [[UIBarButtonItem alloc]initWithTitle:@"test" style:(UIBarButtonItemStyleDone) target:self action:@selector(drawOpenOrClose)];
+        _drawBtn = [[UIBarButtonItem alloc]initWithTitle:@"将军府" style:(UIBarButtonItemStyleDone) target:self action:@selector(drawOpenOrClose)];
     }
     return _drawBtn;
 }
@@ -150,7 +150,7 @@
 
 - (UINavigationController *)homePage {
     if (!_homePage) {
-        _homePage = [self setViewController:[HomePageController new] WithTitle:@"将军府" TabBarTitle:@"将军府" TabBarImage:nil SelectTabBarImage:nil];
+        _homePage = [self setViewController:[HomePageController new] WithTitle:@"汪汪汪" TabBarTitle:@"汪汪汪" TabBarImage:nil SelectTabBarImage:nil];
     }
     return _homePage;
 }
