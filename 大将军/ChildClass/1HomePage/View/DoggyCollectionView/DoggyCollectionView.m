@@ -10,6 +10,7 @@
 #import "DoggyCell.h"
 #import "DoggyLayout.h"
 #import "Dog.h"
+#import "DoggyModel.h"
 
 @interface DoggyCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -32,7 +33,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.doggyArray = array;
+        NSLog(@"yyyyyyyyyy%@",array);
         [self initUserInterface];
     }
     return self;
@@ -53,9 +54,7 @@
     
     cell.backgroundColor = COLOR(247, 68, 97);
     
-//    cell.doggyIcon.image = [UIImage imageNamed:@"dogD"];
     Dog *dog = self.doggyArray[indexPath.row];
-    NSLog(@"========================%@",dog);
     cell.doggyIcon.image = [UIImage imageWithData:dog.iconImage];
     
     
@@ -68,10 +67,10 @@
 
 
 #pragma mark - setter;
-- (void)setDoggyArray:(NSArray *)doggyArray {
-    _doggyArray = doggyArray;
-    [self.collection reloadData];
-}
+//- (void)setDoggyArray:(NSArray<Dog *> *)doggyArray {
+//    _doggyArray = doggyArray;
+//    [self.collection reloadData];
+//}
 
 #pragma mark - getter;
 - (UICollectionView *)collection {
@@ -90,6 +89,11 @@
         _collection.backgroundColor = BACKGROUNDCOLOR;
     }
     return _collection;
+}
+
+- (NSArray *)doggyArray {
+    _doggyArray = [DoggyModel getAllDogsWithCurrentOwner];
+    return _doggyArray;
 }
 
 
