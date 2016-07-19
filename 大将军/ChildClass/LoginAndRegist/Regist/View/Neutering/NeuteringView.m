@@ -29,6 +29,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.titleView.backgroundColor = COLOR(242, 13, 101);
+        [self addEdgingWithEdgingColor:COLOR(242, 13, 101)];
         [self addSubview:self.quesLab];
         [self addSubview:self.nextBtn];
         [self addSubview:self.yesBtn];
@@ -97,7 +99,7 @@
         _quesLab = [[UILabel alloc] init];
         _quesLab.bounds = CGRectMake(0, 0, CELL_W * 0.7, CELL_H * 0.05);
         _quesLab.center = CGPointMake(CELL_W * 0.5, CELL_H * 0.25);
-        _quesLab.textColor = COLOR(212, 20, 24);
+        _quesLab.textColor = COLOR(242, 13, 101);
         _quesLab.textAlignment = NSTextAlignmentCenter;
         _quesLab.text = @"麻麻,我还能生小小汪嘛?";
     }
@@ -146,7 +148,7 @@
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _nextBtn.bounds = CGRectMake(0, 0, CELL_W * 0.25, CELL_W * 0.25);
         _nextBtn.center = CGPointMake(CELL_W * 0.5, CELL_H * 0.8);
-        _nextBtn.backgroundColor = COLOR(212, 20, 24);
+        _nextBtn.backgroundColor = COLOR(242, 13, 101);
         [_nextBtn setTitle:@"下一题" forState:UIControlStateNormal];
         [_nextBtn addTarget:self action:@selector(responseToNext) forControlEvents:UIControlEventTouchUpInside];
         _nextBtn.layer.cornerRadius = CELL_W * 0.25 * 0.5;

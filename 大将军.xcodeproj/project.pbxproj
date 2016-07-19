@@ -15,9 +15,19 @@
 		18A698A51D3D1B2F00D688EC /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A698A41D3D1B2F00D688EC /* CoreTelephony.framework */; };
 		18A698A71D3D1B4500D688EC /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A698A61D3D1B4500D688EC /* libstdc++.tbd */; };
 		18A698A91D3D1B5B00D688EC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A698A81D3D1B5B00D688EC /* libz.tbd */; };
+		18A698B51D3E0D1500D688EC /* cell1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18A698AA1D3E0D1500D688EC /* cell1.jpeg */; };
+		18A698B61D3E0D1500D688EC /* cell2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18A698AB1D3E0D1500D688EC /* cell2.jpeg */; };
+		18A698B71D3E0D1500D688EC /* cell3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18A698AC1D3E0D1500D688EC /* cell3.jpeg */; };
+		18A698B81D3E0D1500D688EC /* cell4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18A698AD1D3E0D1500D688EC /* cell4.jpeg */; };
+		18A698B91D3E0D1500D688EC /* cell5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18A698AE1D3E0D1500D688EC /* cell5.jpeg */; };
+		18A698BA1D3E0D1500D688EC /* cell6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18A698AF1D3E0D1500D688EC /* cell6.jpeg */; };
+		18A698BB1D3E0D1500D688EC /* cell7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18A698B01D3E0D1500D688EC /* cell7.jpeg */; };
+		18A698BC1D3E0D1500D688EC /* cell9.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18A698B11D3E0D1500D688EC /* cell9.jpeg */; };
+		18A698BD1D3E0D1500D688EC /* cell10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18A698B21D3E0D1500D688EC /* cell10.jpeg */; };
+		18A698BE1D3E0D1500D688EC /* cell11.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18A698B31D3E0D1500D688EC /* cell11.jpeg */; };
+		18A698BF1D3E0D1500D688EC /* cell12.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 18A698B41D3E0D1500D688EC /* cell12.jpeg */; };
 		18BBC17F1D3CB8A400DE8431 /* Owner+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBC17C1D3CB8A400DE8431 /* Owner+CoreDataProperties.m */; };
 		18BBC1801D3CB8A400DE8431 /* Owner.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBC17E1D3CB8A400DE8431 /* Owner.m */; };
-		18BBC1831D3CCD7800DE8431 /* today-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BBC1821D3CCD7800DE8431 /* today-red.png */; };
 		18BBC1851D3CD1E600DE8431 /* dogD.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BBC1841D3CD1E600DE8431 /* dogD.png */; };
 		3E1A48BCCEAB5A3688E03C56 /* libPods-大将军.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17994362A87CBB9C05B38F37 /* libPods-大将军.a */; };
 		5E1D78951D3DB91E0062E802 /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1D78941D3DB91E0062E802 /* InfoTableViewCell.m */; };
@@ -287,11 +297,21 @@
 		18A698A41D3D1B2F00D688EC /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		18A698A61D3D1B4500D688EC /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		18A698A81D3D1B5B00D688EC /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		18A698AA1D3E0D1500D688EC /* cell1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cell1.jpeg; sourceTree = "<group>"; };
+		18A698AB1D3E0D1500D688EC /* cell2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cell2.jpeg; sourceTree = "<group>"; };
+		18A698AC1D3E0D1500D688EC /* cell3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cell3.jpeg; sourceTree = "<group>"; };
+		18A698AD1D3E0D1500D688EC /* cell4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cell4.jpeg; sourceTree = "<group>"; };
+		18A698AE1D3E0D1500D688EC /* cell5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cell5.jpeg; sourceTree = "<group>"; };
+		18A698AF1D3E0D1500D688EC /* cell6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cell6.jpeg; sourceTree = "<group>"; };
+		18A698B01D3E0D1500D688EC /* cell7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cell7.jpeg; sourceTree = "<group>"; };
+		18A698B11D3E0D1500D688EC /* cell9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cell9.jpeg; sourceTree = "<group>"; };
+		18A698B21D3E0D1500D688EC /* cell10.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cell10.jpeg; sourceTree = "<group>"; };
+		18A698B31D3E0D1500D688EC /* cell11.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cell11.jpeg; sourceTree = "<group>"; };
+		18A698B41D3E0D1500D688EC /* cell12.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cell12.jpeg; sourceTree = "<group>"; };
 		18BBC17B1D3CB8A400DE8431 /* Owner+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Owner+CoreDataProperties.h"; sourceTree = "<group>"; };
 		18BBC17C1D3CB8A400DE8431 /* Owner+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Owner+CoreDataProperties.m"; sourceTree = "<group>"; };
 		18BBC17D1D3CB8A400DE8431 /* Owner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Owner.h; sourceTree = "<group>"; };
 		18BBC17E1D3CB8A400DE8431 /* Owner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Owner.m; sourceTree = "<group>"; };
-		18BBC1821D3CCD7800DE8431 /* today-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "today-red.png"; sourceTree = "<group>"; };
 		18BBC1841D3CD1E600DE8431 /* dogD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dogD.png; sourceTree = "<group>"; };
 		54A7F2C553DF6965AC51BB43 /* Pods-大将军.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-大将军.release.xcconfig"; path = "Pods/Target Support Files/Pods-大将军/Pods-大将军.release.xcconfig"; sourceTree = "<group>"; };
 		5E1D78931D3DB91E0062E802 /* InfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
@@ -644,8 +664,18 @@
 		18BBC1811D3CCD0900DE8431 /* 4Fire */ = {
 			isa = PBXGroup;
 			children = (
-				18BBC1821D3CCD7800DE8431 /* today-red.png */,
 				18BBC1841D3CD1E600DE8431 /* dogD.png */,
+				18A698AA1D3E0D1500D688EC /* cell1.jpeg */,
+				18A698AB1D3E0D1500D688EC /* cell2.jpeg */,
+				18A698AC1D3E0D1500D688EC /* cell3.jpeg */,
+				18A698AD1D3E0D1500D688EC /* cell4.jpeg */,
+				18A698AE1D3E0D1500D688EC /* cell5.jpeg */,
+				18A698AF1D3E0D1500D688EC /* cell6.jpeg */,
+				18A698B01D3E0D1500D688EC /* cell7.jpeg */,
+				18A698B11D3E0D1500D688EC /* cell9.jpeg */,
+				18A698B21D3E0D1500D688EC /* cell10.jpeg */,
+				18A698B31D3E0D1500D688EC /* cell11.jpeg */,
+				18A698B41D3E0D1500D688EC /* cell12.jpeg */,
 			);
 			path = 4Fire;
 			sourceTree = "<group>";
@@ -1495,6 +1525,7 @@
 				5EFBEC771D38CD2C00FE838A /* location_no@2x.png in Resources */,
 				5EFBEBE21D38CB6C00FE838A /* dogs_name62@2x.png in Resources */,
 				5EFBEC161D38CB6C00FE838A /* qq.png in Resources */,
+				18A698B61D3E0D1500D688EC /* cell2.jpeg in Resources */,
 				5EFBEBCA1D38CB6C00FE838A /* dogs_name51@2x.png in Resources */,
 				5EFBEBB51D38CB6C00FE838A /* dogs_name41s@2x.png in Resources */,
 				5EFBEBDA1D38CB6C00FE838A /* dogs_name59@2x.png in Resources */,
@@ -1502,6 +1533,7 @@
 				5EFBEBE81D38CB6C00FE838A /* dogs_name65@2x.png in Resources */,
 				5EFBEBC11D38CB6C00FE838A /* dogs_name47s@2x.png in Resources */,
 				5EFBEC031D38CB6C00FE838A /* dogs_name9s@2x.png in Resources */,
+				18A698BA1D3E0D1500D688EC /* cell6.jpeg in Resources */,
 				5EFBEBEC1D38CB6C00FE838A /* dogs_name67@2x.png in Resources */,
 				5EFBEBD51D38CB6C00FE838A /* dogs_name56s@2x.png in Resources */,
 				5EFBEBF01D38CB6C00FE838A /* dogs_name69@2x.png in Resources */,
@@ -1509,6 +1541,7 @@
 				5EFBEBC31D38CB6C00FE838A /* dogs_name48s@2x.png in Resources */,
 				5EFBEC131D38CB6C00FE838A /* homeCenternoHeader@2x.png in Resources */,
 				5EFBEB8E1D38CB6B00FE838A /* dogs_name24@2x.png in Resources */,
+				18A698B51D3E0D1500D688EC /* cell1.jpeg in Resources */,
 				5EFBEC251D38CB6C00FE838A /* 狗爪.png in Resources */,
 				5EFBEBE61D38CB6C00FE838A /* dogs_name64@2x.png in Resources */,
 				5EFBEBA41D38CB6C00FE838A /* dogs_name34@2x.png in Resources */,
@@ -1545,8 +1578,10 @@
 				5EFBEBD11D38CB6C00FE838A /* dogs_name54s@2x.png in Resources */,
 				5EFBEB7D1D38CB6B00FE838A /* dogs_name16s@2x.png in Resources */,
 				5EFBEBCB1D38CB6C00FE838A /* dogs_name51s@2x.png in Resources */,
+				18A698BD1D3E0D1500D688EC /* cell10.jpeg in Resources */,
 				5EFBEBA71D38CB6C00FE838A /* dogs_name35s@2x.png in Resources */,
 				5EFBEBA11D38CB6C00FE838A /* dogs_name32s@2x.png in Resources */,
+				18A698BC1D3E0D1500D688EC /* cell9.jpeg in Resources */,
 				5EFBEC091D38CB6C00FE838A /* background1.jpeg in Resources */,
 				5EFBEBC41D38CB6C00FE838A /* dogs_name49@2x.png in Resources */,
 				5EFBEC281D38CB6C00FE838A /* 生日.png in Resources */,
@@ -1595,11 +1630,14 @@
 				5EFBEBF11D38CB6C00FE838A /* dogs_name69s@2x.png in Resources */,
 				5EFBEBD81D38CB6C00FE838A /* dogs_name58@2x.png in Resources */,
 				5EFBEBB81D38CB6C00FE838A /* dogs_name43@2x.png in Resources */,
+				18A698BE1D3E0D1500D688EC /* cell11.jpeg in Resources */,
 				5EFBEB991D38CB6B00FE838A /* dogs_name29s@2x.png in Resources */,
 				5EFBEBAB1D38CB6C00FE838A /* dogs_name37s@2x.png in Resources */,
 				5EFBEBE71D38CB6C00FE838A /* dogs_name64s@2x.png in Resources */,
 				5EFBEC751D38CD2C00FE838A /* icon_play@2x.png in Resources */,
+				18A698BF1D3E0D1500D688EC /* cell12.jpeg in Resources */,
 				5EFBEC101D38CB6C00FE838A /* change5.png in Resources */,
+				18A698B91D3E0D1500D688EC /* cell5.jpeg in Resources */,
 				5EFBEBC51D38CB6C00FE838A /* dogs_name49s@2x.png in Resources */,
 				5EFBEC241D38CB6C00FE838A /* 狗1.png in Resources */,
 				5EFBEC071D38CB6C00FE838A /* back@3x.png in Resources */,
@@ -1627,6 +1665,7 @@
 				5EFBEBED1D38CB6C00FE838A /* dogs_name67s@2x.png in Resources */,
 				5EFBEBF31D38CB6C00FE838A /* dogs_name6s@2x.png in Resources */,
 				5EFBEBF81D38CB6C00FE838A /* dogs_name72@2x.png in Resources */,
+				18A698B71D3E0D1500D688EC /* cell3.jpeg in Resources */,
 				5EFBEBD91D38CB6C00FE838A /* dogs_name58s@2x.png in Resources */,
 				5EFBEB891D38CB6B00FE838A /* dogs_name21s@2x.png in Resources */,
 				5EFBEBAD1D38CB6C00FE838A /* dogs_name38s@2x.png in Resources */,
@@ -1662,7 +1701,6 @@
 				5EFBEBE11D38CB6C00FE838A /* dogs_name61s@2x.png in Resources */,
 				5EFBE9AC1D388B6400FE838A /* Main.storyboard in Resources */,
 				5EFBEBA31D38CB6C00FE838A /* dogs_name33s@2x.png in Resources */,
-				18BBC1831D3CCD7800DE8431 /* today-red.png in Resources */,
 				5EFBEBDC1D38CB6C00FE838A /* dogs_name5@2x.png in Resources */,
 				5EFBEB911D38CB6B00FE838A /* dogs_name25s@2x.png in Resources */,
 				5EFBEBDB1D38CB6C00FE838A /* dogs_name59s@2x.png in Resources */,
@@ -1670,6 +1708,7 @@
 				5EFBEBBC1D38CB6C00FE838A /* dogs_name45@2x.png in Resources */,
 				5EFBEBBA1D38CB6C00FE838A /* dogs_name44@2x.png in Resources */,
 				5EFBEB8A1D38CB6B00FE838A /* dogs_name22@2x.png in Resources */,
+				18A698BB1D3E0D1500D688EC /* cell7.jpeg in Resources */,
 				5EFBEB711D38CB6B00FE838A /* dogs_name10s@2x.png in Resources */,
 				5EFBEBB11D38CB6C00FE838A /* dogs_name3s@2x.png in Resources */,
 				5EFBEC061D38CB6C00FE838A /* back@2x.png in Resources */,
@@ -1682,6 +1721,7 @@
 				5EFBEBC01D38CB6C00FE838A /* dogs_name47@2x.png in Resources */,
 				5EFBEB771D38CB6B00FE838A /* dogs_name13s@2x.png in Resources */,
 				5EFBEB851D38CB6B00FE838A /* dogs_name1s@2x.png in Resources */,
+				18A698B81D3E0D1500D688EC /* cell4.jpeg in Resources */,
 				18BBC1851D3CD1E600DE8431 /* dogD.png in Resources */,
 				5EFBEB791D38CB6B00FE838A /* dogs_name14s@2x.png in Resources */,
 				5EFBEBBF1D38CB6C00FE838A /* dogs_name46s@2x.png in Resources */,

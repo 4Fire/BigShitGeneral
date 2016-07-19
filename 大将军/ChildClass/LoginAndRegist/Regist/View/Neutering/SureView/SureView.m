@@ -23,6 +23,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.titleView.backgroundColor = COLOR(212, 20, 24);
+        [self addEdgingWithEdgingColor:COLOR(212, 20, 24)];
         [self addSubview:self.imageV];
         [self addSubview:self.textView];
         [self addSubview:self.nextBtn];
@@ -59,7 +61,7 @@
         _textView.center = CGPointMake(CELL_W * 0.5, CELL_H * 0.6);
 //        _textView.backgroundColor = [UIColor redColor];
         _textView.font = [UIFont systemFontOfSize:17];
-        _textView.text = [NSString stringWithFormat:@"奉天承运,皇帝诏曰:\n       即日起册封 XXX 为 铲屎大将军 \n                                 钦此"] ;
+        _textView.text = [NSString stringWithFormat:@"奉天承运,皇帝诏曰:\n       即日起册封您为 铲屎大将军 \n                                 钦此"] ;
         _textView.editable = NO;
     }
     return _textView;
