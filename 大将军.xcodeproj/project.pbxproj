@@ -31,6 +31,12 @@
 		18BBC1851D3CD1E600DE8431 /* dogD.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BBC1841D3CD1E600DE8431 /* dogD.png */; };
 		3E1A48BCCEAB5A3688E03C56 /* libPods-大将军.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17994362A87CBB9C05B38F37 /* libPods-大将军.a */; };
 		5E1D78951D3DB91E0062E802 /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1D78941D3DB91E0062E802 /* InfoTableViewCell.m */; };
+		5E1D78C51D3E175E0062E802 /* 记录未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78BF1D3E175E0062E802 /* 记录未选中.png */; };
+		5E1D78C61D3E175E0062E802 /* 记录选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C01D3E175E0062E802 /* 记录选中.png */; };
+		5E1D78C71D3E175E0062E802 /* 遛狗未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C11D3E175E0062E802 /* 遛狗未选中.png */; };
+		5E1D78C81D3E175E0062E802 /* 遛狗选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C21D3E175E0062E802 /* 遛狗选中.png */; };
+		5E1D78C91D3E175E0062E802 /* 主业未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C31D3E175E0062E802 /* 主业未选中.png */; };
+		5E1D78CA1D3E175E0062E802 /* 主页选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C41D3E175E0062E802 /* 主页选中.png */; };
 		5ED8781E1D3C65150060F83B /* DoggyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED8781D1D3C65150060F83B /* DoggyModel.m */; };
 		5EFBE9A31D388B6400FE838A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A21D388B6400FE838A /* main.m */; };
 		5EFBE9A61D388B6400FE838A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A51D388B6400FE838A /* AppDelegate.m */; };
@@ -316,6 +322,12 @@
 		54A7F2C553DF6965AC51BB43 /* Pods-大将军.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-大将军.release.xcconfig"; path = "Pods/Target Support Files/Pods-大将军/Pods-大将军.release.xcconfig"; sourceTree = "<group>"; };
 		5E1D78931D3DB91E0062E802 /* InfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
 		5E1D78941D3DB91E0062E802 /* InfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
+		5E1D78BF1D3E175E0062E802 /* 记录未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "记录未选中.png"; sourceTree = "<group>"; };
+		5E1D78C01D3E175E0062E802 /* 记录选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "记录选中.png"; sourceTree = "<group>"; };
+		5E1D78C11D3E175E0062E802 /* 遛狗未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "遛狗未选中.png"; sourceTree = "<group>"; };
+		5E1D78C21D3E175E0062E802 /* 遛狗选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "遛狗选中.png"; sourceTree = "<group>"; };
+		5E1D78C31D3E175E0062E802 /* 主业未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主业未选中.png"; sourceTree = "<group>"; };
+		5E1D78C41D3E175E0062E802 /* 主页选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主页选中.png"; sourceTree = "<group>"; };
 		5ED8781C1D3C65150060F83B /* DoggyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoggyModel.h; sourceTree = "<group>"; };
 		5ED8781D1D3C65150060F83B /* DoggyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoggyModel.m; sourceTree = "<group>"; };
 		5EFBE99E1D388B6400FE838A /* 大将军.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "大将军.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -664,6 +676,12 @@
 		18BBC1811D3CCD0900DE8431 /* 4Fire */ = {
 			isa = PBXGroup;
 			children = (
+				5E1D78BF1D3E175E0062E802 /* 记录未选中.png */,
+				5E1D78C01D3E175E0062E802 /* 记录选中.png */,
+				5E1D78C11D3E175E0062E802 /* 遛狗未选中.png */,
+				5E1D78C21D3E175E0062E802 /* 遛狗选中.png */,
+				5E1D78C31D3E175E0062E802 /* 主业未选中.png */,
+				5E1D78C41D3E175E0062E802 /* 主页选中.png */,
 				18BBC1841D3CD1E600DE8431 /* dogD.png */,
 				18A698AA1D3E0D1500D688EC /* cell1.jpeg */,
 				18A698AB1D3E0D1500D688EC /* cell2.jpeg */,
@@ -1564,6 +1582,7 @@
 				5EFBEBD61D38CB6C00FE838A /* dogs_name57@2x.png in Resources */,
 				5EFBEC1B1D38CB6C00FE838A /* 全身.jpg in Resources */,
 				5EFBEBB31D38CB6C00FE838A /* dogs_name40s@2x.png in Resources */,
+				5E1D78C81D3E175E0062E802 /* 遛狗选中.png in Resources */,
 				5EFBEB751D38CB6B00FE838A /* dogs_name12s@2x.png in Resources */,
 				5EFBEBA91D38CB6C00FE838A /* dogs_name36s@2x.png in Resources */,
 				5EFBEC0B1D38CB6C00FE838A /* bodyImage.png in Resources */,
@@ -1601,6 +1620,7 @@
 				5EFBEB8D1D38CB6B00FE838A /* dogs_name23s@2x.png in Resources */,
 				5EFBEB8B1D38CB6B00FE838A /* dogs_name22s@2x.png in Resources */,
 				5EFBEB701D38CB6B00FE838A /* dogs_name10@2x.png in Resources */,
+				5E1D78C71D3E175E0062E802 /* 遛狗未选中.png in Resources */,
 				5EFBEBCE1D38CB6C00FE838A /* dogs_name53@2x.png in Resources */,
 				5EFBEB9A1D38CB6B00FE838A /* dogs_name2@2x.png in Resources */,
 				5EFBEC261D38CB6C00FE838A /* 猫狗.png in Resources */,
@@ -1617,6 +1637,7 @@
 				5EFBEC021D38CB6C00FE838A /* dogs_name9@2x.png in Resources */,
 				5EFBEB831D38CB6B00FE838A /* dogs_name19s@2x.png in Resources */,
 				5EFBEC0A1D38CB6C00FE838A /* background2.jpeg in Resources */,
+				5E1D78C61D3E175E0062E802 /* 记录选中.png in Resources */,
 				5EFBEBBE1D38CB6C00FE838A /* dogs_name46@2x.png in Resources */,
 				5EFBEC1C1D38CB6C00FE838A /* 女性未选中.png in Resources */,
 				5EFBEB801D38CB6B00FE838A /* dogs_name18@2x.png in Resources */,
@@ -1624,6 +1645,7 @@
 				5EFBEC221D38CB6C00FE838A /* 拍照.png in Resources */,
 				5EFBEBC71D38CB6C00FE838A /* dogs_name4s@2x.png in Resources */,
 				5EFBEB721D38CB6B00FE838A /* dogs_name11@2x.png in Resources */,
+				5E1D78C91D3E175E0062E802 /* 主业未选中.png in Resources */,
 				5EFBEBFC1D38CB6C00FE838A /* dogs_name74@2x.png in Resources */,
 				5EFBEC1F1D38CB6C00FE838A /* 屎字.png in Resources */,
 				5EFBEBFB1D38CB6C00FE838A /* dogs_name73s@2x.png in Resources */,
@@ -1672,6 +1694,7 @@
 				5EFBEBD71D38CB6C00FE838A /* dogs_name57s@2x.png in Resources */,
 				5EFBEBB71D38CB6C00FE838A /* dogs_name42s@2x.png in Resources */,
 				5EFBEB961D38CB6B00FE838A /* dogs_name28@2x.png in Resources */,
+				5E1D78C51D3E175E0062E802 /* 记录未选中.png in Resources */,
 				5EFBEBEA1D38CB6C00FE838A /* dogs_name66@2x.png in Resources */,
 				5EFBEC001D38CB6C00FE838A /* dogs_name8@2x.png in Resources */,
 				5EFBEBF51D38CB6C00FE838A /* dogs_name70s@2x.png in Resources */,
@@ -1685,6 +1708,7 @@
 				5EFBEB9F1D38CB6C00FE838A /* dogs_name31s@2x.png in Resources */,
 				5EFBEBF91D38CB6C00FE838A /* dogs_name72s@2x.png in Resources */,
 				5EFBEB811D38CB6B00FE838A /* dogs_name18s@2x.png in Resources */,
+				5E1D78CA1D3E175E0062E802 /* 主页选中.png in Resources */,
 				5EFBEBE91D38CB6C00FE838A /* dogs_name65s@2x.png in Resources */,
 				5EFBEBEE1D38CB6C00FE838A /* dogs_name68@2x.png in Resources */,
 				5EFBEBC91D38CB6C00FE838A /* dogs_name50s@2x.png in Resources */,

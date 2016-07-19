@@ -112,17 +112,29 @@ static HomePageController *home = nil;
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     VC.navigationItem.title = title;
     VC.navigationController.tabBarItem.title = tabBarTitle;
+    
+    VC.tabBarItem = [[UITabBarItem alloc] initWithTitle:title image:[[UIImage imageNamed:tabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:selectTabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:COLOR(10, 10, 10),NSFontAttributeName:[UIFont boldSystemFontOfSize:10]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:COLOR(227, 56, 43),NSFontAttributeName:[UIFont boldSystemFontOfSize:10]} forState:UIControlStateSelected];
+    
     if ([VC isKindOfClass:[HomePageController class]]) {
         VC.navigationItem.rightBarButtonItem = self.todayItem;
         home = (HomePageController *)VC;
-    }
-    VC.navigationItem.leftBarButtonItem = self.drawBtn;
-    if (tabBarImage) {
+        VC.navigationItem.leftBarButtonItem = self.drawBtn;
+        
         VC.tabBarItem.image = [[UIImage imageNamed:tabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    }
-    if (selectTabBarImage) {
+        
         VC.tabBarItem.selectedImage = [[UIImage imageNamed:selectTabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        NSLog(@"66666666666666666666666================%@",tabBarImage);
+    } else {
+        VC.navigationItem.leftBarButtonItem = self.drawBtn;
+    
+        
+//        VC.tabBarItem.image = [[UIImage imageNamed:tabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        VC.tabBarItem.selectedImage = [[UIImage imageNamed:selectTabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
+    
     return nav;
 }
 
@@ -165,7 +177,7 @@ static HomePageController *home = nil;
 
 - (UINavigationController *)homePage {
     if (!_homePage) {
-        _homePage = [self setViewController:[HomePageController new] WithTitle:@"汪汪汪" TabBarTitle:@"汪汪汪" TabBarImage:@"主页未选中" SelectTabBarImage:@"主页选中"];
+        _homePage = [self setViewController:[HomePageController new] WithTitle:@"汪汪汪" TabBarTitle:@"汪汪汪" TabBarImage:@"主业未选中" SelectTabBarImage:@"主页选中"];
     }
     return _homePage;
 }
