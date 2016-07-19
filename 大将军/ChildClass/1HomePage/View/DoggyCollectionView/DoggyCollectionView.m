@@ -9,6 +9,7 @@
 #import "DoggyCollectionView.h"
 #import "DoggyCell.h"
 #import "DoggyLayout.h"
+#import "Dog.h"
 
 @interface DoggyCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -51,7 +52,11 @@
     
     
     cell.backgroundColor = COLOR(247, 68, 97);
-    cell.doggyIcon.image = [UIImage imageNamed:@"dogD"];
+    
+//    cell.doggyIcon.image = [UIImage imageNamed:@"dogD"];
+    Dog *dog = self.doggyArray[indexPath.row];
+    NSLog(@"========================%@",dog);
+    cell.doggyIcon.image = [UIImage imageWithData:dog.iconImage];
     
     
     
