@@ -165,21 +165,21 @@ static HomePageController *home = nil;
 
 - (UINavigationController *)homePage {
     if (!_homePage) {
-        _homePage = [self setViewController:[HomePageController new] WithTitle:@"汪汪汪" TabBarTitle:@"汪汪汪" TabBarImage:nil SelectTabBarImage:nil];
+        _homePage = [self setViewController:[HomePageController new] WithTitle:@"汪汪汪" TabBarTitle:@"汪汪汪" TabBarImage:@"主页未选中" SelectTabBarImage:@"主页选中"];
     }
     return _homePage;
 }
 
 - (UINavigationController *)record {
     if (!_record) {
-        _record = [self setViewController:[RecordController new] WithTitle:@"记录" TabBarTitle:@"记录" TabBarImage:nil SelectTabBarImage:nil];
+        _record = [self setViewController:[RecordController new] WithTitle:@"记录" TabBarTitle:@"记录" TabBarImage:@"记录未选中" SelectTabBarImage:@"记录选中"];
     }
     return _record;
 }
 
 - (UINavigationController *)nearby {
     if (!_nearby) {
-        _nearby = [self setViewController:[NearByController new] WithTitle:@"附近" TabBarTitle:@"附近" TabBarImage:nil SelectTabBarImage:nil];
+        _nearby = [self setViewController:[NearByController new] WithTitle:@"遛狗" TabBarTitle:@"遛狗" TabBarImage:@"遛狗未选中" SelectTabBarImage:@"遛狗选中"];
     }
     return _nearby;
 }
