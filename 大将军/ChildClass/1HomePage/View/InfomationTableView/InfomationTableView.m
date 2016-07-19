@@ -41,6 +41,7 @@
     InfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfoCell" forIndexPath:indexPath];
     cell.backgroundColor = BACKGROUNDCOLOR;
     cell.titleLabel.text = self.titleArray[indexPath.row];
+    cell.TbackGround.image = [UIImage imageNamed:[NSString stringWithFormat:@"cell%ld.jpeg",indexPath.row + 1]];
     
     return cell;
 }
