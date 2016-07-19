@@ -59,7 +59,7 @@
 
 + (BOOL)duplicateCheckingDogWithContext:(NSManagedObjectContext *)ctx
                                   Name:(NSString *)name
-                                  owner:(Owner *)owner{
+                                  owner:(Owner *)owner {
     Dog *objDog = [self fetchDogFromSQLiterWithContext:ctx Name:name owner:owner];
     if (objDog) {
         NSLog(@"已存在这只狗狗!请勿重复添加!");

@@ -11,6 +11,8 @@
 #import "DoggyCollectionView.h"
 #import "InfomationTableView.h"
 #import "Owner.h"
+#import "Dog.h"
+#import "Context.h"
 #import "DoggyModel.h"
 
 @interface HomePageController ()
@@ -57,7 +59,7 @@
 }
 
 - (void)initUserDataSource {
-//    NSLog(@"text%@",self.owner);
+   
 }
 
 
