@@ -348,6 +348,7 @@
         _loginBtn.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 0.76, SCREEN_HEIGHT * 0.064);
         _loginBtn.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.65);
         _loginBtn.backgroundColor = COLOR(212, 20, 24);
+//        _loginBtn.backgroundColor = BACKGROUNDCOLOR;
         [_loginBtn setTitle:@"登   录" forState:UIControlStateNormal];
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginBtn addTarget:self action:@selector(responseToLoginBtn) forControlEvents:UIControlEventTouchUpInside];
