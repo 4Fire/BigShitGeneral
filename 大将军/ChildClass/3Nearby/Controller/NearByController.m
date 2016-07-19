@@ -12,6 +12,7 @@
 #import "MAMutablePolylineView.h"
 #import "MepRecord.h"
 #import "FileHelper.h"
+#import "RecordViewController.h"
 
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
@@ -36,6 +37,7 @@
 @property (nonatomic, strong) MAMutablePolylineView *mutableView;
 @property (nonatomic, strong) NSMutableArray *locationsArray;
 @property (nonatomic, strong) MepRecord *currentRecord;
+@property (nonatomic, strong) UIButton *recordBtn;
 
 @end
 
@@ -57,6 +59,7 @@
     [self.view addSubview:self.tdBtn];
     [self.view addSubview:self.startBtn];
     [self.navigationItem setRightBarButtonItem:self.rightBtn animated:YES];
+    [self.view addSubview:self.recordBtn];
     [self initNearBySearch];
     
 }
@@ -157,6 +160,16 @@
     return _annoArr;
 }
 
+- (UIButton *)recordBtn {
+    if (!_recordBtn) {
+        _recordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _recordBtn.frame = CGRectMake(300, 300, 44, 44);
+        _recordBtn.backgroundColor = [UIColor orangeColor];
+        [_recordBtn addTarget:self action:@selector(action_recordBtnPressed) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _recordBtn;
+}
+
 
 #pragma mark -- Action
 
@@ -207,9 +220,11 @@
     if (self.isRecording) {
         [_startBtn setImage:[UIImage imageNamed:@"icon_stop.png"] forState:UIControlStateNormal];
 //        [self.view addSubview:self.detailView];
+        self.tdBtn.hidden = YES;
         [UIView animateWithDuration:0.6 animations:^{
             self.mapView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height * 3 / 4);
             self.tabBarController.tabBar.hidden = YES;
+            self.locationBtn.frame = CGRectMake(10, self.view.bounds.size.height * 3 / 4 - 85, 35, 35);
             
         } completion:^(BOOL finished) {
             
@@ -224,13 +239,21 @@
         [UIView animateWithDuration:0.6 animations:^{
             self.mapView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
             self.tabBarController.tabBar.hidden = NO;
+            self.locationBtn.frame = CGRectMake(10, 550, 35, 35);
             
         } completion:^(BOOL finished) {
-            
+            self.tdBtn.hidden = NO;
         }];
         
     }
     
+}
+
+- (void)action_recordBtnPressed {
+    UIViewController *recordController = [[RecordViewController alloc] initWithNibName:nil bundle:nil];
+    recordController.title = @"Records";
+    
+    [self.navigationController pushViewController:recordController animated:YES];
 }
 
 #pragma mark -- MAMapViewDelegate
