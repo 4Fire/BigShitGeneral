@@ -45,7 +45,7 @@
 - (void)responseToNext {
     [self.nameTextField resignFirstResponder];
     NSData *iconImage;
-    if (self.headIcon.currentImage == [UIImage imageNamed:@"拍照.png"]) {
+    if ([self.headIcon.currentImage isEqual:[UIImage imageNamed:@"拍照.png"]]) {
     iconImage = UIImageJPEGRepresentation([UIImage imageNamed:@"dogD.png"], 0.5);
     }else {
     iconImage = UIImageJPEGRepresentation(self.headIcon.currentImage, 0.5);

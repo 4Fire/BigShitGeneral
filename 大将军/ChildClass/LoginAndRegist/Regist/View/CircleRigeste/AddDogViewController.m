@@ -103,7 +103,7 @@ static NSString *DogCollectionViewCellId = @"DogCollectionViewCell";
         NSLog(@"%@", ownerAccount);
         Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:ownerAccount];
         
-        NSLog(@"name = %@, icon = %@, sex = %@, variety = %@, neutering = %@, birthday = %@, owner = %@", _name, _iconImage, _sex, _variety, _neutering, _birthday, owner);
+//        NSLog(@"name = %@, icon = %@, sex = %@, variety = %@, neutering = %@, birthday = %@, owner = %@", _name, _iconImage, _sex, _variety, _neutering, _birthday, owner);
         
         [Dog insertDogToSQLiterWithContext:ctx Name:_name Icon:_iconImage Sex:_sex Variety:_variety Neutering:_neutering Birthday:_birthday Owner:owner];
          [[[UIApplication sharedApplication].delegate window] setRootViewController:[[MainTabbarController alloc] init]];

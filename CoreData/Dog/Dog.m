@@ -25,7 +25,6 @@
     /**< 2.添加数据到数据库 */
     //传入上下文,创建一个实体Dog对象
     Dog *dog = [NSEntityDescription insertNewObjectForEntityForName:@"Dog" inManagedObjectContext:ctx];
-//    dog.name = name;
     //设置Dog属性
     [dog setValue:name forKey:@"name"];
     if (iconImage == nil) {
