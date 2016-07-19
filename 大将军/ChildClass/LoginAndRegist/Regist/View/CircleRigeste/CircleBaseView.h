@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CircleBaseView : UIView
+@property (nonatomic, strong) UIView *titleView;
 
+- (void)addEdgingWithEdgingColor:(UIColor *)edgColor;
 @end

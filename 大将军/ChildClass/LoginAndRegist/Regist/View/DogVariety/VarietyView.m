@@ -39,6 +39,8 @@ static NSString *HeadImageCollectionViewCellId = @"HeadImageCollectionViewCell";
 }
 
 - (void)initAgain {
+    self.titleView.backgroundColor = COLOR(181, 207, 49);
+    [self addEdgingWithEdgingColor:COLOR(181, 207, 49)];
     [self addSubview:self.bodyImage];
     [self addSubview:self.headImage];
     [self addSubview:self.lab];
@@ -147,7 +149,7 @@ static NSString *HeadImageCollectionViewCellId = @"HeadImageCollectionViewCell";
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _nextBtn.bounds = CGRectMake(0, 0, CELL_W * 0.25, CELL_W * 0.25);
         _nextBtn.center = CGPointMake(CELL_W * 0.5, CELL_H * 0.9);
-        _nextBtn.backgroundColor = COLOR(212, 20, 24);
+        _nextBtn.backgroundColor = COLOR(181, 207, 49);
         [_nextBtn setTitle:@"下一题" forState:UIControlStateNormal];
         [_nextBtn addTarget:self action:@selector(responseToNext) forControlEvents:UIControlEventTouchUpInside];
         _nextBtn.layer.cornerRadius = CELL_W * 0.25 * 0.5;
