@@ -328,7 +328,7 @@
     if (!_accountTextField) {
         _accountTextField = [self createTextFieldWithCenterH:SCREEN_HEIGHT * 0.46 Placeholder:@" 请输入大将军暗号" SecureTextEntry:NO LeftLabelText:@"大将军: " ];
         _accountTextField.delegate = self;
-//        _accountTextField.keyboardType = 
+        _accountTextField.keyboardType = UIKeyboardTypeAlphabet;
     }
     return _accountTextField;
 }
@@ -337,6 +337,7 @@
     if (!_passwordTextField) {
         _passwordTextField = [self createTextFieldWithCenterH:SCREEN_HEIGHT * 0.55 Placeholder:@" 请输入大将军密文" SecureTextEntry:YES LeftLabelText:@"密   文: "];
         _passwordTextField.delegate = self;
+        _passwordTextField.keyboardType = UIKeyboardTypeAlphabet;
     }
     return _passwordTextField;
 }

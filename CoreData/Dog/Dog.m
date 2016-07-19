@@ -29,7 +29,7 @@
     //设置Dog属性
     [dog setValue:name forKey:@"name"];
     if (iconImage == nil) {
-        NSData *icon = UIImageJPEGRepresentation([UIImage imageNamed:@"homeCenternoHeader"], 0.5);
+        NSData *icon = UIImageJPEGRepresentation([UIImage imageNamed:@"dogD.png"], 0.5);
         [dog setValue:icon forKey:@"iconImage"];
     }else {
         [dog setValue:iconImage forKey:@"iconImage"];
