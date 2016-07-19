@@ -44,7 +44,12 @@
 
 - (void)responseToNext {
     [self.nameTextField resignFirstResponder];
-    NSData *iconImage = UIImageJPEGRepresentation(self.headIcon.currentImage, 0.5);
+    NSData *iconImage;
+    if (self.headIcon.currentImage == [UIImage imageNamed:@"拍照.png"]) {
+    iconImage = UIImageJPEGRepresentation([UIImage imageNamed:@"dogD.png"], 0.5);
+    }else {
+    iconImage = UIImageJPEGRepresentation(self.headIcon.currentImage, 0.5);
+    }
     NSString *name = self.nameTextField.text;
     if (self.nameTextField.text.length == 0) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"狗狗名称不能为空" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -57,11 +62,11 @@
     
     NSManagedObjectContext *ctx = [Context context];
     NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
-    NSManagedObject *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
+    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
     BOOL dogExist = [Dog duplicateCheckingDogWithContext:ctx Name:name owner:owner];
     
     if (dogExist == YES) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"狗狗重复啦,重新去个名字吧!" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"狗狗重复啦,重新取个名字吧!" message:nil preferredStyle:UIAlertControllerStyleAlert];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [alertController dismissViewControllerAnimated:YES completion:nil];
         });
