@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) UITableView *infoTableView;
 
+@property (nonatomic, strong) NSArray *titleArray;
+
 @end
 
 @implementation InfomationTableView
@@ -38,6 +40,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     InfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfoCell" forIndexPath:indexPath];
     cell.backgroundColor = BACKGROUNDCOLOR;
+    cell.titleLabel.text = self.titleArray[indexPath.row];
     
     return cell;
 }
@@ -52,14 +55,23 @@
         
         _infoTableView.rowHeight = SCREEN_HEIGHT / 3;
         
+        _infoTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        _infoTableView.backgroundColor = BACKGROUNDCOLOR;
+        
         [_infoTableView registerClass:[InfoTableViewCell class] forCellReuseIdentifier:@"InfoCell"];
     }
     return _infoTableView;
 }
 
+- (NSArray *)titleArray {
+    if (!_titleArray) {
+        _titleArray = @[@"知识 · 15个关于狗狗的冷知识你知道几个？",@"知识 · 给你一台狗语翻译机",@"知识 · 狗狗的“耳语”你知道吗？",@"我家大狗，竟然自己养了一只小狗做宠物！",@"知识 · 狗狗太胖还是太瘦？如何判断狗狗体格是否正常？"];
+    }
+    return _titleArray;
+}
 
 @end
-
 
 
 

@@ -8,6 +8,11 @@
 
 #import "InfoTableViewCell.h"
 
+@interface InfoTableViewCell ()
+
+
+@end
+
 @implementation InfoTableViewCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -26,17 +31,27 @@
 
 - (void)initUserInterface {
     [self.contentView addSubview:self.TbackGround];
+    [self.contentView addSubview:self.titleLabel];
 }
 
 #pragma mark - getter
-- (UIView *)TbackGround {
+- (UIImageView *)TbackGround {
     if (!_TbackGround) {
-        _TbackGround = [[UIView alloc]init];
+        _TbackGround = [[UIImageView alloc]init];
         _TbackGround.backgroundColor = [UIColor whiteColor];
         _TbackGround.bounds = CGRectMake(0, 0, SCREEN_WIDTH, (SCREEN_HEIGHT / 3) * 0.9);
         _TbackGround.center = CGPointMake(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 3 / 2);
+        _TbackGround.userInteractionEnabled = YES;
     }
     return _TbackGround;
+}
+
+- (UILabel *)titleLabel {
+    if (!_titleLabel) {
+        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.TbackGround.frame) - (SCREEN_HEIGHT / 10), SCREEN_WIDTH, SCREEN_HEIGHT / 10)];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _titleLabel;
 }
 
 @end

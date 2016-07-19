@@ -140,7 +140,8 @@
 
 - (InfomationTableView *)infomationTable {
     if (!_infomationTable) {
-        _infomationTable = [[InfomationTableView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.5, SCREEN_WIDTH, SCREEN_HEIGHT / 2)];
+        _infomationTable = [[InfomationTableView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.5, SCREEN_WIDTH, SCREEN_HEIGHT / 2 - self.tabBarController.tabBar.bounds.size.height)];
+        _infomationTable.backgroundColor = BACKGROUNDCOLOR;
         
     }
     return _infomationTable;
