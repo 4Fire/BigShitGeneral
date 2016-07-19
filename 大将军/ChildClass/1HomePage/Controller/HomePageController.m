@@ -59,8 +59,7 @@
 }
 
 - (void)initUserDataSource {
-
-
+   
 }
 
 
@@ -131,8 +130,10 @@
 
 - (DoggyCollectionView *)doggyCollection {
     if (!_doggyCollection) {
+        
         NSArray *test = [DoggyModel getAllDogsWithCurrentOwner];
         NSLog(@"tttt%@",test);
+        
         _doggyCollection = [[DoggyCollectionView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.25, SCREEN_WIDTH, SCREEN_HEIGHT * 0.25) WithDoggyArray:test];
     }
     return _doggyCollection;

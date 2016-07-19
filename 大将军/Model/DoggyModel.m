@@ -19,12 +19,12 @@
 }
 
 + (NSArray<Dog *> *)getAllDogsWithCurrentOwner {
-    NSManagedObjectContext *context = [Context context];
-    NSString *ownerAccount = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
-    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:context Account:ownerAccount];
-    NSArray<Dog *> *TTTTarray = [Dog fetchAllDogsFromSQLiterWithContext:context withOwner:owner];
-//    NSLog(@"############%@",TTTTarray);
-    return [TTTTarray mutableCopy];
+    NSManagedObjectContext *ctx = [Context context];
+    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
+    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
+    NSArray<Dog *> *dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
+    NSLog(@"#######%@",dogs);
+    return dogs;
 }
 
 + (Dog *)getDogWithName:(NSString *)name {

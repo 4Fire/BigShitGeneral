@@ -20,8 +20,7 @@
 
 @implementation DoggyCollectionView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self initUserInterface];
@@ -29,8 +28,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame WithDoggyArray:(NSArray *)array
-{
+- (instancetype)initWithFrame:(CGRect)frame WithDoggyArray:(NSArray *)array {
     self = [super initWithFrame:frame];
     if (self) {
         NSLog(@"yyyyyyyyyy%@",array);
@@ -92,8 +90,21 @@
 }
 
 - (NSArray *)doggyArray {
+//    if (!_doggyArray) {
     _doggyArray = [DoggyModel getAllDogsWithCurrentOwner];
-    return _doggyArray;
+//        [DoggyModel getAllDogsWithCurrentOwner];
+    NSLog(@"dogArray===============%@",_doggyArray);
+//    }
+    NSLog(@"dogArray2===============%@",_doggyArray);
+//    return _doggyArray;
+    
+    NSManagedObjectContext *ctx = [Context context];
+    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
+    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
+    NSArray<Dog *> *dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
+    NSLog(@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXiconXXXXXXXXXXXXXXX = %@", dogs);
+    NSLog(@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXiconXXXXXXXXXXXXXXX2 = %@", dogs);
+    return dogs;
 }
 
 
