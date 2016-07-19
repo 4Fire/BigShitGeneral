@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		188FED441D3E4EE30087FF79 /* PersonDogsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188FED431D3E4EE30087FF79 /* PersonDogsCell.m */; };
+		188FED461D3E60480087FF79 /* ownerMale.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 188FED451D3E60480087FF79 /* ownerMale.jpeg */; };
 		18A6989B1D3D19B200D688EC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6989A1D3D19B200D688EC /* Security.framework */; };
 		18A6989D1D3D19EF00D688EC /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6989C1D3D19EF00D688EC /* libiconv.tbd */; };
 		18A6989F1D3D1AF200D688EC /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6989E1D3D1AF200D688EC /* SystemConfiguration.framework */; };
@@ -295,6 +297,9 @@
 
 /* Begin PBXFileReference section */
 		17994362A87CBB9C05B38F37 /* libPods-大将军.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-大将军.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		188FED421D3E4EE30087FF79 /* PersonDogsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDogsCell.h; sourceTree = "<group>"; };
+		188FED431D3E4EE30087FF79 /* PersonDogsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDogsCell.m; sourceTree = "<group>"; };
+		188FED451D3E60480087FF79 /* ownerMale.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ownerMale.jpeg; sourceTree = "<group>"; };
 		18A6989A1D3D19B200D688EC /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		18A6989C1D3D19EF00D688EC /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		18A6989E1D3D1AF200D688EC /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -682,6 +687,7 @@
 				5E1D78C21D3E175E0062E802 /* 遛狗选中.png */,
 				5E1D78C31D3E175E0062E802 /* 主业未选中.png */,
 				5E1D78C41D3E175E0062E802 /* 主页选中.png */,
+				188FED451D3E60480087FF79 /* ownerMale.jpeg */,
 				18BBC1841D3CD1E600DE8431 /* dogD.png */,
 				18A698AA1D3E0D1500D688EC /* cell1.jpeg */,
 				18A698AB1D3E0D1500D688EC /* cell2.jpeg */,
@@ -973,6 +979,8 @@
 			children = (
 				5EFBEA871D38B59100FE838A /* PersonalView.h */,
 				5EFBEA881D38B59100FE838A /* PersonalView.m */,
+				188FED421D3E4EE30087FF79 /* PersonDogsCell.h */,
+				188FED431D3E4EE30087FF79 /* PersonDogsCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1578,6 +1586,7 @@
 				5EFBEBA01D38CB6C00FE838A /* dogs_name32@2x.png in Resources */,
 				5EFBEBB41D38CB6C00FE838A /* dogs_name41@2x.png in Resources */,
 				5EFBEB781D38CB6B00FE838A /* dogs_name14@2x.png in Resources */,
+				188FED461D3E60480087FF79 /* ownerMale.jpeg in Resources */,
 				5EFBEBE41D38CB6C00FE838A /* dogs_name63@2x.png in Resources */,
 				5EFBEBD61D38CB6C00FE838A /* dogs_name57@2x.png in Resources */,
 				5EFBEC1B1D38CB6C00FE838A /* 全身.jpg in Resources */,
@@ -1826,6 +1835,7 @@
 				5EFBEA0D1D388F0900FE838A /* DoggyCell.m in Sources */,
 				5EFBEA3D1D3890E300FE838A /* CircleOfFriendsController.m in Sources */,
 				5EFBEA7B1D38946900FE838A /* News+CoreDataProperties.m in Sources */,
+				188FED441D3E4EE30087FF79 /* PersonDogsCell.m in Sources */,
 				5EFBEA1D1D388F0900FE838A /* VarietyView.m in Sources */,
 				5EFBEA141D388F0900FE838A /* CircleBaseView.m in Sources */,
 				5EFBEC721D38CD2C00FE838A /* MAMutablePolyline.m in Sources */,

@@ -90,17 +90,20 @@ static HomePageController *home = nil;
             self.drawView.transform = CGAffineTransformIdentity;
             self.tabbarController.view.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
+//            [[[PersonalView alloc] init] animationOfBtnsWhenClose];
             [self.coverBtn removeFromSuperview];
         }];
-        
         _isOpen = NO;
+        
     } else {
         [UIView animateWithDuration:0.3 animations:^{
             [self.tabbarController.view addSubview:self.coverBtn];
             self.drawView.transform = CGAffineTransformMakeTranslation(SCREEN_WIDTH / 6 * 5, 0);
             self.tabbarController.view.transform = CGAffineTransformMakeTranslation(SCREEN_WIDTH / 6 * 5, 0);
+//            [[[PersonalView alloc] init] animationOfBtns];
         } completion:^(BOOL finished) {
-//            [self.tabbarController.view addSubview:self.coverBtn];
+            
+//            [[[PersonalView alloc] init] animationOfBtns];
         }];
 
         _isOpen = YES;
