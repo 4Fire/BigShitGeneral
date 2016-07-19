@@ -46,11 +46,21 @@
 
 #pragma mark - Events
 - (void)responseToRegisterBtn {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ownerAccount"];
     if (self.accountTextField.text.length == 0 || self.passwordTextField.text.length == 0) {
         [self showAlertWithMessage:@"大将军没有称谓或密文!"  dismiss:nil];
         return;
     }
+    
+    if (self.accountTextField.text.length < 6 || self.accountTextField.text.length > 12) {
+        [self showAlertWithMessage:@"请输入6-12位用户名" dismiss:nil];
+        return;
+    }
+    
+    if (self.passwordTextField.text.length < 6) {
+        [self showAlertWithMessage:@"请输入至少6为密码" dismiss:nil];
+        return;
+    }
+    
     NSManagedObjectContext *ctx = [Context context];
        BOOL check = [Owner duplicateCheckingOwnerWithContext:ctx Account:self.accountTextField.text];
     
@@ -178,6 +188,7 @@
     if (!_accountTextField) {
         _accountTextField = [self createTextFieldWithCenterH:SCREEN_HEIGHT * 0.21 Placeholder:@" 请输入大将军暗号" SecureTextEntry:NO LeftLabelText:@"大将军: " ];
         _accountTextField.delegate = self;
+        _accountTextField.keyboardType = UIKeyboardTypeAlphabet;
     }
     return _accountTextField;
 }
@@ -186,6 +197,7 @@
     if (!_passwordTextField) {
         _passwordTextField = [self createTextFieldWithCenterH:SCREEN_HEIGHT * 0.3 Placeholder:@" 请输入大将军密文" SecureTextEntry:NO LeftLabelText:@"密   文: "];
         _passwordTextField.delegate = self;
+        _passwordTextField.keyboardType = UIKeyboardTypeAlphabet;
     }
     return _passwordTextField;
 }
