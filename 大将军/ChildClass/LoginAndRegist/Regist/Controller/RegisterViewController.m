@@ -208,6 +208,7 @@
         _registerBtn.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 0.76, SCREEN_HEIGHT * 0.064);
         _registerBtn.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.4);
         _registerBtn.backgroundColor = COLOR(212, 20, 24);
+//        _registerBtn.backgroundColor = BACKGROUNDCOLOR;
         [_registerBtn setTitle:@"注    册" forState:UIControlStateNormal];
         [_registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_registerBtn addTarget:self action:@selector(responseToRegisterBtn) forControlEvents:UIControlEventTouchUpInside];
