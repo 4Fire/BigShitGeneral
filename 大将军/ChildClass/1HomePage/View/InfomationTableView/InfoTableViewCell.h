@@ -10,4 +10,6 @@
 
 @interface InfoTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) UIView *TbackGround;
+
 @end

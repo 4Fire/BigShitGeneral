@@ -132,7 +132,7 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) style:(UITableViewStylePlain)];
-        _tableView.backgroundColor = [UIColor redColor];
+        _tableView.backgroundColor = BACKGROUNDCOLOR;
 
         
         _tableView.delegate = self;

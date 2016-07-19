@@ -11,7 +11,7 @@
 
 @interface InfomationTableView ()<UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableView *infoTableView;
 
 @end
 
@@ -27,32 +27,34 @@
 
 
 - (void)initUserInterface {
-    [self addSubview:self.tableView];
+    [self addSubview:self.infoTableView];
 }
 
 #pragma mark - dataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfotableCell" forIndexPath:indexPath];
-    
+    InfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfoCell" forIndexPath:indexPath];
+    cell.backgroundColor = BACKGROUNDCOLOR;
     
     return cell;
 }
 
 
 #pragma mark - getter
-- (UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:self.bounds];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
+- (UITableView *)infoTableView {
+    if (!_infoTableView) {
+        _infoTableView = [[UITableView alloc]initWithFrame:self.bounds];
+        _infoTableView.delegate = self;
+        _infoTableView.dataSource = self;
         
-        [_tableView registerClass:[InfoTableViewCell class] forCellReuseIdentifier:@"InfotableCell"];
+        _infoTableView.rowHeight = SCREEN_HEIGHT / 3;
+        
+        [_infoTableView registerClass:[InfoTableViewCell class] forCellReuseIdentifier:@"InfoCell"];
     }
-    return _tableView;
+    return _infoTableView;
 }
 
 
