@@ -10,6 +10,7 @@
 #import "RegisterViewController.h"
 #import "UMSocial.h"
 #import "MainTabbarController.h"
+#import "AddDogViewController.h"
 
 #import <CoreData/CoreData.h>
 #import "Dog.h"
@@ -167,8 +168,51 @@
 //            NSDictionary *dict = [UMSocialAccountManager socialAccountDictionary];
             UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:snsPlatform.platformName];
             NSLog(@"\nusername = %@,\n usid = %@,\n token = %@ iconUrl = %@,\n unionId = %@,\n thirdPlatformUserProfile = %@,\n thirdPlatformResponse = %@ \n, message = %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL, snsAccount.unionId, response.thirdPlatformUserProfile, response.thirdPlatformResponse, response.message);
+            NSLog(@"========================%@",snsAccount);
+            
+            NSString *account = snsAccount.usid;
+            
+            [[NSUserDefaults standardUserDefaults] setObject:account forKey:@"ownerAccount"];
+            
+            NSManagedObjectContext *ctx = [Context context];
+            BOOL check = [Owner duplicateCheckingOwnerWithContext:ctx Account:account];
+            
+            if (check == NO) {
+                [self showAlertWithMessage:@"用户名已存在!" dismiss:nil];
+                return;
+            }
+            BOOL flag = [Owner insertOwnerToSQLiterWithContext:ctx Account:account      Password:@"summerLovesDogs"];
+            if (flag == YES) {
+                [self.view endEditing:true];
+                [self showAlertWithMessage:@"注册成功!" dismiss:^(void){
+                    [[NSUserDefaults standardUserDefaults] setObject:account forKey:@"ownerAccount"];
+                    
+//            [[[UIApplication sharedApplication].delegate window] setRootViewController:[[MainTabbarController alloc] init]];
+                    [self.navigationController pushViewController:[[AddDogViewController alloc] init] animated:YES];
+                }];
+                
+            }else {
+                [self showAlertWithMessage:@"注册失败!" dismiss:nil];
+                return;
+            }
         }});
 }
+
+- (void)showAlertWithMessage:(NSString *)message dismiss:(void(^)(void))dismiss{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [alertController dismissViewControllerAnimated:YES completion:^{
+            if (dismiss) {
+                dismiss();
+            }
+        }];
+    });
+}
+
+
 
 #pragma mark - TextField
 - (UITextField *)createTextFieldWithCenterH:(CGFloat)centerH Placeholder:(NSString *)placeholder SecureTextEntry:(BOOL)secureTextEntry LeftLabelText:(NSString *)leftText {
@@ -284,6 +328,7 @@
     if (!_accountTextField) {
         _accountTextField = [self createTextFieldWithCenterH:SCREEN_HEIGHT * 0.46 Placeholder:@" 请输入大将军暗号" SecureTextEntry:NO LeftLabelText:@"大将军: " ];
         _accountTextField.delegate = self;
+        _accountTextField.keyboardType = UIKeyboardTypeAlphabet;
     }
     return _accountTextField;
 }
@@ -292,6 +337,7 @@
     if (!_passwordTextField) {
         _passwordTextField = [self createTextFieldWithCenterH:SCREEN_HEIGHT * 0.55 Placeholder:@" 请输入大将军密文" SecureTextEntry:YES LeftLabelText:@"密   文: "];
         _passwordTextField.delegate = self;
+        _passwordTextField.keyboardType = UIKeyboardTypeAlphabet;
     }
     return _passwordTextField;
 }

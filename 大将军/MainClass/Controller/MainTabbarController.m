@@ -12,6 +12,9 @@
 #import "CircleOfFriendsController.h"
 #import "NearByController.h"
 #import "PersonalView.h"
+#import "Context.h"
+#import "Owner.h"
+#import "Dog.h"
 
 @interface MainTabbarController ()
 
@@ -32,8 +35,13 @@
 //遮盖用的btn
 @property (nonatomic, strong) UIButton *coverBtn;
 
+//今天按钮
+@property (nonatomic, strong) UIBarButtonItem *todayItem;
+
 @end
 
+
+static HomePageController *home = nil;
 @implementation MainTabbarController
 
 - (instancetype)init {
@@ -68,7 +76,7 @@
     
     [self.view addSubview:self.tabbarController.view];
     [self addChildViewController:self.tabbarController];
-    [self.tabbarController setViewControllers:@[self.homePage,self.record,self.nearby,self.circleOfFriend]];
+    [self.tabbarController setViewControllers:@[self.homePage,self.record,self.nearby]];
 
     self.tabbarController.selectedIndex = 0;
     
@@ -104,6 +112,10 @@
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     VC.navigationItem.title = title;
     VC.navigationController.tabBarItem.title = tabBarTitle;
+    if ([VC isKindOfClass:[HomePageController class]]) {
+        VC.navigationItem.rightBarButtonItem = self.todayItem;
+        home = (HomePageController *)VC;
+    }
     VC.navigationItem.leftBarButtonItem = self.drawBtn;
     if (tabBarImage) {
         VC.tabBarItem.image = [[UIImage imageNamed:tabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -112,6 +124,11 @@
         VC.tabBarItem.selectedImage = [[UIImage imageNamed:selectTabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
     return nav;
+}
+
+#pragma mark - enents
+- (void)returnToday {
+    [home returnToday];
 }
 
 #pragma mark - getter
@@ -124,9 +141,16 @@
 
 - (UIBarButtonItem *)drawBtn {
     if (!_drawBtn) {
-        _drawBtn = [[UIBarButtonItem alloc]initWithTitle:@"test" style:(UIBarButtonItemStyleDone) target:self action:@selector(drawOpenOrClose)];
+        _drawBtn = [[UIBarButtonItem alloc]initWithTitle:@"将军府" style:(UIBarButtonItemStyleDone) target:self action:@selector(drawOpenOrClose)];
     }
     return _drawBtn;
+}
+
+- (UIBarButtonItem *)todayItem {
+    if (!_todayItem) {
+        _todayItem = [[UIBarButtonItem alloc]initWithTitle:@"今天" style:(UIBarButtonItemStyleDone) target:self action:@selector(returnToday)];
+    }
+    return _todayItem;
 }
 
 - (UIButton *)coverBtn {
@@ -141,7 +165,7 @@
 
 - (UINavigationController *)homePage {
     if (!_homePage) {
-        _homePage = [self setViewController:[HomePageController new] WithTitle:@"将军府" TabBarTitle:@"将军府" TabBarImage:nil SelectTabBarImage:nil];
+        _homePage = [self setViewController:[HomePageController new] WithTitle:@"汪汪汪" TabBarTitle:@"汪汪汪" TabBarImage:nil SelectTabBarImage:nil];
     }
     return _homePage;
 }

@@ -10,6 +10,10 @@
 #import "CalendarView.h"
 #import "DoggyCollectionView.h"
 #import "InfomationTableView.h"
+#import "Owner.h"
+#import "Dog.h"
+#import "Context.h"
+#import "DoggyModel.h"
 
 @interface HomePageController ()
 
@@ -19,6 +23,10 @@
 @property (nonatomic, strong) DoggyCollectionView *doggyCollection;
 //信息
 @property (nonatomic, strong) InfomationTableView *infomationTable;
+
+//用户信息
+@property (nonatomic, strong) Owner *owner;
+
 
 //移动到今天
 @property (nonatomic, strong) UIButton *todayBtn;
@@ -51,18 +59,20 @@
 }
 
 - (void)initUserDataSource {
-    
-    
+   
 }
 
 
 - (void)initUserInterface {
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = BACKGROUNDCOLOR;
     
     //添加日历
     [self.view addSubview:self.calendar];
-    [self.navigationController.navigationBar addSubview:self.todayBtn];
-    self.navigationItem.rightBarButtonItem = self.todayItem;
+//    self.navigationItem.rightBarButtonItem = self.todayItem;
+    
+    [self.navigationController.navigationBar setTintColor:COLOR(255, 255, 255)];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:COLOR(250, 205, 174),NSFontAttributeName:[UIFont boldSystemFontOfSize:28]}];
     
     //添加doggy
     [self.view addSubview:self.doggyCollection];
@@ -102,12 +112,11 @@
 - (UIButton *)todayBtn {
     if (!_todayBtn) {
         _todayBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _todayBtn.bounds = CGRectMake(0, 0, SCREEN_WIDTH / 8, SCREEN_WIDTH / 8);
-        [_todayBtn setTitle:@"今天" forState:(UIControlStateNormal)];
+        _todayBtn.bounds = CGRectMake(0, 0, SCREEN_WIDTH / 12, SCREEN_WIDTH / 12);
+        [_todayBtn setImage:[UIImage imageNamed:@"today-red.png"] forState:(UIControlStateNormal)];
         [_todayBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
         _todayBtn.center = CGPointMake(SCREEN_WIDTH / 6 * 5, 20);
         [_todayBtn addTarget:self action:@selector(returnToday) forControlEvents:(UIControlEventTouchUpInside)];
-        _todayBtn.backgroundColor = [UIColor grayColor];
     }
     return _todayBtn;
 }
@@ -121,7 +130,7 @@
 
 - (DoggyCollectionView *)doggyCollection {
     if (!_doggyCollection) {
-        _doggyCollection = [[DoggyCollectionView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.25, SCREEN_WIDTH, SCREEN_HEIGHT * 0.25) WithDoggyArray:@[@"1",@"2"]];
+        _doggyCollection = [[DoggyCollectionView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.25, SCREEN_WIDTH, SCREEN_HEIGHT * 0.25) WithDoggyArray:[DoggyModel getAllDogsWithCurrentOwner]];
     }
     return _doggyCollection;
 }
@@ -134,6 +143,12 @@
     return _infomationTable;
 }
 
+- (Owner *)owner {
+    if (!_owner) {
+        _owner = [DoggyModel getOwnerInfo];
+    }
+    return _owner;
+}
 #pragma mark - other
 //imagewithColor
 - (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size {

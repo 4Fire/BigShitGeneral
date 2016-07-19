@@ -12,7 +12,7 @@
 
 @property (nonatomic, strong) UILabel *day;
 @property (nonatomic, strong) UILabel *month;
-
+@property (nonatomic, strong) UIView *tesView;
 @property (nonatomic, strong) NSDate *date;
 
 @end

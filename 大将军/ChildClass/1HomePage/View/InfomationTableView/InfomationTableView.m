@@ -7,6 +7,7 @@
 //
 
 #import "InfomationTableView.h"
+#import "InfoTableViewCell.h"
 
 @interface InfomationTableView ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -35,7 +36,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfotableCell" forIndexPath:indexPath];
     
     
     return cell;
@@ -49,7 +50,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
-        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"tableCell"];
+        [_tableView registerClass:[InfoTableViewCell class] forCellReuseIdentifier:@"InfotableCell"];
     }
     return _tableView;
 }

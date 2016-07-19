@@ -1,13 +1,13 @@
 PODS:
-  - AMap3DMap (4.0.2):
+  - AMap3DMap (4.0.3):
     - AMapFoundation (~> 1.0)
-  - AMapFoundation (1.0.0)
-  - AMapSearch (4.0.0):
-    - AMapFoundation (= 1.0.0)
-  - AVOSCloud (3.3.2)
-  - AVOSCloudCrashReporting (3.3.2):
+  - AMapFoundation (1.1.0)
+  - AMapSearch (4.1.0):
+    - AMapFoundation (~> 1.0)
+  - AVOSCloud (3.3.5)
+  - AVOSCloudCrashReporting (3.3.5):
     - AVOSCloud
-  - AVOSCloudIM (3.3.2):
+  - AVOSCloudIM (3.3.5):
     - AVOSCloud
   - UMengSocialCOM (5.2.1)
 
@@ -20,14 +20,14 @@ DEPENDENCIES:
   - UMengSocialCOM (~> 5.2.1)
 
 SPEC CHECKSUMS:
-  AMap3DMap: c0be8d58712972466bd92cc917de883334a3bc08
-  AMapFoundation: af861f5d299a4f17a1a8b50fd91242933bb352f3
-  AMapSearch: 867e89123c927436713372803156ac9848d9868a
-  AVOSCloud: 052f48bcbd88c8b556cb91e61348f7ca92c210e5
-  AVOSCloudCrashReporting: 299525192b1a191e5405cd08a9d05fa1ee88c747
-  AVOSCloudIM: 64a3a5f0eff8afbd639ec671e1d8707fb2138e51
+  AMap3DMap: 8619d67fe7b3bbe45abf74b3434eb9ab20220507
+  AMapFoundation: 15db20567e6512422a086a01b42a88b145bc2500
+  AMapSearch: cb4722480d2d4331a032d43bd1070ed0fa55dac9
+  AVOSCloud: 1fe170768bee7e05bc3ea86e38d5bddb105cb957
+  AVOSCloudCrashReporting: 7ad087db785a25d6ef03cb54c2c0b460eb32dabb
+  AVOSCloudIM: dc307c48e951fcd861f4ae6db6d807e7b40639c8
   UMengSocialCOM: 074c135ce349aa4c8848d3fb8458757bcb6ffb67
 
-PODFILE CHECKSUM: 63a5d9c8a5b9d56824807a69699cb39bd66057e5
+PODFILE CHECKSUM: f01c9a4385d10c1e7592213067600fae5a61ff7a
 
 COCOAPODS: 1.0.1

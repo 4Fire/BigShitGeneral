@@ -9,6 +9,7 @@
 #import "DoggyCollectionView.h"
 #import "DoggyCell.h"
 #import "DoggyLayout.h"
+#import "Dog.h"
 
 @interface DoggyCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -50,7 +51,15 @@
     DoggyCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DoggyCell" forIndexPath:indexPath];
     
     
-    cell.backgroundColor = [UIColor whiteColor];
+    cell.backgroundColor = COLOR(247, 68, 97);
+    
+//    cell.doggyIcon.image = [UIImage imageNamed:@"dogD"];
+    Dog *dog = self.doggyArray[indexPath.row];
+    NSLog(@"========================%@",dog);
+    cell.doggyIcon.image = [UIImage imageWithData:dog.iconImage];
+    
+    
+    
     cell.layer.cornerRadius = (SCREEN_WIDTH - 30) / 6;
     cell.layer.masksToBounds = YES;
     
@@ -61,6 +70,7 @@
 #pragma mark - setter;
 - (void)setDoggyArray:(NSArray *)doggyArray {
     _doggyArray = doggyArray;
+    [self.collection reloadData];
 }
 
 #pragma mark - getter;
@@ -77,7 +87,7 @@
         
         [_collection registerClass:[DoggyCell class] forCellWithReuseIdentifier:@"DoggyCell"];
         
-        _collection.backgroundColor = [UIColor colorWithWhite:0.1 alpha:1];
+        _collection.backgroundColor = BACKGROUNDCOLOR;
     }
     return _collection;
 }
