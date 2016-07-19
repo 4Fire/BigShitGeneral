@@ -30,7 +30,7 @@
     if (!success) {
         [NSException raise:@"访问数据库错误" format:@"%@", [error localizedDescription]];
     }else {
-        NSLog(@"用户保存成功");
+//        NSLog(@"用户保存成功");
         return YES;
     }
     return YES;
@@ -42,7 +42,7 @@
     //设置Owner属性
     Owner *ownerObj = [self fetchOwnerToSQLiterWithContext:ctx Account:account];
     if (ownerObj) {
-        NSLog(@"该账号已存在,请重新输入");
+//        NSLog(@"该账号已存在,请重新输入");
         return NO;
     }else {
         return YES;
@@ -66,9 +66,9 @@
         [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
     }
     //遍历数据
-    for (NSManagedObject *obj in objs) {
-        NSLog(@"account = %@",[obj valueForKey:@"account"]);
-    }
+//    for (NSManagedObject *obj in objs) {
+////        NSLog(@"account = %@",[obj valueForKey:@"account"]);
+//    }
     return [objs firstObject];
 }
 

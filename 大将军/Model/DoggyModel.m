@@ -22,9 +22,7 @@
     NSManagedObjectContext *ctx = [Context context];
     NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
     Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
-    NSArray<Dog *> *dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
-    NSLog(@"#######%@",dogs);
-    return dogs;
+    return [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
 }
 
 + (Dog *)getDogWithName:(NSString *)name {

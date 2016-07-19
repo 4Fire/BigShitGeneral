@@ -11,10 +11,10 @@
 #import "DoggyLayout.h"
 #import "Dog.h"
 #import "DoggyModel.h"
+#import "Context.h"
 
 @interface DoggyCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic, strong) UICollectionView *collection;
 
 @end
 
@@ -31,11 +31,12 @@
 - (instancetype)initWithFrame:(CGRect)frame WithDoggyArray:(NSArray *)array {
     self = [super initWithFrame:frame];
     if (self) {
-        NSLog(@"yyyyyyyyyy%@",array);
         [self initUserInterface];
     }
     return self;
 }
+
+
 
 - (void)initUserInterface {
     [self addSubview:self.collection];
@@ -55,8 +56,6 @@
     Dog *dog = self.doggyArray[indexPath.row];
     cell.doggyIcon.image = [UIImage imageWithData:dog.iconImage];
     
-    
-    
     cell.layer.cornerRadius = (SCREEN_WIDTH - 30) / 6;
     cell.layer.masksToBounds = YES;
     
@@ -65,10 +64,7 @@
 
 
 #pragma mark - setter;
-//- (void)setDoggyArray:(NSArray<Dog *> *)doggyArray {
-//    _doggyArray = doggyArray;
-//    [self.collection reloadData];
-//}
+
 
 #pragma mark - getter;
 - (UICollectionView *)collection {
@@ -89,22 +85,11 @@
     return _collection;
 }
 
+
+
 - (NSArray *)doggyArray {
-//    if (!_doggyArray) {
     _doggyArray = [DoggyModel getAllDogsWithCurrentOwner];
-//        [DoggyModel getAllDogsWithCurrentOwner];
-    NSLog(@"dogArray===============%@",_doggyArray);
-//    }
-    NSLog(@"dogArray2===============%@",_doggyArray);
-//    return _doggyArray;
-    
-    NSManagedObjectContext *ctx = [Context context];
-    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
-    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
-    NSArray<Dog *> *dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
-    NSLog(@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXiconXXXXXXXXXXXXXXX = %@", dogs);
-    NSLog(@"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXiconXXXXXXXXXXXXXXX2 = %@", dogs);
-    return dogs;
+    return _doggyArray;
 }
 
 
