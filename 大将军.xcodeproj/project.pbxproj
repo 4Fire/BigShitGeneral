@@ -20,6 +20,7 @@
 		18BBC1831D3CCD7800DE8431 /* today-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BBC1821D3CCD7800DE8431 /* today-red.png */; };
 		18BBC1851D3CD1E600DE8431 /* dogD.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BBC1841D3CD1E600DE8431 /* dogD.png */; };
 		3E1A48BCCEAB5A3688E03C56 /* libPods-大将军.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17994362A87CBB9C05B38F37 /* libPods-大将军.a */; };
+		5E1D78951D3DB91E0062E802 /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1D78941D3DB91E0062E802 /* InfoTableViewCell.m */; };
 		5ED8781E1D3C65150060F83B /* DoggyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED8781D1D3C65150060F83B /* DoggyModel.m */; };
 		5EFBE9A31D388B6400FE838A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A21D388B6400FE838A /* main.m */; };
 		5EFBE9A61D388B6400FE838A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A51D388B6400FE838A /* AppDelegate.m */; };
@@ -291,6 +292,8 @@
 		18BBC1821D3CCD7800DE8431 /* today-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "today-red.png"; sourceTree = "<group>"; };
 		18BBC1841D3CD1E600DE8431 /* dogD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dogD.png; sourceTree = "<group>"; };
 		54A7F2C553DF6965AC51BB43 /* Pods-大将军.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-大将军.release.xcconfig"; path = "Pods/Target Support Files/Pods-大将军/Pods-大将军.release.xcconfig"; sourceTree = "<group>"; };
+		5E1D78931D3DB91E0062E802 /* InfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
+		5E1D78941D3DB91E0062E802 /* InfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
 		5ED8781C1D3C65150060F83B /* DoggyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoggyModel.h; sourceTree = "<group>"; };
 		5ED8781D1D3C65150060F83B /* DoggyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoggyModel.m; sourceTree = "<group>"; };
 		5EFBE99E1D388B6400FE838A /* 大将军.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "大将军.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -749,6 +752,8 @@
 			children = (
 				5EFBE9CB1D388F0900FE838A /* InfomationTableView.h */,
 				5EFBE9CC1D388F0900FE838A /* InfomationTableView.m */,
+				5E1D78931D3DB91E0062E802 /* InfoTableViewCell.h */,
+				5E1D78941D3DB91E0062E802 /* InfoTableViewCell.m */,
 			);
 			path = InfomationTableView;
 			sourceTree = "<group>";
@@ -1739,6 +1744,7 @@
 				5EFBEA0A1D388F0900FE838A /* CalendarCell.m in Sources */,
 				5EFBEA0C1D388F0900FE838A /* CustomLayout.m in Sources */,
 				5EFBEA811D38946900FE838A /* Record+CoreDataProperties.m in Sources */,
+				5E1D78951D3DB91E0062E802 /* InfoTableViewCell.m in Sources */,
 				5EFBEA111D388F0900FE838A /* LoginViewController.m in Sources */,
 				5EFBEC6F1D38CD2C00FE838A /* NearByController.m in Sources */,
 				5EFBEA321D3890AD00FE838A /* RecordController.m in Sources */,

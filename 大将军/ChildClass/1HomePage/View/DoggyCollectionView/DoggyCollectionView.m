@@ -51,7 +51,9 @@
     
     
     cell.backgroundColor = COLOR(247, 68, 97);
-    cell.doggyIcon.image = [UIImage imageNamed:@"dogD"];
+    
+//    cell.doggyIcon.image = [UIImage imageNamed:@"dogD"];
+    cell.doggyIcon.image = [UIImage imageNamed:self.doggyArray[indexPath.row][@"icon"]];
     
     
     
