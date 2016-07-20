@@ -101,6 +101,7 @@ static HomePageController *home = nil;
             self.drawView.transform = CGAffineTransformMakeTranslation(SCREEN_WIDTH / 6 * 5, 0);
             self.tabbarController.view.transform = CGAffineTransformMakeTranslation(SCREEN_WIDTH / 6 * 5, 0);
 //            [[[PersonalView alloc] init] animationOfBtns];
+            [self.drawView animationOfBtns];
         } completion:^(BOOL finished) {
             
 //            [[[PersonalView alloc] init] animationOfBtns];

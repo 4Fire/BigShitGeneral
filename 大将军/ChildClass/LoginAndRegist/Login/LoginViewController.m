@@ -175,10 +175,13 @@
             [[NSUserDefaults standardUserDefaults] setObject:account forKey:@"ownerAccount"];
             
             NSManagedObjectContext *ctx = [Context context];
+            
             BOOL check = [Owner duplicateCheckingOwnerWithContext:ctx Account:account];
             
             if (check == NO) {
-                [self showAlertWithMessage:@"用户名已存在!" dismiss:nil];
+                
+//                [self.navigationController pushViewController:[[MainTabbarController alloc] init] animated:YES];
+                [UIApplication sharedApplication].keyWindow.rootViewController = [[MainTabbarController alloc] init];
                 return;
             }
             BOOL flag = [Owner insertOwnerToSQLiterWithContext:ctx Account:account      Password:@"summerLovesDogs"];
@@ -186,8 +189,6 @@
                 [self.view endEditing:true];
                 [self showAlertWithMessage:@"注册成功!" dismiss:^(void){
                     [[NSUserDefaults standardUserDefaults] setObject:account forKey:@"ownerAccount"];
-                    
-//            [[[UIApplication sharedApplication].delegate window] setRootViewController:[[MainTabbarController alloc] init]];
                     [self.navigationController pushViewController:[[AddDogViewController alloc] init] animated:YES];
                 }];
                 

@@ -16,6 +16,9 @@
 #define PERSONAL_WIDTH self.bounds.size.width
 #define PERSONAL_HEIGHT self.bounds.size.height
 
+#define SCROLL_WIDTH self.scrollView.bounds.size.width
+#define SCROLL_HEIGHT self.scrollView.bounds.size.height
+
 
 @interface PersonalView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -38,6 +41,10 @@
 @property (nonatomic, strong) UIButton *ownerSettingBtn;
 
 @property (nonatomic, strong) UIButton *quitBtn;
+
+@property (nonatomic, strong) UIButton *versionBtn;
+
+@property (nonatomic, strong) UIButton *aboutUsBtn;
 
 @end
 
@@ -63,39 +70,36 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     [self addSubview:self.scrollView];
     [self addSubview:self.lineView];
     [self.scrollView addSubview:self.ownerSettingBtn];
+    [self.scrollView addSubview:self.versionBtn];
+    [self.scrollView addSubview:self.aboutUsBtn];
     [self.scrollView addSubview:self.quitBtn];
-    [self.scrollView.layer addSublayer:self.timeLine];
-//    [self animationOfBtns];
    }
 
-//- (void)animationOfBtnsWhenClose {
-//    self.quitBtn.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
-//    self.ownerSettingBtn.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
-//}
-//
-//- (void)animationOfBtns {
-//    self.quitBtn.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
-//    self.ownerSettingBtn.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
-//    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self digui:0];
-//    });
-//}
+- (void)animationOfBtns {
+    self.quitBtn.layer.transform = CATransform3DMakeRotation(M_PI , 0, 1, 0);
+    self.ownerSettingBtn.layer.transform = CATransform3DMakeRotation(M_PI , 0, 1, 0);
+    self.versionBtn.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+    self.aboutUsBtn.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
 
-//- (void)digui:(NSInteger)index {
-//    if (index == self.btns.count) {
-//        return;
-//    }
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        [self digui:(index + 1)];
-//        UIButton *button = self.btns[index];
-//        [UIView animateWithDuration:1 animations:^{
-//            CATransform3D trans = CATransform3DIdentity;
-//            trans.m34 = - 1 / 500;
-//            button.layer.transform = CATransform3DConcat(trans, CATransform3DIdentity);
-//        }];
-//    });
-//}
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self digui:0];
+    });
+}
+
+- (void)digui:(NSInteger)index {
+    if (index == self.btns.count) {
+        return;
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self digui:(index + 1)];
+        UIButton *button = self.btns[index];
+        [UIView animateWithDuration:1 animations:^{
+            CATransform3D trans = CATransform3DIdentity;
+            trans.m34 = - 1 / 500;
+            button.layer.transform = CATransform3DConcat(trans, CATransform3DIdentity);
+        }];
+    });
+}
 
 - (void)quit {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ownerAccount"];
@@ -210,6 +214,20 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
         _scrollView = [[UIScrollView alloc] init];
         _scrollView.frame = CGRectMake(0, self.bounds.size.height * 0.34, self.bounds.size.width, self.bounds.size.height * 0.64);
         _scrollView .backgroundColor = BACKGROUNDCOLOR;
+        
+        UIBezierPath *bezierPath = [UIBezierPath bezierPath];
+        [bezierPath moveToPoint:CGPointMake(self.scrollView.bounds.size.width * 0.5, self.scrollView.bounds.size.height * 0.05)];
+        [bezierPath addLineToPoint:CGPointMake(self.scrollView.bounds.size.width * 0.5, self.scrollView.bounds.size.height * 0.9)];
+        
+        CAShapeLayer *shapLayer = [CAShapeLayer layer];
+        shapLayer.path = bezierPath.CGPath;
+        shapLayer.strokeColor = [UIColor blackColor].CGColor;
+        shapLayer.lineWidth = 5;
+        self.quitBtn.layer.zPosition = -1;
+        self.ownerSettingBtn.layer.zPosition = -1;
+        self.versionBtn.layer.zPosition = -1;
+        self.aboutUsBtn.layer.zPosition = -1;
+        [_scrollView.layer addSublayer:shapLayer];
     }
     return _scrollView;
 }
@@ -226,41 +244,38 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 
 - (UIButton *)ownerSettingBtn {
     if (!_ownerSettingBtn) {
-        _ownerSettingBtn = [self getBtnwithColor:MAIN_COLOR title:@"大将军内务府" center:CGPointMake(self.bounds.size.width * 0.5, self.bounds.size.height * 0.1) left:YES];
-//        _ownerSettingBtn.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+        _ownerSettingBtn = [self getBtnwithColor:MAIN_COLOR title:@"大将军内务府" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.1) left:YES];
     }
     return _ownerSettingBtn;
 }
 
 - (UIButton *)quitBtn {
     if (!_quitBtn) {
-        _quitBtn = [self getBtnwithColor:COLOR(134, 160, 5) title:@"本将军想休息" center:CGPointMake(self.bounds.size.width * 0.5, self.bounds.size.height * 0.2) left:NO];
-//        _quitBtn.layer.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
+        _quitBtn = [self getBtnwithColor:COLOR(134, 160, 5) title:@"本将军想休息" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.75) left:NO];
         [_quitBtn addTarget:self action:@selector(quit) forControlEvents:UIControlEventTouchUpInside];
     }
     return _quitBtn;
 }
 
-- (NSArray<UIButton *> *)btns {
-    return @[self.ownerSettingBtn, self.quitBtn];
+- (UIButton *)versionBtn {
+    if (!_versionBtn) {
+        _versionBtn = [self getBtnwithColor:COLOR(246, 87, 9) title:@"版本信息" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.3)  left:NO];
+    }
+    return _versionBtn;
 }
 
-- (CAShapeLayer *)timeLine {
-    if (_timeLine) {
-        _timeLine = [CAShapeLayer layer];
-        UIBezierPath *bezierPath = [UIBezierPath bezierPath];
-        [bezierPath moveToPoint:CGPointMake(self.scrollView.bounds.size.width * 0.5, self.scrollView.bounds.size.height * 0.05)];
-        [bezierPath addLineToPoint:CGPointMake(self.scrollView.bounds.size.width * 0.5, self.scrollView.bounds.size.height * 0.85)];
-//        [bezierPath addLineToPoint:CGPointMake(self.scrollView.bounds.size.width * 0.5, self.scrollView.bounds.size.height * 0.05)];
-//        bezierPath.lineWidth = 5;
-//        bezierPath.miterLimit = 2;
-        _timeLine.path = bezierPath.CGPath;
-        _timeLine.strokeColor = COLOR(89, 57, 42).CGColor;
-        _timeLine.lineWidth = 5;
-        _timeLine.lineDashPhase = 2;
+- (UIButton *)aboutUsBtn {
+    if (!_aboutUsBtn) {
+        _aboutUsBtn = [self getBtnwithColor:COLOR(251, 212, 10) title:@"大将军开发组" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.5) left:YES];
     }
-    return _timeLine;
+    return _aboutUsBtn;
 }
+
+- (NSArray<UIButton *> *)btns {
+    return @[self.ownerSettingBtn, self.versionBtn, self.aboutUsBtn, self.quitBtn];
+}
+
+
 
 @end
 
