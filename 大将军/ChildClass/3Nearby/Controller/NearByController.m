@@ -61,6 +61,8 @@
     [self.navigationItem setRightBarButtonItem:self.rightBtn animated:YES];
     [self.view addSubview:self.recordBtn];
     [self initNearBySearch];
+    [self initLocationsArray];
+    [self initOverlay];
     
 }
 
@@ -79,6 +81,12 @@
     
 }
 
+- (void)initLocationsArray{
+    
+    self.locationsArray = [NSMutableArray array];
+    
+}
+
 #pragma mark -- Getter
 
 - (MAMapView *)mapView {
@@ -92,9 +100,9 @@
         _mapView.userTrackingMode = MAUserTrackingModeFollow;
         _mapView.skyModelEnable = YES;
         _mapView.pausesLocationUpdatesAutomatically = NO;
-//        _mapView.allowsBackgroundLocationUpdates    = YES;
+        _mapView.allowsBackgroundLocationUpdates    = YES;
         _mapView.distanceFilter = 10;
-        _mapView.desiredAccuracy =kCLLocationAccuracyNearestTenMeters;
+        _mapView.desiredAccuracy =kCLLocationAccuracyBestForNavigation;
         
         
 //        _mapView.centerCoordinate = CLLocationCoordinate2DMake(_mapView.userLocation.location.coordinate.latitude, _mapView.userLocation.location.coordinate.longitude);
@@ -232,8 +240,14 @@
         if (self.currentRecord == nil) {
             self.currentRecord = [[MepRecord alloc] init];
         }
-    }
-    else {
+    }else {
+        
+        [self saveRoute];
+        
+        [self.mutablePolyline removeAllPoints];
+        
+        [self.mutableView referenceDidChange];
+        
         [_startBtn setImage:[UIImage imageNamed:@"icon_play.png"] forState:UIControlStateNormal];
         
         [UIView animateWithDuration:0.6 animations:^{
@@ -296,11 +310,11 @@
 - (MAOverlayRenderer *)mapView:(MAMapView *)mapView rendererForOverlay:(id<MAOverlay>)overlay {
     if ([overlay isKindOfClass:[MAMutablePolyline class]])
     {
-        MAMutablePolylineView *view = [[MAMutablePolylineView alloc] initWithMutablePolyline:overlay];
-        view.lineWidth = 8.0;
-        view.strokeColor = [UIColor orangeColor];
-        _mutableView = view;
-        return view;
+        MAMutablePolylineView *render = [[MAMutablePolylineView alloc] initWithMutablePolyline:overlay];
+        render.lineWidth = 8.0;
+        render.strokeColor = [UIColor orangeColor];
+        _mutableView = render;
+        return render;
     }
     return nil;
 }
@@ -346,6 +360,21 @@
         [_annoArr addObject:anno];
     }
     
+}
+
+#pragma mark -- Save Route
+- (void)saveRoute {
+    if (self.currentRecord == nil)
+    {
+        return;
+    }
+    
+    NSString *name = self.currentRecord.title;
+    NSString *path = [FileHelper filePathWithName:name];
+    
+    [NSKeyedArchiver archiveRootObject:self.currentRecord toFile:path];
+    
+    self.currentRecord = nil;
 }
 
 
