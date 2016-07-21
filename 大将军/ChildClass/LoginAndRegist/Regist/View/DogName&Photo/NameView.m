@@ -58,7 +58,8 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [alertController dismissViewControllerAnimated:YES completion:nil];
         });
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+        [[self fetchViewControllerByView:self] presentViewController:alertController animated:true  completion:nil];
         return;
     }
     
@@ -72,9 +73,8 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [alertController dismissViewControllerAnimated:YES completion:nil];
         });
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:^{
-        }];
-        return;
+        
+         [[self fetchViewControllerByView:self] presentViewController:alertController animated:true  completion:nil];        return;
     }else {
         [self.userInfo setObject:iconImage forKey:@"iconImage"];
         [self.userInfo setObject:name forKey:@"name"];
@@ -82,6 +82,17 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"clickedNext" object:self userInfo:self.userInfo];
     }
 
+}
+
+-(UIViewController *)fetchViewControllerByView:(UIView *)aView{
+    UIViewController * vc = nil;
+    for (UIView * tView = aView; tView.nextResponder; tView = tView.superview) {
+        if ([tView.nextResponder isKindOfClass:[UIViewController class]]) {
+            vc = (UIViewController *)tView.nextResponder;
+            break;
+        }
+    }
+    return vc;
 }
 
 - (void)addPhoto {

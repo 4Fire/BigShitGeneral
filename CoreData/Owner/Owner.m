@@ -36,6 +36,29 @@
     return YES;
 }
 
++ (BOOL)insertOwnerToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                account:(NSString *)account
+                              iconImage:(NSData *)iconImage
+                                   name:(NSString *)name
+                                    sex:(NSNumber *)sex {
+    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
+    
+    //设置Owner属性
+    [owner setValue:iconImage forKey:@"iconImage"];
+    [owner setValue:name forKey:@"name"];
+    [owner setValue:sex forKey:@"sex"];
+    //利用上下文,将数据同步至永久化储存库
+    
+    NSError *error = nil;
+    BOOL success = [ctx save:&error];
+    if (!success) {
+        [NSException raise:@"访问数据库错误" format:@"%@", [error localizedDescription]];
+    }else {
+        return YES;
+    }
+    return YES;
+}
+
 
 + (BOOL)duplicateCheckingOwnerWithContext:(NSManagedObjectContext *)ctx
                                   Account:(NSString *)account {

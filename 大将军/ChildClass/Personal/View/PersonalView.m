@@ -12,6 +12,8 @@
 #import "Owner.h"
 #import "PersonDogsCell.h"
 #import "LoginViewController.h"
+#import "OwnerSettingController.h"
+#import "AddDogViewController.h"
 
 #define PERSONAL_WIDTH self.bounds.size.width
 #define PERSONAL_HEIGHT self.bounds.size.height
@@ -46,6 +48,11 @@
 
 @property (nonatomic, strong) UIButton *aboutUsBtn;
 
+@property (nonatomic, strong) UILabel *welcomeLab;
+
+@property (nonatomic, strong) NSArray<UIColor *> *colors;
+
+
 @end
 
 
@@ -59,6 +66,9 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     if (self) {
         self.userInteractionEnabled = YES;
         [self initUserInterface];
+        
+        //注册通知
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ownerSetting) name:@"ownerSetting" object:nil];
     }
     return self;
 }
@@ -73,7 +83,15 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     [self.scrollView addSubview:self.versionBtn];
     [self.scrollView addSubview:self.aboutUsBtn];
     [self.scrollView addSubview:self.quitBtn];
+    [self addSubview:self.welcomeLab];
    }
+
+- (void)ownerSetting {
+    NSManagedObjectContext *ctx = [Context context];
+    Owner *owner1 = [Owner fetchOwnerToSQLiterWithContext:ctx Account:[[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"]];
+    self.userHeader.image = [UIImage imageWithData:owner1.iconImage];
+    self.welcomeLab.text = [NSString stringWithFormat:@"欢迎%@大将军!", owner1.name];
+}
 
 - (void)animationOfBtns {
     self.quitBtn.layer.transform = CATransform3DMakeRotation(M_PI , 0, 1, 0);
@@ -101,9 +119,14 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     });
 }
 
+#pragma mark - Event
 - (void)quit {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ownerAccount"];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[LoginViewController alloc] init] animated:YES completion:nil];
+}
+
+- (void)responseToOwnerSettingBtn {
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[OwnerSettingController alloc] init] animated:YES completion:nil];
 }
 
 - (UIButton *)getBtnwithColor:(UIColor *)color title:(NSString *)title center:(CGPoint)center left:(BOOL)isLeft {
@@ -165,6 +188,12 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.item == _dogs.count) {
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[AddDogViewController alloc] init] animated:YES completion:nil];
+    }
+}
+
 #pragma mark - getter
 - (UIImageView *)userHeader {
     if (!_userHeader) {
@@ -173,10 +202,15 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
         _userHeader.layer.cornerRadius = CGRectGetWidth(_userHeader.bounds) * 0.5;
         _userHeader.layer.masksToBounds = YES;
         
-        NSData *ownerIcon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerIcon"];
-        if (ownerIcon == nil) {
+        NSString *ownerIcon = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerIcon"];
+        if (!ownerIcon) {
             _userHeader.image = [UIImage imageNamed:@"ownerMale.jpeg"];
+        }else {
+            NSManagedObjectContext *ctx = [Context context];
+            Owner *owner1 = [Owner fetchOwnerToSQLiterWithContext:ctx Account:[[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"]];
+            _userHeader.image = [UIImage imageWithData:owner1.iconImage];
         }
+        
         
         UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:_userHeader.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(CGRectGetWidth(_userHeader.bounds) * 0.5, CGRectGetWidth(_userHeader.bounds) * 0.5)];
         CAShapeLayer *shapeLayer = [CAShapeLayer layer];
@@ -213,12 +247,12 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     if (!_scrollView) {
         _scrollView = [[UIScrollView alloc] init];
         _scrollView.frame = CGRectMake(0, self.bounds.size.height * 0.34, self.bounds.size.width, self.bounds.size.height * 0.64);
-        _scrollView .backgroundColor = BACKGROUNDCOLOR;
+        _scrollView.backgroundColor = BACKGROUNDCOLOR;
+//        _scrollView.layer.contents = (__bridge id)[UIImage imageNamed:@"狗2.jpeg"].CGImage;
         
         UIBezierPath *bezierPath = [UIBezierPath bezierPath];
         [bezierPath moveToPoint:CGPointMake(self.scrollView.bounds.size.width * 0.5, self.scrollView.bounds.size.height * 0.05)];
         [bezierPath addLineToPoint:CGPointMake(self.scrollView.bounds.size.width * 0.5, self.scrollView.bounds.size.height * 0.9)];
-        
         CAShapeLayer *shapLayer = [CAShapeLayer layer];
         shapLayer.path = bezierPath.CGPath;
         shapLayer.strokeColor = [UIColor blackColor].CGColor;
@@ -238,6 +272,7 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
         _lineView.bounds = CGRectMake(0, 0, self.bounds.size.width * 0.8, 1);
         _lineView.center = CGPointMake(self.bounds.size.width * 0.5, self.bounds.size.height * 0.36);
         _lineView.backgroundColor = COLOR(251, 202, 10);
+        
     }
     return _lineView;
 }
@@ -245,6 +280,7 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 - (UIButton *)ownerSettingBtn {
     if (!_ownerSettingBtn) {
         _ownerSettingBtn = [self getBtnwithColor:MAIN_COLOR title:@"大将军内务府" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.1) left:YES];
+        [_ownerSettingBtn addTarget:self action:@selector(responseToOwnerSettingBtn) forControlEvents:UIControlEventTouchUpInside];
     }
     return _ownerSettingBtn;
 }
@@ -275,8 +311,22 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     return @[self.ownerSettingBtn, self.versionBtn, self.aboutUsBtn, self.quitBtn];
 }
 
+- (UILabel *)welcomeLab {
+    if (!_welcomeLab) {
+        _welcomeLab = [[UILabel alloc] init];
+        _welcomeLab.bounds = CGRectMake(0, 0, SCROLL_WIDTH * 0.6, SCREEN_WIDTH * 0.08);
+        _welcomeLab.center = CGPointMake(self.bounds.size.width * 0.65, self.bounds.size.height * 0.17);
+//        _welcomeLab.backgroundColor = [UIColor orangeColor];
+        _welcomeLab.textColor = self.colors[arc4random() % self.colors.count];
+        _welcomeLab.adjustsFontSizeToFitWidth = YES;
+        _welcomeLab.text = [NSString stringWithFormat:@"欢迎%@大将军!", [[NSUserDefaults standardUserDefaults] objectForKey:@"nickName"]];
+    }
+    return _welcomeLab;
+}
 
-
+- (NSArray<UIColor *> *)colors {
+    return @[COLOR(247, 68, 97), COLOR(147, 224, 254), COLOR(255, 95, 73), COLOR(236, 1, 18), COLOR(177, 153, 185), COLOR(140, 221, 73), COLOR(172, 237, 239)];
+}
 @end
 
 

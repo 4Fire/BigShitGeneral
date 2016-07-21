@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		186CA8F71D3F75AA00D5A89C /* OwnerSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186CA8F61D3F75AA00D5A89C /* OwnerSettingController.m */; };
+		188D02071D3F9F9800B0B8E2 /* 狗2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 188D02061D3F9F9800B0B8E2 /* 狗2.jpeg */; };
+		188D02091D3FABBD00B0B8E2 /* 毛笔.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D02081D3FABBD00B0B8E2 /* 毛笔.png */; };
+		188D020D1D3FAD7D00B0B8E2 /* 狗icon1.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D020C1D3FAD7D00B0B8E2 /* 狗icon1.png */; };
+		188D020F1D3FAED900B0B8E2 /* 狗head.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D020E1D3FAED900B0B8E2 /* 狗head.png */; };
+		188D02111D3FB14100B0B8E2 /* 毛笔.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D02101D3FB14100B0B8E2 /* 毛笔.png */; };
+		188D02131D3FBA3000B0B8E2 /* ownerFamale.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 188D02121D3FBA3000B0B8E2 /* ownerFamale.jpeg */; };
+		188D02151D3FBEA900B0B8E2 /* 选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D02141D3FBEA900B0B8E2 /* 选中.png */; };
 		188FED441D3E4EE30087FF79 /* PersonDogsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188FED431D3E4EE30087FF79 /* PersonDogsCell.m */; };
 		188FED461D3E60480087FF79 /* ownerMale.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 188FED451D3E60480087FF79 /* ownerMale.jpeg */; };
 		18A6989B1D3D19B200D688EC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6989A1D3D19B200D688EC /* Security.framework */; };
@@ -262,7 +270,6 @@
 		5EFBEC181D38CB6C00FE838A /* wechet.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB5D1D38CB6B00FE838A /* wechet.png */; };
 		5EFBEC191D38CB6C00FE838A /* yes未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB5E1D38CB6B00FE838A /* yes未选中.png */; };
 		5EFBEC1A1D38CB6C00FE838A /* yes选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB5F1D38CB6B00FE838A /* yes选中.png */; };
-		5EFBEC1B1D38CB6C00FE838A /* 全身.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB601D38CB6B00FE838A /* 全身.jpg */; };
 		5EFBEC1C1D38CB6C00FE838A /* 女性未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB611D38CB6B00FE838A /* 女性未选中.png */; };
 		5EFBEC1D1D38CB6C00FE838A /* 女性选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB621D38CB6B00FE838A /* 女性选中.png */; };
 		5EFBEC1E1D38CB6C00FE838A /* 屎.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB631D38CB6B00FE838A /* 屎.png */; };
@@ -271,7 +278,6 @@
 		5EFBEC211D38CB6C00FE838A /* 性别.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB661D38CB6B00FE838A /* 性别.png */; };
 		5EFBEC221D38CB6C00FE838A /* 拍照.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB671D38CB6B00FE838A /* 拍照.png */; };
 		5EFBEC231D38CB6C00FE838A /* 拍照@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB681D38CB6B00FE838A /* 拍照@2x.png */; };
-		5EFBEC241D38CB6C00FE838A /* 狗1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB691D38CB6B00FE838A /* 狗1.png */; };
 		5EFBEC251D38CB6C00FE838A /* 狗爪.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB6A1D38CB6B00FE838A /* 狗爪.png */; };
 		5EFBEC261D38CB6C00FE838A /* 猫狗.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB6B1D38CB6B00FE838A /* 猫狗.png */; };
 		5EFBEC281D38CB6C00FE838A /* 生日.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEB6D1D38CB6B00FE838A /* 生日.png */; };
@@ -297,6 +303,15 @@
 
 /* Begin PBXFileReference section */
 		17994362A87CBB9C05B38F37 /* libPods-大将军.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-大将军.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		186CA8F51D3F75AA00D5A89C /* OwnerSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OwnerSettingController.h; path = "大将军/ChildClass/Personal/View/OwnerSettingController.h"; sourceTree = SOURCE_ROOT; };
+		186CA8F61D3F75AA00D5A89C /* OwnerSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OwnerSettingController.m; path = "大将军/ChildClass/Personal/View/OwnerSettingController.m"; sourceTree = SOURCE_ROOT; };
+		188D02061D3F9F9800B0B8E2 /* 狗2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "狗2.jpeg"; path = "../../狗2.jpeg"; sourceTree = "<group>"; };
+		188D02081D3FABBD00B0B8E2 /* 毛笔.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "毛笔.png"; sourceTree = "<group>"; };
+		188D020C1D3FAD7D00B0B8E2 /* 狗icon1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "狗icon1.png"; sourceTree = "<group>"; };
+		188D020E1D3FAED900B0B8E2 /* 狗head.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "狗head.png"; sourceTree = "<group>"; };
+		188D02101D3FB14100B0B8E2 /* 毛笔.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "毛笔.png"; sourceTree = "<group>"; };
+		188D02121D3FBA3000B0B8E2 /* ownerFamale.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ownerFamale.jpeg; sourceTree = "<group>"; };
+		188D02141D3FBEA900B0B8E2 /* 选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "选中.png"; sourceTree = "<group>"; };
 		188FED421D3E4EE30087FF79 /* PersonDogsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDogsCell.h; sourceTree = "<group>"; };
 		188FED431D3E4EE30087FF79 /* PersonDogsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDogsCell.m; sourceTree = "<group>"; };
 		188FED451D3E60480087FF79 /* ownerMale.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ownerMale.jpeg; sourceTree = "<group>"; };
@@ -606,7 +621,6 @@
 		5EFBEB5D1D38CB6B00FE838A /* wechet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wechet.png; sourceTree = "<group>"; };
 		5EFBEB5E1D38CB6B00FE838A /* yes未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yes未选中.png"; sourceTree = "<group>"; };
 		5EFBEB5F1D38CB6B00FE838A /* yes选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yes选中.png"; sourceTree = "<group>"; };
-		5EFBEB601D38CB6B00FE838A /* 全身.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "全身.jpg"; sourceTree = "<group>"; };
 		5EFBEB611D38CB6B00FE838A /* 女性未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "女性未选中.png"; sourceTree = "<group>"; };
 		5EFBEB621D38CB6B00FE838A /* 女性选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "女性选中.png"; sourceTree = "<group>"; };
 		5EFBEB631D38CB6B00FE838A /* 屎.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "屎.png"; sourceTree = "<group>"; };
@@ -615,7 +629,6 @@
 		5EFBEB661D38CB6B00FE838A /* 性别.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "性别.png"; sourceTree = "<group>"; };
 		5EFBEB671D38CB6B00FE838A /* 拍照.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "拍照.png"; sourceTree = "<group>"; };
 		5EFBEB681D38CB6B00FE838A /* 拍照@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "拍照@2x.png"; sourceTree = "<group>"; };
-		5EFBEB691D38CB6B00FE838A /* 狗1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "狗1.png"; sourceTree = "<group>"; };
 		5EFBEB6A1D38CB6B00FE838A /* 狗爪.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "狗爪.png"; sourceTree = "<group>"; };
 		5EFBEB6B1D38CB6B00FE838A /* 猫狗.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "猫狗.png"; sourceTree = "<group>"; };
 		5EFBEB6D1D38CB6B00FE838A /* 生日.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "生日.png"; sourceTree = "<group>"; };
@@ -681,13 +694,17 @@
 		18BBC1811D3CCD0900DE8431 /* 4Fire */ = {
 			isa = PBXGroup;
 			children = (
+				188D02061D3F9F9800B0B8E2 /* 狗2.jpeg */,
+				188D02101D3FB14100B0B8E2 /* 毛笔.png */,
 				5E1D78BF1D3E175E0062E802 /* 记录未选中.png */,
 				5E1D78C01D3E175E0062E802 /* 记录选中.png */,
 				5E1D78C11D3E175E0062E802 /* 遛狗未选中.png */,
 				5E1D78C21D3E175E0062E802 /* 遛狗选中.png */,
 				5E1D78C31D3E175E0062E802 /* 主业未选中.png */,
 				5E1D78C41D3E175E0062E802 /* 主页选中.png */,
+				188D02141D3FBEA900B0B8E2 /* 选中.png */,
 				188FED451D3E60480087FF79 /* ownerMale.jpeg */,
+				188D02121D3FBA3000B0B8E2 /* ownerFamale.jpeg */,
 				18BBC1841D3CD1E600DE8431 /* dogD.png */,
 				18A698AA1D3E0D1500D688EC /* cell1.jpeg */,
 				18A698AB1D3E0D1500D688EC /* cell2.jpeg */,
@@ -970,6 +987,8 @@
 		5EFBEA011D388F0900FE838A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				186CA8F51D3F75AA00D5A89C /* OwnerSettingController.h */,
+				186CA8F61D3F75AA00D5A89C /* OwnerSettingController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1383,16 +1402,17 @@
 				5EFBEB5D1D38CB6B00FE838A /* wechet.png */,
 				5EFBEB5E1D38CB6B00FE838A /* yes未选中.png */,
 				5EFBEB5F1D38CB6B00FE838A /* yes选中.png */,
-				5EFBEB601D38CB6B00FE838A /* 全身.jpg */,
+				188D02081D3FABBD00B0B8E2 /* 毛笔.png */,
 				5EFBEB611D38CB6B00FE838A /* 女性未选中.png */,
 				5EFBEB621D38CB6B00FE838A /* 女性选中.png */,
+				188D020C1D3FAD7D00B0B8E2 /* 狗icon1.png */,
+				188D020E1D3FAED900B0B8E2 /* 狗head.png */,
 				5EFBEB631D38CB6B00FE838A /* 屎.png */,
 				5EFBEB641D38CB6B00FE838A /* 屎字.png */,
 				5EFBEB651D38CB6B00FE838A /* 屎字1.png */,
 				5EFBEB661D38CB6B00FE838A /* 性别.png */,
 				5EFBEB671D38CB6B00FE838A /* 拍照.png */,
 				5EFBEB681D38CB6B00FE838A /* 拍照@2x.png */,
-				5EFBEB691D38CB6B00FE838A /* 狗1.png */,
 				5EFBEB6A1D38CB6B00FE838A /* 狗爪.png */,
 				5EFBEB6B1D38CB6B00FE838A /* 猫狗.png */,
 				5EFBEB6D1D38CB6B00FE838A /* 生日.png */,
@@ -1567,12 +1587,15 @@
 				5EFBEBC31D38CB6C00FE838A /* dogs_name48s@2x.png in Resources */,
 				5EFBEC131D38CB6C00FE838A /* homeCenternoHeader@2x.png in Resources */,
 				5EFBEB8E1D38CB6B00FE838A /* dogs_name24@2x.png in Resources */,
+				188D020D1D3FAD7D00B0B8E2 /* 狗icon1.png in Resources */,
 				18A698B51D3E0D1500D688EC /* cell1.jpeg in Resources */,
+				188D02091D3FABBD00B0B8E2 /* 毛笔.png in Resources */,
 				5EFBEC251D38CB6C00FE838A /* 狗爪.png in Resources */,
 				5EFBEBE61D38CB6C00FE838A /* dogs_name64@2x.png in Resources */,
 				5EFBEBA41D38CB6C00FE838A /* dogs_name34@2x.png in Resources */,
 				5EFBEBAA1D38CB6C00FE838A /* dogs_name37@2x.png in Resources */,
 				5EFBEC0C1D38CB6C00FE838A /* change1.png in Resources */,
+				188D020F1D3FAED900B0B8E2 /* 狗head.png in Resources */,
 				5EFBEC781D38CD2C00FE838A /* location_yes@2x.png in Resources */,
 				5EFBEB871D38CB6B00FE838A /* dogs_name20s@2x.png in Resources */,
 				5EFBEC121D38CB6C00FE838A /* change7.png in Resources */,
@@ -1589,7 +1612,6 @@
 				188FED461D3E60480087FF79 /* ownerMale.jpeg in Resources */,
 				5EFBEBE41D38CB6C00FE838A /* dogs_name63@2x.png in Resources */,
 				5EFBEBD61D38CB6C00FE838A /* dogs_name57@2x.png in Resources */,
-				5EFBEC1B1D38CB6C00FE838A /* 全身.jpg in Resources */,
 				5EFBEBB31D38CB6C00FE838A /* dogs_name40s@2x.png in Resources */,
 				5E1D78C81D3E175E0062E802 /* 遛狗选中.png in Resources */,
 				5EFBEB751D38CB6B00FE838A /* dogs_name12s@2x.png in Resources */,
@@ -1670,14 +1692,16 @@
 				5EFBEC101D38CB6C00FE838A /* change5.png in Resources */,
 				18A698B91D3E0D1500D688EC /* cell5.jpeg in Resources */,
 				5EFBEBC51D38CB6C00FE838A /* dogs_name49s@2x.png in Resources */,
-				5EFBEC241D38CB6C00FE838A /* 狗1.png in Resources */,
 				5EFBEC071D38CB6C00FE838A /* back@3x.png in Resources */,
 				5EFBEC1D1D38CB6C00FE838A /* 女性选中.png in Resources */,
 				5EFBEBDD1D38CB6C00FE838A /* dogs_name5s@2x.png in Resources */,
 				5EFBEB7B1D38CB6B00FE838A /* dogs_name15s@2x.png in Resources */,
+				188D02071D3F9F9800B0B8E2 /* 狗2.jpeg in Resources */,
 				5EFBEBFF1D38CB6C00FE838A /* dogs_name7s@2x.png in Resources */,
+				188D02151D3FBEA900B0B8E2 /* 选中.png in Resources */,
 				5EFBEB941D38CB6B00FE838A /* dogs_name27@2x.png in Resources */,
 				5EFBEB8F1D38CB6B00FE838A /* dogs_name24s@2x.png in Resources */,
+				188D02131D3FBA3000B0B8E2 /* ownerFamale.jpeg in Resources */,
 				5EFBEBA21D38CB6C00FE838A /* dogs_name33@2x.png in Resources */,
 				5EFBEBD41D38CB6C00FE838A /* dogs_name56@2x.png in Resources */,
 				5EFBEBFD1D38CB6C00FE838A /* dogs_name74s@2x.png in Resources */,
@@ -1743,6 +1767,7 @@
 				5EFBEB8A1D38CB6B00FE838A /* dogs_name22@2x.png in Resources */,
 				18A698BB1D3E0D1500D688EC /* cell7.jpeg in Resources */,
 				5EFBEB711D38CB6B00FE838A /* dogs_name10s@2x.png in Resources */,
+				188D02111D3FB14100B0B8E2 /* 毛笔.png in Resources */,
 				5EFBEBB11D38CB6C00FE838A /* dogs_name3s@2x.png in Resources */,
 				5EFBEC061D38CB6C00FE838A /* back@2x.png in Resources */,
 				5EFBEB841D38CB6B00FE838A /* dogs_name1@2x.png in Resources */,
@@ -1840,6 +1865,7 @@
 				5EFBEA141D388F0900FE838A /* CircleBaseView.m in Sources */,
 				5EFBEC721D38CD2C00FE838A /* MAMutablePolyline.m in Sources */,
 				5EFBEC6D1D38CD2C00FE838A /* CustomTableViewCell.m in Sources */,
+				186CA8F71D3F75AA00D5A89C /* OwnerSettingController.m in Sources */,
 				5EFBEA851D38946900FE838A /* WalkingDog+CoreDataProperties.m in Sources */,
 				5EFBEC6E1D38CD2C00FE838A /* LocalDogListViewController.m in Sources */,
 				5EFBEA131D388F0900FE838A /* AddDogViewController.m in Sources */,

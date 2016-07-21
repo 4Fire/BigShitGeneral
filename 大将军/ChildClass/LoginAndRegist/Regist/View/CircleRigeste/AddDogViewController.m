@@ -35,6 +35,7 @@
 @property (nonatomic, strong) NSData *iconImage;
 @property (nonatomic, strong) NSNumber *neutering;
 @property (nonatomic, copy) NSDate *birthday;
+@property (nonatomic, strong) UIButton *backBtn;
 
 @end
 
@@ -74,8 +75,13 @@ static NSString *DogCollectionViewCellId = @"DogCollectionViewCell";
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:COLOR(212, 20, 24), NSFontAttributeName:[UIFont boldSystemFontOfSize:20]};
 }
 
+- (void)responseToBack {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)responseToNext:(NSNotification *)notif {
     if ([notif.object isKindOfClass:[NameView class]]) {
+        _backBtn.hidden = YES;
         _iconImage = notif.userInfo[@"iconImage"];
         _name = notif.userInfo[@"name"];
 //        NSLog(@"%@------%@", _iconImage, _name);
@@ -83,6 +89,7 @@ static NSString *DogCollectionViewCellId = @"DogCollectionViewCell";
         [self collectionView:self.detailViews didSelectItemAtIndexPath:indexPath];
     }
     if ([notif.object isKindOfClass:[SexView class]]) {
+        _backBtn.hidden = YES;
         _birthday = notif.userInfo[@"birthday"];
         _sex = notif.userInfo[@"sex"];
 //        NSLog(@"getbir=%@----%@", _birthday, _sex);
@@ -119,8 +126,10 @@ static NSString *DogCollectionViewCellId = @"DogCollectionViewCell";
     if (gesture.direction == UISwipeGestureRecognizerDirectionRight) {
         if (self.detailViews.contentOffset.x > 281) {
             [self.detailViews setContentOffset:CGPointMake(self.detailViews.contentOffset.x - 281.25, self.detailViews.contentOffset.y)animated:YES];
+            _backBtn.hidden = YES;
         }
-        if (self.detailViews.contentOffset.x == 0) {
+        if (self.detailViews.contentOffset.x == 0 ) {
+            _backBtn.hidden = NO;
             return;
         }
     }
@@ -188,6 +197,14 @@ static NSString *DogCollectionViewCellId = @"DogCollectionViewCell";
         [_detailViews registerClass:[DogCollectionViewCell class] forCellWithReuseIdentifier:DogCollectionViewCellId];
         _detailViews.scrollEnabled = NO;
         _detailViews.allowsSelection = NO;
+        
+        _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _backBtn.frame = CGRectMake(0, SCREEN_HEIGHT - 64, SCREEN_WIDTH, 64);
+        _backBtn.backgroundColor = BACKGROUNDCOLOR;
+        [_backBtn setTitle:@"返回上一页" forState:UIControlStateNormal];
+        [_backBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_backBtn addTarget:self action:@selector(responseToBack) forControlEvents:UIControlEventTouchUpInside];
+        [_detailViews addSubview:_backBtn];
         
         //添加手势
         UISwipeGestureRecognizer *gesture = [[UISwipeGestureRecognizer alloc] init];

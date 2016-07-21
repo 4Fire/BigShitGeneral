@@ -147,6 +147,7 @@
     if (secureTextEntry == NO) {
         textField.secureTextEntry = NO;
     }
+    textField.textAlignment = NSTextAlignmentCenter;
     return textField;
 }
 
