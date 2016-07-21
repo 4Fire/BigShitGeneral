@@ -10,6 +10,7 @@
 
 @implementation Context
 static NSManagedObjectContext * ctx = nil;
+
 + (NSManagedObjectContext *)context {
     if (ctx == nil) {
         /**< 1. 搭建上下文环境 */

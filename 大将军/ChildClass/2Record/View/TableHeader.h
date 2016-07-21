@@ -14,6 +14,8 @@
 
 - (void)TableHeader:(TableHeader *)tableHeader selectTime:(NSString *)time;
 
+- (void)TableHeader:(TableHeader *)tableHeader changeHeight:(BOOL)change;
+
 @end
 
 @interface TableHeader : UIView

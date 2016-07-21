@@ -2,7 +2,7 @@
 //  Record+CoreDataProperties.h
 //  大将军
 //
-//  Created by apple on 16/7/14.
+//  Created by 石燚 on 16/7/21.
 //  Copyright © 2016年 SingYi. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,18 +15,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Record (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSDate *ppv;
-@property (nullable, nonatomic, retain) NSDate *distemper;
-@property (nullable, nonatomic, retain) NSDate *coronavirus;
-@property (nullable, nonatomic, retain) NSDate *rabies;
-@property (nullable, nonatomic, retain) NSDate *toxoplasma;
-@property (nullable, nonatomic, retain) NSDate *ininsecticide;
-@property (nullable, nonatomic, retain) NSDate *outinsecticide;
-@property (nullable, nonatomic, retain) NSDate *pregnant;
-@property (nullable, nonatomic, retain) NSDate *delivery;
+@property (nullable, nonatomic, retain) NSNumber *coronavirus;
+@property (nullable, nonatomic, retain) NSNumber *delivery;
+@property (nullable, nonatomic, retain) NSNumber *distemper;
+@property (nullable, nonatomic, retain) NSNumber *ininsecticide;
 @property (nullable, nonatomic, retain) NSNumber *neutering;
 @property (nullable, nonatomic, retain) NSString *other;
-@property (nullable, nonatomic, retain) NSManagedObject *dog;
+@property (nullable, nonatomic, retain) NSNumber *outinsecticide;
+@property (nullable, nonatomic, retain) NSNumber *ppv;
+@property (nullable, nonatomic, retain) NSNumber *pregnant;
+@property (nullable, nonatomic, retain) NSNumber *rabies;
+@property (nullable, nonatomic, retain) NSNumber *toxoplasma;
+@property (nullable, nonatomic, retain) NSDate *date;
+@property (nullable, nonatomic, retain) Dog *dog;
 
 @end
 

@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) UIView *headerView;
 
+@property (nonatomic, assign) BOOL changeHight;
+
 @end
 
 static NSInteger recode = -1;
@@ -29,6 +31,9 @@ static NSInteger recode = -1;
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        [self initDataSource];
+        [self initUserInterface];
+        
     }
     return self;
 }
@@ -36,8 +41,6 @@ static NSInteger recode = -1;
 #pragma mark - frame
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
-    [self initDataSource];
-    [self initUserInterface];
 }
 
 #pragma mark - self-init
@@ -47,19 +50,22 @@ static NSInteger recode = -1;
 }
 
 - (void)initUserInterface {
+    self.backgroundColor = BACKGROUNDCOLOR;
     [self addSubview:self.collection];
     [self addSubview:self.headerView];
 }
 
 #pragma mark - collectionDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 42;
+    if (_changeHight) {
+        return 42;
+    }else {
+        return 35;
+    }
 }
 
 #pragma mark - collectionDelegate 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    recode = indexPath.row;
-    [self.collection reloadData];
     NSInteger firstDay = [_dateModel firstWeekdayInThisMonth:self.date];
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:self.date];
     components.day = indexPath.row - firstDay + 1;
@@ -67,24 +73,51 @@ static NSInteger recode = -1;
     NSCalendar *calender = [NSCalendar currentCalendar];
     calender.timeZone = [NSTimeZone systemTimeZone];
     
-    NSDate *date = [calender dateFromComponents:components];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    formatter.dateFormat = @"YYYY年MM月d日";
-    if ([self.tableHeaderDelegate respondsToSelector:@selector(TableHeader:selectTime:)]) {
-        [self.tableHeaderDelegate TableHeader:self selectTime:[formatter stringFromDate:date]];
+
+    
+    if ([_dateModel year:self.date] < [_dateModel year:[NSDate date]] && [_dateModel month:self.date] < [_dateModel month:[NSDate date]]) {
+        recode = indexPath.row;
+        NSDate *date = [calender dateFromComponents:components];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        formatter.dateFormat = @"YYYY年MM月d日";
+        if ([self.tableHeaderDelegate respondsToSelector:@selector(TableHeader:selectTime:)]) {
+            [self.tableHeaderDelegate TableHeader:self selectTime:[formatter stringFromDate:date]];
+        }
+    } else if ([_dateModel year:self.date] == [_dateModel year:[NSDate date]] && [_dateModel month:self.date] == [_dateModel month:[NSDate date]]){
+        if (indexPath.row < firstDay) {
+//            recode = -1;
+        } else if (indexPath.row >= [_dateModel day:[NSDate date]] + firstDay) {
+//            recode = -1;
+        } else {
+            recode = indexPath.row;
+            NSDate *date = [calender dateFromComponents:components];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+            formatter.dateFormat = @"YYYY年MM月d日";
+            if ([self.tableHeaderDelegate respondsToSelector:@selector(TableHeader:selectTime:)]) {
+                [self.tableHeaderDelegate TableHeader:self selectTime:[formatter stringFromDate:date]];
+            }
+        }
+    } else {
+        recode = -1;
     }
+    
+    [self.collection reloadData];
 }
 
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CollectionVCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TableCalendarCell" forIndexPath:indexPath];
+    cell.layer.cornerRadius = 4;
+    cell.layer.masksToBounds = YES;
+    
     NSInteger firstDay = [self.dateModel firstWeekdayInThisMonth:self.date];
     NSInteger total = [self.dateModel totaldaysInMonth:self.date];
+    
     if (indexPath.row == recode) {
-        cell.backgroundColor = [UIColor blackColor];
+        cell.backgroundColor = COLOR(255, 95, 73);
     } else {
-        cell.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = COLOR(254, 255, 213);
     }
     
     if (indexPath.item < firstDay) {
@@ -95,9 +128,23 @@ static NSInteger recode = -1;
         cell.day.text = [NSString stringWithFormat:@"%ld",indexPath.row - firstDay + 1];
     }
     
-    if (indexPath.row + 1 == [_dateModel day:self.date] + firstDay) {
-        cell.backgroundColor = [UIColor orangeColor];
+    if ([_dateModel year:self.date] < [_dateModel year:[NSDate date]] && [_dateModel month:self.date] < [_dateModel month:[NSDate date]]) {
+
+        
+    } else {
+        
+        if ([self.date compare:[NSDate date]] < 0) {
+            if (indexPath.row + 1 == [_dateModel day:self.date] + firstDay) {
+                cell.backgroundColor =  COLOR(1, 174, 240);
+            } else if (indexPath.row + 1 > [_dateModel day:self.date] + firstDay) {
+                cell.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
+            }
+        } else if ([self.date compare:[NSDate date]] > 0) {
+            cell.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
+        }
     }
+    
+
     
     return cell;
 }
@@ -110,6 +157,10 @@ static NSInteger recode = -1;
     self.date = [_dateModel lastMonth:self.date];
 }
 
+- (void)today {
+    self.date = [NSDate date];
+}
+
 #pragma mark - setter
 - (void)setDate:(NSDate *)date {
     _date = date;
@@ -118,8 +169,24 @@ static NSInteger recode = -1;
     if ([self.tableHeaderDelegate respondsToSelector:@selector(TableHeader:selectTime:)]) {
         [self.tableHeaderDelegate TableHeader:self selectTime:[formatter stringFromDate:date]];
     }
-    [self.collection reloadData];
     
+    NSInteger firstDay = [self.dateModel firstWeekdayInThisMonth:date];
+    NSInteger total = [self.dateModel totaldaysInMonth:date];
+    
+    if (firstDay + total > 35) {
+        _changeHight = YES;
+        if ([self.tableHeaderDelegate respondsToSelector:@selector(TableHeader: changeHeight:)]) {
+            [self.tableHeaderDelegate TableHeader:self changeHeight:_changeHight];
+        }
+    } else {
+        _changeHight = NO;
+        if ([self.tableHeaderDelegate respondsToSelector:@selector(TableHeader:changeHeight:)]) {
+            [self.tableHeaderDelegate TableHeader:self changeHeight:_changeHight];
+        }
+    }
+    
+    _collection.frame = CGRectMake(0, 20, self.bounds.size.width, self.bounds.size.height - 20);
+    [self.collection reloadData];
 }
 
 #pragma mark - getter
@@ -128,15 +195,19 @@ static NSInteger recode = -1;
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
         
         //设置大小
-        layout.itemSize = CGSizeMake(SCREEN_WIDTH / 7, SCREEN_WIDTH / 7);
-        layout.minimumLineSpacing = 0;
-        layout.minimumInteritemSpacing = 0;
+        layout.itemSize = CGSizeMake((SCREEN_WIDTH - 16) / 7, (SCREEN_WIDTH - 16 ) / 7);
+        layout.minimumLineSpacing = 2;
+        layout.minimumInteritemSpacing = 2;
+        
+        layout.sectionInset = UIEdgeInsetsMake(2, 2, 2, 2);
         
         
         _collection = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 20, self.bounds.size.width, self.bounds.size.height - 20) collectionViewLayout:layout];
+        
         _collection.delegate = self;
         _collection.dataSource = self;
         [_collection registerClass:[CollectionVCell class] forCellWithReuseIdentifier:@"TableCalendarCell"];
+        _collection.backgroundColor = BACKGROUNDCOLOR;
         
     }
     
@@ -150,7 +221,9 @@ static NSInteger recode = -1;
             UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(self.bounds.size.width / 7 * i, 0, self.bounds.size.width / 7, 20)];
             label.textAlignment = NSTextAlignmentCenter;
             label.font = [UIFont boldSystemFontOfSize:18];
+            label.textColor = [UIColor whiteColor];
             label.text = self.weekArray[i];
+            label.backgroundColor = BACKGROUNDCOLOR;
             [self.headerView addSubview:label];
         }
     }

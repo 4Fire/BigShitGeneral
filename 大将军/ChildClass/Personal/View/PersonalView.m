@@ -174,10 +174,12 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 
 #pragma mark - <UICollectionViewDelegate,UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
     NSManagedObjectContext *ctx = [Context context];
     NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
     Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
      _dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
+    
     if (_dogs.count < 3) {
         self.collectionView.scrollEnabled = NO;
     }else {

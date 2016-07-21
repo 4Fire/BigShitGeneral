@@ -2,7 +2,7 @@
 //  Record+CoreDataProperties.m
 //  大将军
 //
-//  Created by apple on 16/7/14.
+//  Created by 石燚 on 16/7/21.
 //  Copyright © 2016年 SingYi. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,17 +13,18 @@
 
 @implementation Record (CoreDataProperties)
 
-@dynamic ppv;
-@dynamic distemper;
 @dynamic coronavirus;
-@dynamic rabies;
-@dynamic toxoplasma;
-@dynamic ininsecticide;
-@dynamic outinsecticide;
-@dynamic pregnant;
 @dynamic delivery;
+@dynamic distemper;
+@dynamic ininsecticide;
 @dynamic neutering;
 @dynamic other;
+@dynamic outinsecticide;
+@dynamic ppv;
+@dynamic pregnant;
+@dynamic rabies;
+@dynamic toxoplasma;
+@dynamic date;
 @dynamic dog;
 
 @end
