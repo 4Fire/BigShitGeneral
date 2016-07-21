@@ -42,7 +42,7 @@
     if (!success) {
         [NSException raise:@"访问数据库错误" format:@"%@", [error localizedDescription]];
     }else {
-        NSLog(@"用户保存成功");
+//        NSLog(@"用户保存成功");
         return YES;
     }
     return YES;
@@ -76,7 +76,7 @@
     if (!success) {
         [NSException raise:@"访问数据库错误" format:@"%@", [error localizedDescription]];
     }else {
-        NSLog(@"用户保存成功");
+//        NSLog(@"用户保存成功");
         return YES;
     }
     return YES;
@@ -86,7 +86,7 @@
                                    DogName:(NSString *)dogName {
     Record *recordObj = [self fetchRecordToSQLiterWithContext:ctx DogName:dogName];
     if (recordObj) {
-        NSLog(@"这只狗狗已经有记录了");
+//        NSLog(@"这只狗狗已经有记录了");
         return YES;
     }else {
         return NO;
@@ -110,9 +110,9 @@
         [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
     }
     //遍历数据
-    for (NSManagedObject *obj in objs) {
-        NSLog(@"account = %@",[obj valueForKey:@"account"]);
-    }
+//    for (NSManagedObject *obj in objs) {
+////        NSLog(@"account = %@",[obj valueForKey:@"account"]);
+//    }
     return [objs firstObject];
 }
 

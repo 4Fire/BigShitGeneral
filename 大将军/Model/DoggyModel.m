@@ -15,16 +15,14 @@
     NSManagedObjectContext *context = [Context context];
     NSString *ownerAccount = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
     Owner *owner = [Owner fetchOwnerToSQLiterWithContext:context Account:ownerAccount];
-    if (owner != nil) {
-        return owner;
-    } else {
-        return nil;
-    }
+    return owner;
 }
 
 + (NSArray<Dog *> *)getAllDogsWithCurrentOwner {
-    NSArray<Dog *> *array = [Dog fetchAllDogsFromSQLiterWithContext:[Context context] withOwner:[DoggyModel getOwnerInfo]];
-    return array;
+    NSManagedObjectContext *ctx = [Context context];
+    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
+    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
+    return [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
 }
 
 + (Dog *)getDogWithName:(NSString *)name {

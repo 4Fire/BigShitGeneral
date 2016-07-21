@@ -90,17 +90,21 @@ static HomePageController *home = nil;
             self.drawView.transform = CGAffineTransformIdentity;
             self.tabbarController.view.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
+//            [[[PersonalView alloc] init] animationOfBtnsWhenClose];
             [self.coverBtn removeFromSuperview];
         }];
-        
         _isOpen = NO;
+        
     } else {
         [UIView animateWithDuration:0.3 animations:^{
             [self.tabbarController.view addSubview:self.coverBtn];
             self.drawView.transform = CGAffineTransformMakeTranslation(SCREEN_WIDTH / 6 * 5, 0);
             self.tabbarController.view.transform = CGAffineTransformMakeTranslation(SCREEN_WIDTH / 6 * 5, 0);
+//            [[[PersonalView alloc] init] animationOfBtns];
+            [self.drawView animationOfBtns];
         } completion:^(BOOL finished) {
-//            [self.tabbarController.view addSubview:self.coverBtn];
+            
+//            [[[PersonalView alloc] init] animationOfBtns];
         }];
 
         _isOpen = YES;
@@ -112,17 +116,29 @@ static HomePageController *home = nil;
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     VC.navigationItem.title = title;
     VC.navigationController.tabBarItem.title = tabBarTitle;
+    
+    VC.tabBarItem = [[UITabBarItem alloc] initWithTitle:title image:[[UIImage imageNamed:tabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:selectTabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:COLOR(10, 10, 10),NSFontAttributeName:[UIFont boldSystemFontOfSize:10]} forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:COLOR(227, 56, 43),NSFontAttributeName:[UIFont boldSystemFontOfSize:10]} forState:UIControlStateSelected];
+    
     if ([VC isKindOfClass:[HomePageController class]]) {
         VC.navigationItem.rightBarButtonItem = self.todayItem;
         home = (HomePageController *)VC;
-    }
-    VC.navigationItem.leftBarButtonItem = self.drawBtn;
-    if (tabBarImage) {
+        VC.navigationItem.leftBarButtonItem = self.drawBtn;
+        
         VC.tabBarItem.image = [[UIImage imageNamed:tabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    }
-    if (selectTabBarImage) {
+        
         VC.tabBarItem.selectedImage = [[UIImage imageNamed:selectTabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        NSLog(@"66666666666666666666666================%@",tabBarImage);
+    } else {
+        VC.navigationItem.leftBarButtonItem = self.drawBtn;
+    
+        
+//        VC.tabBarItem.image = [[UIImage imageNamed:tabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        VC.tabBarItem.selectedImage = [[UIImage imageNamed:selectTabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
+    
     return nav;
 }
 
@@ -165,21 +181,21 @@ static HomePageController *home = nil;
 
 - (UINavigationController *)homePage {
     if (!_homePage) {
-        _homePage = [self setViewController:[HomePageController new] WithTitle:@"汪汪汪" TabBarTitle:@"汪汪汪" TabBarImage:nil SelectTabBarImage:nil];
+        _homePage = [self setViewController:[HomePageController new] WithTitle:@"汪汪汪" TabBarTitle:@"汪汪汪" TabBarImage:@"主业未选中" SelectTabBarImage:@"主页选中"];
     }
     return _homePage;
 }
 
 - (UINavigationController *)record {
     if (!_record) {
-        _record = [self setViewController:[RecordController new] WithTitle:@"记录" TabBarTitle:@"记录" TabBarImage:nil SelectTabBarImage:nil];
+        _record = [self setViewController:[RecordController new] WithTitle:@"记录" TabBarTitle:@"记录" TabBarImage:@"记录未选中" SelectTabBarImage:@"记录选中"];
     }
     return _record;
 }
 
 - (UINavigationController *)nearby {
     if (!_nearby) {
-        _nearby = [self setViewController:[NearByController new] WithTitle:@"附近" TabBarTitle:@"附近" TabBarImage:nil SelectTabBarImage:nil];
+        _nearby = [self setViewController:[NearByController new] WithTitle:@"遛狗" TabBarTitle:@"遛狗" TabBarImage:@"遛狗未选中" SelectTabBarImage:@"遛狗选中"];
     }
     return _nearby;
 }

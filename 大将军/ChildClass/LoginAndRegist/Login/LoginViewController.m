@@ -175,10 +175,13 @@
             [[NSUserDefaults standardUserDefaults] setObject:account forKey:@"ownerAccount"];
             
             NSManagedObjectContext *ctx = [Context context];
+            
             BOOL check = [Owner duplicateCheckingOwnerWithContext:ctx Account:account];
             
             if (check == NO) {
-                [self showAlertWithMessage:@"用户名已存在!" dismiss:nil];
+                
+//                [self.navigationController pushViewController:[[MainTabbarController alloc] init] animated:YES];
+                [UIApplication sharedApplication].keyWindow.rootViewController = [[MainTabbarController alloc] init];
                 return;
             }
             BOOL flag = [Owner insertOwnerToSQLiterWithContext:ctx Account:account      Password:@"summerLovesDogs"];
@@ -186,8 +189,6 @@
                 [self.view endEditing:true];
                 [self showAlertWithMessage:@"注册成功!" dismiss:^(void){
                     [[NSUserDefaults standardUserDefaults] setObject:account forKey:@"ownerAccount"];
-                    
-//            [[[UIApplication sharedApplication].delegate window] setRootViewController:[[MainTabbarController alloc] init]];
                     [self.navigationController pushViewController:[[AddDogViewController alloc] init] animated:YES];
                 }];
                 
@@ -245,6 +246,8 @@
     if (secureTextEntry == NO) {
         textField.secureTextEntry = NO;
     }
+    
+    textField.textAlignment = NSTextAlignmentCenter;
     return textField;
 }
 
@@ -308,8 +311,8 @@
 
 - (UIImageView *)iconView {
     if (!_iconView) {
-        _iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"狗1.png"]];
-        _iconView.bounds = CGRectMake( 0, 0, SCREEN_WIDTH * 0.3, SCREEN_WIDTH * 0.45);
+        _iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"狗head.png"]];
+        _iconView.bounds = CGRectMake( 0, 0, SCREEN_WIDTH * 0.45, SCREEN_WIDTH * 0.45);
         _iconView.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.18);
     }
     return _iconView;
@@ -317,9 +320,12 @@
 
 - (UIImageView *)nameView {
     if (!_nameView) {
+//        UIImage *imag = [UIImage imageNamed:@"屎字1.png"];
+        
         _nameView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"屎字1.png"]];
+    
         _nameView.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 0.5, SCREEN_WIDTH * 0.3);
-        _nameView.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.32);
+        _nameView.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.35);
     }
     return _nameView;
 }
@@ -347,7 +353,8 @@
         _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _loginBtn.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 0.76, SCREEN_HEIGHT * 0.064);
         _loginBtn.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.65);
-        _loginBtn.backgroundColor = COLOR(212, 20, 24);
+        _loginBtn.backgroundColor = BACKGROUNDCOLOR;
+//        _loginBtn.backgroundColor = BACKGROUNDCOLOR;
         [_loginBtn setTitle:@"登   录" forState:UIControlStateNormal];
         [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_loginBtn addTarget:self action:@selector(responseToLoginBtn) forControlEvents:UIControlEventTouchUpInside];

@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) NSArray *doggyArray;
 
+@property (nonatomic, strong) UICollectionView *collection;
+
 - (instancetype)initWithFrame:(CGRect)frame WithDoggyArray:(NSArray *)array;
 
 @end

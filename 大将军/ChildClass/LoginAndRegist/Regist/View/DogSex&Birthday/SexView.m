@@ -33,6 +33,8 @@
 }
 
 - (void)initAgain {
+    self.titleView.backgroundColor = COLOR(255, 234, 71);
+    [self addEdgingWithEdgingColor:COLOR(255, 234, 71)];
     [self addSubview:self.birthday];
     self.birthday.inputView = self.pickerView;
     [self addSubview:self.sexLab];
@@ -47,7 +49,7 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [alertController dismissViewControllerAnimated:YES completion:nil];
         });
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+         [[self fetchViewControllerByView:self] presentViewController:alertController animated:true  completion:nil]; 
         return;
     }
     
@@ -59,6 +61,18 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"clickedNext" object:self userInfo:self.userInfo];
 }
+
+-(UIViewController *)fetchViewControllerByView:(UIView *)aView{
+    UIViewController * vc = nil;
+    for (UIView * tView = aView; tView.nextResponder; tView = tView.superview) {
+        if ([tView.nextResponder isKindOfClass:[UIViewController class]]) {
+            vc = (UIViewController *)tView.nextResponder;
+            break;
+        }
+    }
+    return vc;
+}
+
 
 - (void)chooseSexWithBtn:(UIButton *)sender isSelected:(BOOL)isSelected {
     
@@ -144,7 +158,7 @@
         _sexLab.center = CGPointMake(CELL_W * 0.5, CELL_H * 0.5);
         _sexLab.text = @"王子? 公主?";
         _sexLab.textAlignment = NSTextAlignmentCenter;
-        _sexLab.textColor = COLOR(212, 20, 24);
+        _sexLab.textColor = COLOR(255, 234, 71);
     }
     return _sexLab;
 }
@@ -189,7 +203,7 @@
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _nextBtn.bounds = CGRectMake(0, 0, CELL_W * 0.25, CELL_W * 0.25);
         _nextBtn.center = CGPointMake(CELL_W * 0.5, CELL_H * 0.85);
-        _nextBtn.backgroundColor = COLOR(212, 20, 24);
+        _nextBtn.backgroundColor = COLOR(255, 234, 71);
         [_nextBtn setTitle:@"下一题" forState:UIControlStateNormal];
         [_nextBtn addTarget:self action:@selector(responseToNext) forControlEvents:UIControlEventTouchUpInside];
         _nextBtn.layer.cornerRadius = CELL_W * 0.25 * 0.5;

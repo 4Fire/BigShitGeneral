@@ -12,4 +12,9 @@
 
 - (instancetype)initWithFrame:(CGRect)frame;
 
+//animationOfBtns
+
+- (void)animationOfBtns;
+//- (void)animationOfBtnsWhenClose;
+
 @end

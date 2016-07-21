@@ -41,6 +41,8 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                  forBarPosition:UIBarPositionAny
                                                      barMetrics:UIBarMetricsDefault];
+    
+    [self.doggyCollection.collection reloadData];
 
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
 
@@ -68,7 +70,6 @@
     
     //添加日历
     [self.view addSubview:self.calendar];
-//    self.navigationItem.rightBarButtonItem = self.todayItem;
     
     [self.navigationController.navigationBar setTintColor:COLOR(255, 255, 255)];
     
@@ -130,14 +131,17 @@
 
 - (DoggyCollectionView *)doggyCollection {
     if (!_doggyCollection) {
-        _doggyCollection = [[DoggyCollectionView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.25, SCREEN_WIDTH, SCREEN_HEIGHT * 0.25) WithDoggyArray:[DoggyModel getAllDogsWithCurrentOwner]];
+        
+        NSArray *test = [DoggyModel getAllDogsWithCurrentOwner];
+        _doggyCollection = [[DoggyCollectionView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.25, SCREEN_WIDTH, SCREEN_HEIGHT * 0.25) WithDoggyArray:test];
     }
     return _doggyCollection;
 }
 
 - (InfomationTableView *)infomationTable {
     if (!_infomationTable) {
-        _infomationTable = [[InfomationTableView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.5, SCREEN_WIDTH, SCREEN_HEIGHT / 2)];
+        _infomationTable = [[InfomationTableView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.5, SCREEN_WIDTH, SCREEN_HEIGHT / 2 - self.tabBarController.tabBar.bounds.size.height)];
+        _infomationTable.backgroundColor = BACKGROUNDCOLOR;
         
     }
     return _infomationTable;

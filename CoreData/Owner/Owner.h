@@ -21,6 +21,12 @@ NS_ASSUME_NONNULL_BEGIN
                                 Account:(NSString *)account
                                Password:(NSString *)Password;
 
++ (BOOL)insertOwnerToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                account:(NSString *)account
+                              iconImage:(NSData *)iconImage
+                                   name:(NSString *)name
+                                    sex:(NSNumber *)sex;
+
 + (BOOL)duplicateCheckingOwnerWithContext:(NSManagedObjectContext *)ctx
                                   Account:(NSString *)account;
 

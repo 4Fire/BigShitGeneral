@@ -37,6 +37,8 @@
 
 
 - (void)initAgain {
+    self.titleView.backgroundColor = COLOR(160, 217, 229);
+    [self addEdgingWithEdgingColor:COLOR(160, 217, 229)];
     [self addSubview:self.headIcon];
     [self addSubview:self.nameTextField];
     [self addSubview:self.nextBtn];
@@ -46,9 +48,9 @@
     [self.nameTextField resignFirstResponder];
     NSData *iconImage;
     if ([self.headIcon.currentImage isEqual:[UIImage imageNamed:@"拍照.png"]]) {
-    iconImage = UIImageJPEGRepresentation([UIImage imageNamed:@"dogD.png"], 0.5);
+        iconImage = UIImageJPEGRepresentation([UIImage imageNamed:@"dogD.png"], 0.5);
     }else {
-    iconImage = UIImageJPEGRepresentation(self.headIcon.currentImage, 0.5);
+        iconImage = UIImageJPEGRepresentation(self.headIcon.currentImage, 0.5);
     }
     NSString *name = self.nameTextField.text;
     if (self.nameTextField.text.length == 0) {
@@ -56,7 +58,8 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [alertController dismissViewControllerAnimated:YES completion:nil];
         });
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+        [[self fetchViewControllerByView:self] presentViewController:alertController animated:true  completion:nil];
         return;
     }
     
@@ -66,12 +69,12 @@
     BOOL dogExist = [Dog duplicateCheckingDogWithContext:ctx Name:name owner:owner];
     
     if (dogExist == YES) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"狗狗重复啦,重新取个名字吧!" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"狗狗重复啦,重新去个名字吧!" message:nil preferredStyle:UIAlertControllerStyleAlert];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [alertController dismissViewControllerAnimated:YES completion:nil];
         });
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:^{
-        }];
+        
+         [[self fetchViewControllerByView:self] presentViewController:alertController animated:true  completion:nil];
         return;
     }else {
         [self.userInfo setObject:iconImage forKey:@"iconImage"];
@@ -80,6 +83,17 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"clickedNext" object:self userInfo:self.userInfo];
     }
 
+}
+
+-(UIViewController *)fetchViewControllerByView:(UIView *)aView{
+    UIViewController * vc = nil;
+    for (UIView * tView = aView; tView.nextResponder; tView = tView.superview) {
+        if ([tView.nextResponder isKindOfClass:[UIViewController class]]) {
+            vc = (UIViewController *)tView.nextResponder;
+            break;
+        }
+    }
+    return vc;
 }
 
 - (void)addPhoto {
@@ -148,7 +162,7 @@
         _headIcon = [UIButton buttonWithType:UIButtonTypeCustom];
         _headIcon.bounds = CGRectMake( 0, 0, CGRectGetWidth(self.bounds) * 0.4, CGRectGetWidth(self.bounds) * 0.4);
         _headIcon.center = CGPointMake(CELL_W * 0.5, CELL_H * 0.35);
-        _headIcon.backgroundColor = COLOR(212, 20, 24);
+        _headIcon.backgroundColor = COLOR(160, 217, 229);
         _headIcon.layer.cornerRadius = CELL_W * 0.2;
         _headIcon.layer.masksToBounds = YES;
         [_headIcon setImage:[UIImage imageNamed:@"拍照.png"] forState:UIControlStateNormal];
@@ -182,7 +196,7 @@
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _nextBtn.bounds = CGRectMake(0, 0, CELL_W * 0.25, CELL_W * 0.25);
         _nextBtn.center = CGPointMake(CELL_W * 0.5, CELL_H * 0.85);
-        _nextBtn.backgroundColor = COLOR(212, 20, 24);
+        _nextBtn.backgroundColor = COLOR(160, 217, 229);
         [_nextBtn setTitle:@"下一题" forState:UIControlStateNormal];
         [_nextBtn addTarget:self action:@selector(responseToNext) forControlEvents:UIControlEventTouchUpInside];
         _nextBtn.layer.cornerRadius = CELL_W * 0.25 * 0.5;

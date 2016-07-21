@@ -10,17 +10,17 @@
 #import "DoggyCell.h"
 #import "DoggyLayout.h"
 #import "Dog.h"
+#import "DoggyModel.h"
+#import "Context.h"
 
 @interface DoggyCollectionView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (nonatomic, strong) UICollectionView *collection;
 
 @end
 
 @implementation DoggyCollectionView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self initUserInterface];
@@ -28,15 +28,15 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame WithDoggyArray:(NSArray *)array
-{
+- (instancetype)initWithFrame:(CGRect)frame WithDoggyArray:(NSArray *)array {
     self = [super initWithFrame:frame];
     if (self) {
-        self.doggyArray = array;
         [self initUserInterface];
     }
     return self;
 }
+
+
 
 - (void)initUserInterface {
     [self addSubview:self.collection];
@@ -53,12 +53,8 @@
     
     cell.backgroundColor = COLOR(247, 68, 97);
     
-//    cell.doggyIcon.image = [UIImage imageNamed:@"dogD"];
     Dog *dog = self.doggyArray[indexPath.row];
-    NSLog(@"========================%@",dog);
     cell.doggyIcon.image = [UIImage imageWithData:dog.iconImage];
-    
-    
     
     cell.layer.cornerRadius = (SCREEN_WIDTH - 30) / 6;
     cell.layer.masksToBounds = YES;
@@ -68,10 +64,7 @@
 
 
 #pragma mark - setter;
-- (void)setDoggyArray:(NSArray *)doggyArray {
-    _doggyArray = doggyArray;
-    [self.collection reloadData];
-}
+
 
 #pragma mark - getter;
 - (UICollectionView *)collection {
@@ -90,6 +83,13 @@
         _collection.backgroundColor = BACKGROUNDCOLOR;
     }
     return _collection;
+}
+
+
+
+- (NSArray *)doggyArray {
+    _doggyArray = [DoggyModel getAllDogsWithCurrentOwner];
+    return _doggyArray;
 }
 
 

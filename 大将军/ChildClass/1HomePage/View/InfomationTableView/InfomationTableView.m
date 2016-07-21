@@ -11,7 +11,9 @@
 
 @interface InfomationTableView ()<UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITableView *infoTableView;
+
+@property (nonatomic, strong) NSArray *titleArray;
 
 @end
 
@@ -27,37 +29,50 @@
 
 
 - (void)initUserInterface {
-    [self addSubview:self.tableView];
+    [self addSubview:self.infoTableView];
 }
 
 #pragma mark - dataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfotableCell" forIndexPath:indexPath];
-    
+    InfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InfoCell" forIndexPath:indexPath];
+    cell.backgroundColor = BACKGROUNDCOLOR;
+    cell.titleLabel.text = self.titleArray[indexPath.row];
+    cell.TbackGround.image = [UIImage imageNamed:[NSString stringWithFormat:@"cell%ld.jpeg",indexPath.row + 1]];
     
     return cell;
 }
 
 
 #pragma mark - getter
-- (UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[UITableView alloc]initWithFrame:self.bounds];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
+- (UITableView *)infoTableView {
+    if (!_infoTableView) {
+        _infoTableView = [[UITableView alloc]initWithFrame:self.bounds];
+        _infoTableView.delegate = self;
+        _infoTableView.dataSource = self;
         
-        [_tableView registerClass:[InfoTableViewCell class] forCellReuseIdentifier:@"InfotableCell"];
+        _infoTableView.rowHeight = SCREEN_HEIGHT / 3;
+        
+        _infoTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        _infoTableView.backgroundColor = BACKGROUNDCOLOR;
+        
+        [_infoTableView registerClass:[InfoTableViewCell class] forCellReuseIdentifier:@"InfoCell"];
     }
-    return _tableView;
+    return _infoTableView;
 }
 
+- (NSArray *)titleArray {
+    if (!_titleArray) {
+        _titleArray = @[@"知识 · 15个关于狗狗的冷知识你知道几个？",@"知识 · 给你一台狗语翻译机",@"知识 · 狗狗的“耳语”你知道吗？",@"我家大狗，竟然自己养了一只小狗做宠物！",@"知识 · 狗狗太胖还是太瘦？如何判断狗狗体格是否正常？"];
+    }
+    return _titleArray;
+}
 
 @end
-
 
 
 
