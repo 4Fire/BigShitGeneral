@@ -22,7 +22,7 @@
 #define SCROLL_HEIGHT self.scrollView.bounds.size.height
 
 
-@interface PersonalView ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface PersonalView ()<UICollectionViewDelegate,UICollectionViewDataSource,PersonDogsCellDelegate>
 
 //用户头像
 @property (nonatomic, strong) UIImageView *userHeader;
@@ -69,7 +69,7 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
         
         //注册通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ownerSetting) name:@"ownerSetting" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(delateDog:) name:@"delate" object:nil];
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(delateDog:) name:@"delate" object:nil];
     }
     return self;
 }
@@ -87,10 +87,10 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     [self addSubview:self.welcomeLab];
    }
 
-- (void)delateDog:(NSNotification *)notif {
-    
-    [self.collectionView reloadData];
-}
+//- (void)delateDog:(NSNotification *)notif {
+//    
+//    [self.collectionView reloadData];
+//}
 
 - (void)ownerSetting {
     NSManagedObjectContext *ctx = [Context context];
@@ -179,22 +179,26 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
      _dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
     if (_dogs.count < 3) {
-        self.collectionView.scrollEnabled = NO;
+        self.collectionView.scrollEnabled = YES;
     }else {
         self.collectionView.scrollEnabled = YES;
     }
 
-    return _dogs.count + 1;
+    return _dogs.count + 10;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PersonDogsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PersonDogsCellID forIndexPath:indexPath];
-    if (indexPath.item < _dogs.count) {
-        cell.dogIcon.image = [UIImage imageWithData:_dogs[indexPath.item].iconImage];
-        cell.nameLab.text = _dogs[indexPath.item].name;
+    cell.delegate = self;
+    cell.rowIndex = indexPath.row;
+    if (indexPath.item < _dogs.count + 9) {
+        cell.dogIcon.image = [UIImage imageWithData:_dogs[0].iconImage];
+        cell.nameLab.text = _dogs[0].name;
+        cell.isDeleted = NO;
     }else {
         cell.dogIcon.image = [UIImage imageNamed:@"addImage_default.png"];
         cell.nameLab.hidden = YES;
+        cell.isDeleted = NO;
     }
     return cell;
 }
@@ -203,6 +207,12 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     if (indexPath.item == _dogs.count) {
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[AddDogViewController alloc] init] animated:YES completion:nil];
     }
+}
+
+#pragma mark ---- Delete
+-(void)personDogsCellDeletecell:(PersonDogsCell *)cell{
+    NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
+//    [self.dogs ]
 }
 
 #pragma mark - getter

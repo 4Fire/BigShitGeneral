@@ -13,9 +13,15 @@
 @property (nonatomic, strong) NSArray<UIColor *> *colors;
 @property (nonatomic, strong) UILongPressGestureRecognizer *gesture;
 @property (nonatomic, strong) UIButton *delateBtn;
+
 @end
 
 @implementation PersonDogsCell
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"H_HideDelete" object:nil];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -27,8 +33,22 @@
         [self addGestureRecognizer:self.gesture];
         [self addSubview:self.delateBtn];
         self.delateBtn.hidden = YES;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hidDeleteButton:) name:@"H_HideDelete" object:nil];
+        self.isDeleted = NO;
     }
     return self;
+}
+
+-(void)hidDeleteButton:(NSNotification *)notfi{
+    id obj = notfi.object;
+    if (obj && [obj isKindOfClass:[NSDictionary class]]) {
+        NSInteger index = [obj[@"index"] integerValue];
+        if (index != _rowIndex) {
+            self.delateBtn.hidden = YES;
+            self.alpha = 1;
+            self.isDeleted = NO;
+        }
+    }
 }
 
 - (void)responseToGesture:(UILongPressGestureRecognizer *)gesture {
@@ -37,6 +57,8 @@
     } completion:^(BOOL finished) {
         self.delateBtn.hidden = NO;
         self.delateBtn.alpha = 1.0;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"H_HideDelete" object:@{@"index":@(_rowIndex)}];
+        self.isDeleted = YES;
     }];
 }
 
@@ -45,9 +67,14 @@
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"不不不,手抖按错了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         self.alpha = 1.0;
         self.delateBtn.hidden = YES;
+        self.isDeleted = NO;
     }];
     UIAlertAction *delate = [UIAlertAction actionWithTitle:@"确认删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"delete" object:self];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"delete" object:self];
+        if ([_delegate respondsToSelector:@selector(personDogsCellDeletecell:)]) {
+            [_delegate personDogsCellDeletecell:self];
+            self.isDeleted = YES;
+        }
     }];
     [alertController addAction:cancel];
     [alertController addAction:delate];

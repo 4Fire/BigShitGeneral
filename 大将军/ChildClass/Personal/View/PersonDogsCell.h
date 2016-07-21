@@ -7,8 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+@class PersonDogsCell;
+
+@protocol PersonDogsCellDelegate <NSObject>
+
+@optional
+-(void)personDogsCellDeletecell:(PersonDogsCell *)cell;
+
+@end
+
 
 @interface PersonDogsCell : UICollectionViewCell
+@property (nonatomic, weak)   id<PersonDogsCellDelegate> delegate;
 @property (nonatomic, strong) UIImageView *dogIcon;
 @property (nonatomic, strong) UILabel *nameLab;
+@property (nonatomic, assign) NSInteger rowIndex;
+@property (nonatomic, assign) BOOL isDeleted;
 @end
