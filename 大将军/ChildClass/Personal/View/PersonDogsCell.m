@@ -11,7 +11,6 @@
 @interface PersonDogsCell ()
 
 @property (nonatomic, strong) NSArray<UIColor *> *colors;
-@property (nonatomic, strong) UILongPressGestureRecognizer *gesture;
 @property (nonatomic, strong) UIButton *delateBtn;
 
 @end

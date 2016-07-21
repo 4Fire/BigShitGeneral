@@ -23,4 +23,5 @@
 @property (nonatomic, strong) UILabel *nameLab;
 @property (nonatomic, assign) NSInteger rowIndex;
 @property (nonatomic, assign) BOOL isDeleted;
+@property (nonatomic, strong) UILongPressGestureRecognizer *gesture;
 @end
