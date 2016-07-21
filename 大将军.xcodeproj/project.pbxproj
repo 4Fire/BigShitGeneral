@@ -47,6 +47,8 @@
 		5E1D78C81D3E175E0062E802 /* 遛狗选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C21D3E175E0062E802 /* 遛狗选中.png */; };
 		5E1D78C91D3E175E0062E802 /* 主业未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C31D3E175E0062E802 /* 主业未选中.png */; };
 		5E1D78CA1D3E175E0062E802 /* 主页选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C41D3E175E0062E802 /* 主页选中.png */; };
+		5E506F4D1D40C0E5006C7E44 /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E506F4A1D40C0E5006C7E44 /* Record+CoreDataProperties.m */; };
+		5E506F4E1D40C0E5006C7E44 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E506F4C1D40C0E5006C7E44 /* Record.m */; };
 		5ED8781E1D3C65150060F83B /* DoggyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED8781D1D3C65150060F83B /* DoggyModel.m */; };
 		5EFBE9A31D388B6400FE838A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A21D388B6400FE838A /* main.m */; };
 		5EFBE9A61D388B6400FE838A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A51D388B6400FE838A /* AppDelegate.m */; };
@@ -91,8 +93,6 @@
 		5EFBEA7C1D38946900FE838A /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA5B1D38946900FE838A /* News.m */; };
 		5EFBEA7F1D38946900FE838A /* Publish+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA631D38946900FE838A /* Publish+CoreDataProperties.m */; };
 		5EFBEA801D38946900FE838A /* Publish.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA651D38946900FE838A /* Publish.m */; };
-		5EFBEA811D38946900FE838A /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA681D38946900FE838A /* Record+CoreDataProperties.m */; };
-		5EFBEA821D38946900FE838A /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA6A1D38946900FE838A /* Record.m */; };
 		5EFBEA831D38946900FE838A /* Remark+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA6D1D38946900FE838A /* Remark+CoreDataProperties.m */; };
 		5EFBEA841D38946900FE838A /* Remark.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA6F1D38946900FE838A /* Remark.m */; };
 		5EFBEA851D38946900FE838A /* WalkingDog+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA721D38946900FE838A /* WalkingDog+CoreDataProperties.m */; };
@@ -348,6 +348,10 @@
 		5E1D78C21D3E175E0062E802 /* 遛狗选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "遛狗选中.png"; sourceTree = "<group>"; };
 		5E1D78C31D3E175E0062E802 /* 主业未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主业未选中.png"; sourceTree = "<group>"; };
 		5E1D78C41D3E175E0062E802 /* 主页选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主页选中.png"; sourceTree = "<group>"; };
+		5E506F491D40C0E5006C7E44 /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
+		5E506F4A1D40C0E5006C7E44 /* Record+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataProperties.m"; sourceTree = "<group>"; };
+		5E506F4B1D40C0E5006C7E44 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
+		5E506F4C1D40C0E5006C7E44 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		5ED8781C1D3C65150060F83B /* DoggyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoggyModel.h; sourceTree = "<group>"; };
 		5ED8781D1D3C65150060F83B /* DoggyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoggyModel.m; sourceTree = "<group>"; };
 		5EFBE99E1D388B6400FE838A /* 大将军.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "大将军.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -434,10 +438,6 @@
 		5EFBEA631D38946900FE838A /* Publish+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Publish+CoreDataProperties.m"; sourceTree = "<group>"; };
 		5EFBEA641D38946900FE838A /* Publish.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Publish.h; sourceTree = "<group>"; };
 		5EFBEA651D38946900FE838A /* Publish.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Publish.m; sourceTree = "<group>"; };
-		5EFBEA671D38946900FE838A /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
-		5EFBEA681D38946900FE838A /* Record+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataProperties.m"; sourceTree = "<group>"; };
-		5EFBEA691D38946900FE838A /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
-		5EFBEA6A1D38946900FE838A /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		5EFBEA6C1D38946900FE838A /* Remark+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Remark+CoreDataProperties.h"; sourceTree = "<group>"; };
 		5EFBEA6D1D38946900FE838A /* Remark+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Remark+CoreDataProperties.m"; sourceTree = "<group>"; };
 		5EFBEA6E1D38946900FE838A /* Remark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Remark.h; sourceTree = "<group>"; };
@@ -1182,10 +1182,10 @@
 		5EFBEA661D38946900FE838A /* Record */ = {
 			isa = PBXGroup;
 			children = (
-				5EFBEA671D38946900FE838A /* Record+CoreDataProperties.h */,
-				5EFBEA681D38946900FE838A /* Record+CoreDataProperties.m */,
-				5EFBEA691D38946900FE838A /* Record.h */,
-				5EFBEA6A1D38946900FE838A /* Record.m */,
+				5E506F491D40C0E5006C7E44 /* Record+CoreDataProperties.h */,
+				5E506F4A1D40C0E5006C7E44 /* Record+CoreDataProperties.m */,
+				5E506F4B1D40C0E5006C7E44 /* Record.h */,
+				5E506F4C1D40C0E5006C7E44 /* Record.m */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -1851,7 +1851,6 @@
 				5EFBEA1E1D388F0900FE838A /* NeuteringView.m in Sources */,
 				5EFBEA0A1D388F0900FE838A /* CalendarCell.m in Sources */,
 				5EFBEA0C1D388F0900FE838A /* CustomLayout.m in Sources */,
-				5EFBEA811D38946900FE838A /* Record+CoreDataProperties.m in Sources */,
 				5E1D78951D3DB91E0062E802 /* InfoTableViewCell.m in Sources */,
 				5EFBEA111D388F0900FE838A /* LoginViewController.m in Sources */,
 				F4D2FED51D3CBF67002B927D /* RecordViewController.m in Sources */,
@@ -1879,6 +1878,7 @@
 				5EFBEA351D3890AD00FE838A /* TableRecord1Cell.m in Sources */,
 				5EFBEA791D38946900FE838A /* Friends.m in Sources */,
 				5EFBEA191D388F0900FE838A /* NameView.m in Sources */,
+				5E506F4E1D40C0E5006C7E44 /* Record.m in Sources */,
 				5EFBEA861D38946900FE838A /* WalkingDog.m in Sources */,
 				5EFBEA0B1D388F0900FE838A /* CalendarView.m in Sources */,
 				5EFBEA151D388F0900FE838A /* DogCollectionLayoutAttributes.m in Sources */,
@@ -1886,7 +1886,6 @@
 				5EFBEA891D38B59100FE838A /* PersonalView.m in Sources */,
 				5EFBEC701D38CD2C00FE838A /* FileHelper.m in Sources */,
 				5EFBEA781D38946900FE838A /* Friends+CoreDataProperties.m in Sources */,
-				5EFBEA821D38946900FE838A /* Record.m in Sources */,
 				5EFBEA101D388F0900FE838A /* InfomationTableView.m in Sources */,
 				5EFBEA7C1D38946900FE838A /* News.m in Sources */,
 				5EFBEA331D3890AD00FE838A /* CollectionVCell.m in Sources */,
@@ -1897,6 +1896,7 @@
 				5EFBEA341D3890AD00FE838A /* TableHeader.m in Sources */,
 				5EFBEA771D38946900FE838A /* Dog.m in Sources */,
 				5EFBEA801D38946900FE838A /* Publish.m in Sources */,
+				5E506F4D1D40C0E5006C7E44 /* Record+CoreDataProperties.m in Sources */,
 				5EFBEA831D38946900FE838A /* Remark+CoreDataProperties.m in Sources */,
 				18BBC17F1D3CB8A400DE8431 /* Owner+CoreDataProperties.m in Sources */,
 				5EFBEA1C1D388F0900FE838A /* HeadImageModel.m in Sources */,
