@@ -69,6 +69,7 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
         
         //注册通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ownerSetting) name:@"ownerSetting" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(delateDog:) name:@"delate" object:nil];
     }
     return self;
 }
@@ -85,6 +86,11 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     [self.scrollView addSubview:self.quitBtn];
     [self addSubview:self.welcomeLab];
    }
+
+- (void)delateDog:(NSNotification *)notif {
+    
+    [self.collectionView reloadData];
+}
 
 - (void)ownerSetting {
     NSManagedObjectContext *ctx = [Context context];
@@ -117,6 +123,9 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
             button.layer.transform = CATransform3DConcat(trans, CATransform3DIdentity);
         }];
     });
+}
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self endEditing:YES];
 }
 
 #pragma mark - Event
@@ -184,8 +193,10 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     PersonDogsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PersonDogsCellID forIndexPath:indexPath];
     if (indexPath.item < _dogs.count) {
         cell.dogIcon.image = [UIImage imageWithData:_dogs[indexPath.item].iconImage];
+        cell.nameLab.text = _dogs[indexPath.item].name;
     }else {
         cell.dogIcon.image = [UIImage imageNamed:@"addImage_default.png"];
+        cell.nameLab.hidden = YES;
     }
     return cell;
 }
@@ -241,6 +252,7 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
         _collectionView.dataSource = self;
         //注册原型cell
         [_collectionView registerClass:[PersonDogsCell class] forCellWithReuseIdentifier:PersonDogsCellID];
+        
     }
     return _collectionView;
 }

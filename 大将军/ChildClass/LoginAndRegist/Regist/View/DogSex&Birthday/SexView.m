@@ -49,7 +49,7 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [alertController dismissViewControllerAnimated:YES completion:nil];
         });
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+         [[self fetchViewControllerByView:self] presentViewController:alertController animated:true  completion:nil]; 
         return;
     }
     
@@ -61,6 +61,18 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"clickedNext" object:self userInfo:self.userInfo];
 }
+
+-(UIViewController *)fetchViewControllerByView:(UIView *)aView{
+    UIViewController * vc = nil;
+    for (UIView * tView = aView; tView.nextResponder; tView = tView.superview) {
+        if ([tView.nextResponder isKindOfClass:[UIViewController class]]) {
+            vc = (UIViewController *)tView.nextResponder;
+            break;
+        }
+    }
+    return vc;
+}
+
 
 - (void)chooseSexWithBtn:(UIButton *)sender isSelected:(BOOL)isSelected {
     

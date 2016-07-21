@@ -74,7 +74,8 @@
             [alertController dismissViewControllerAnimated:YES completion:nil];
         });
         
-         [[self fetchViewControllerByView:self] presentViewController:alertController animated:true  completion:nil];        return;
+         [[self fetchViewControllerByView:self] presentViewController:alertController animated:true  completion:nil];
+        return;
     }else {
         [self.userInfo setObject:iconImage forKey:@"iconImage"];
         [self.userInfo setObject:name forKey:@"name"];

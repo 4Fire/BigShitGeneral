@@ -46,7 +46,14 @@
     [self.view addSubview:self.sexLab];
     [self.view addSubview:self.maleImageView];
     [self.view addSubview:self.famaleImageView];
-    _maleSelectImag.image = [UIImage imageNamed:@"选中.png"];
+    NSNumber *sex = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerSex"];
+    if ([sex isEqual:@0]) {
+        self.famaleSelectImag.image = [UIImage imageNamed:@"选中.png"];
+        self.maleSelectImag.image = [UIImage new];
+    }else {
+        self.maleSelectImag.image = [UIImage imageNamed:@"选中.png"];
+        self.famaleSelectImag.image = [UIImage new];
+    }
     [self.view addSubview:self.resetIcon];
 }
 
@@ -86,6 +93,7 @@
     _maleSelectImag.image = [UIImage imageNamed:@"选中"];
     _famaleSelectImag.image = [UIImage imageNamed:@""];
     _sex = @1;
+    [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:@"ownerSex"];
     self.sexView.image = [UIImage imageNamed:@"男性选中"];
 
 //    [self.ownerIcon setImage:[UIImage imageNamed:@"ownerMale.jpeg"] forState:UIControlStateNormal];
@@ -95,6 +103,7 @@
     _maleSelectImag.image = [UIImage imageNamed:@""];
     _famaleSelectImag.image = [UIImage imageNamed:@"选中"];
     _sex = @0;
+    [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:@"ownerSex"];
     self.sexView.image = [UIImage imageNamed:@"女性选中"];
     
 //    [self.ownerIcon setImage:[UIImage imageNamed:@"ownerFamale.jpeg"] forState:UIControlStateNormal];
