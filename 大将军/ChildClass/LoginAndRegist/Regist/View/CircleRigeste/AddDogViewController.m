@@ -81,7 +81,7 @@ static NSString *DogCollectionViewCellId = @"DogCollectionViewCell";
 
 - (void)responseToNext:(NSNotification *)notif {
     if ([notif.object isKindOfClass:[NameView class]]) {
-        _backBtn.hidden = YES;
+//        _backBtn.hidden = YES;
         _iconImage = notif.userInfo[@"iconImage"];
         _name = notif.userInfo[@"name"];
 //        NSLog(@"%@------%@", _iconImage, _name);
@@ -89,7 +89,7 @@ static NSString *DogCollectionViewCellId = @"DogCollectionViewCell";
         [self collectionView:self.detailViews didSelectItemAtIndexPath:indexPath];
     }
     if ([notif.object isKindOfClass:[SexView class]]) {
-        _backBtn.hidden = YES;
+//        _backBtn.hidden = YES;
         _birthday = notif.userInfo[@"birthday"];
         _sex = notif.userInfo[@"sex"];
 //        NSLog(@"getbir=%@----%@", _birthday, _sex);
@@ -126,10 +126,13 @@ static NSString *DogCollectionViewCellId = @"DogCollectionViewCell";
     if (gesture.direction == UISwipeGestureRecognizerDirectionRight) {
         if (self.detailViews.contentOffset.x > 281) {
             [self.detailViews setContentOffset:CGPointMake(self.detailViews.contentOffset.x - 281.25, self.detailViews.contentOffset.y)animated:YES];
-            _backBtn.hidden = YES;
+            [UIView animateWithDuration:0.2 animations:^{
+                self.backBtn.frame = CGRectMake(self.detailViews.contentOffset.x - 281.25, SCREEN_HEIGHT - 64, SCREEN_WIDTH, 64);
+            }];
         }
+        
         if (self.detailViews.contentOffset.x == 0 ) {
-            _backBtn.hidden = NO;
+            self.backBtn.frame = CGRectMake(0, SCREEN_HEIGHT - 64, SCREEN_WIDTH, 64);
             return;
         }
     }
@@ -183,6 +186,9 @@ static NSString *DogCollectionViewCellId = @"DogCollectionViewCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.item < 4) {
         [self.detailViews setContentOffset:CGPointMake((indexPath.row + 1) * SCREEN_WIDTH * 3 / 4, collectionView.contentOffset.y) animated:YES];
+        [UIView animateWithDuration:0.2 animations:^{
+            self.backBtn.frame = CGRectMake((indexPath.row + 1) * SCREEN_WIDTH * 3 / 4, SCREEN_HEIGHT - 64, SCREEN_WIDTH, 64);
+        }];
     } else {
         [self.detailViews setContentOffset:CGPointMake((indexPath.row) * SCREEN_WIDTH * 3 / 4, collectionView.contentOffset.y) animated:YES];
     }

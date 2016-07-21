@@ -10,4 +10,5 @@
 
 @interface PersonDogsCell : UICollectionViewCell
 @property (nonatomic, strong) UIImageView *dogIcon;
+@property (nonatomic, strong) UILabel *nameLab;
 @end

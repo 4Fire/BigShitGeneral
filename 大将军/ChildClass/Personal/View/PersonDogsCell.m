@@ -11,6 +11,8 @@
 @interface PersonDogsCell ()
 
 @property (nonatomic, strong) NSArray<UIColor *> *colors;
+@property (nonatomic, strong) UILongPressGestureRecognizer *gesture;
+@property (nonatomic, strong) UIButton *delateBtn;
 @end
 
 @implementation PersonDogsCell
@@ -21,10 +23,37 @@
         self.layer.cornerRadius = CGRectGetWidth(self.bounds) * 0.5;
         self.layer.masksToBounds = YES;
         [self addSubview:self.dogIcon];
+        [self addSubview:self.nameLab];
+        [self addGestureRecognizer:self.gesture];
+        [self addSubview:self.delateBtn];
+        self.delateBtn.hidden = YES;
     }
     return self;
 }
 
+- (void)responseToGesture:(UILongPressGestureRecognizer *)gesture {
+    [UIView animateWithDuration:0.5 animations:^{
+        self.alpha = 0.2;
+    } completion:^(BOOL finished) {
+        self.delateBtn.hidden = NO;
+        self.delateBtn.alpha = 1.0;
+    }];
+}
+
+- (void)delate {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"主人你不要我了吗" message:@"删除后汪星人将永远离开" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"不不不,手抖按错了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        self.alpha = 1.0;
+        self.delateBtn.hidden = YES;
+    }];
+    UIAlertAction *delate = [UIAlertAction actionWithTitle:@"确认删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"delete" object:self];
+    }];
+    [alertController addAction:cancel];
+    [alertController addAction:delate];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+    
+}
 
 #pragma mark - Getter
 - (UIImageView *)dogIcon {
@@ -45,4 +74,36 @@
 - (NSArray<UIColor *> *)colors {
     return @[COLOR(247, 68, 97), COLOR(147, 224, 254), COLOR(255, 95, 73), COLOR(236, 1, 18), COLOR(177, 153, 185), COLOR(140, 221, 73), COLOR(172, 237, 239)];
 }
+
+- (UILabel *)nameLab {
+    if (!_nameLab) {
+        _nameLab = [[UILabel alloc] init];
+        _nameLab.bounds = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height * 0.2);
+        _nameLab.center = CGPointMake(self.bounds.size.width * 0.5, self.bounds.size.height * 0.5);
+        _nameLab.textColor = [UIColor whiteColor];
+        _nameLab.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.2];
+        _nameLab.textAlignment = NSTextAlignmentCenter;
+    }
+    return _nameLab;
+}
+
+- (UILongPressGestureRecognizer *)gesture {
+    if (!_gesture) {
+        _gesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(responseToGesture:)];
+        _gesture.minimumPressDuration = 1.f;
+    }
+    return _gesture;
+}
+
+- (UIButton *)delateBtn {
+    if (!_delateBtn ) {
+        _delateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _delateBtn.frame = self.bounds;
+        [_delateBtn setImage:[UIImage imageNamed:@"删除.png"] forState:UIControlStateNormal];
+        [_delateBtn addTarget:self action:@selector(delate) forControlEvents:UIControlEventTouchUpInside];
+        _delateBtn.alpha = 1;
+    }
+    return _delateBtn;
+}
+
 @end
