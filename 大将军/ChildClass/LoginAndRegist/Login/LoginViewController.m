@@ -100,17 +100,20 @@
     Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:self.accountTextField.text];
     if (!owner) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"大将军未受封!请注册!" preferredStyle:UIAlertControllerStyleAlert];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+        [[self fetchViewControllerByView:self.view] presentViewController:alertController animated:YES completion:nil];
+        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [alertController dismissViewControllerAnimated:YES completion:nil];
         });
     }else {
         if ( [owner.password isEqualToString:self.passwordTextField.text]) {
             [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"ownerAccount"];
-            [[[UIApplication sharedApplication].delegate window] setRootViewController:[[MainTabbarController alloc] init]];
+//            [[[UIApplication sharedApplication].delegate window] setRootViewController:[[MainTabbarController alloc] init]];
+            [[self fetchViewControllerByView:self.view] presentViewController:[[MainTabbarController alloc] init] animated:YES completion:nil];
         }else {
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"大将军口令错误!请查正!" preferredStyle:UIAlertControllerStyleAlert];
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+//            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+            [[self fetchViewControllerByView:self.view] presentViewController:alertController animated:YES completion:nil];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [alertController dismissViewControllerAnimated:YES completion:nil];
             });
@@ -118,8 +121,33 @@
     }
 }
 
+- (UIViewController *)fetchViewControllerByView:(UIView *)aView{
+    UIViewController * vc = nil;
+    for (UIView * tView = aView; tView.nextResponder; tView = tView.superview) {
+        if ([tView.nextResponder isKindOfClass:[UIViewController class]]) {
+            vc = (UIViewController *)tView.nextResponder;
+            break;
+        }
+    }
+    return vc;
+}
+
+
+- (UINavigationController *)fetchNavigationControllerByView:(UIView *)aView{
+    UINavigationController * vc = nil;
+    for (UIView * tView = aView; tView.nextResponder; tView = tView.superview) {
+        if ([tView.nextResponder isKindOfClass:[UINavigationController class]]) {
+            vc = (UINavigationController *)tView.nextResponder;
+            break;
+        }
+    }
+    return vc;
+}
+
+
 - (void)responseToRegisterBtn {
-    [self.navigationController pushViewController:[[RegisterViewController alloc] init] animated:YES];
+//    [[self fetchViewControllerByView:self.view] presentViewController:[[MainTabbarController alloc] init] animated:YES completion:nil];
+    [self.navigationController pushViewController:[[RegisterViewController alloc] init]animated:YES];
 }
 
 - (void)responseToForgetPasswordBtn {

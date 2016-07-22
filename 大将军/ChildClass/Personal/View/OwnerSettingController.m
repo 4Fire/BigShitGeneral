@@ -119,23 +119,33 @@
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"请选择照片来源" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *photoLibraryAct = [UIAlertAction actionWithTitle:@"打开照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             pickerView.sourceType = UIImagePickerControllerSourceTypePhotoLibrary | UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:pickerView animated:YES completion:nil];
+//            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:pickerView animated:YES completion:nil];
+            [self presentViewController:pickerView animated:YES completion:nil];
         }];
         UIAlertAction *cameraAct = [UIAlertAction actionWithTitle:@"打开照相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             pickerView.sourceType = UIImagePickerControllerSourceTypeCamera;
             pickerView.cameraDevice = UIImagePickerControllerCameraDeviceRear;
             pickerView.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:pickerView animated:YES completion:nil];
+//            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:pickerView animated:YES completion:nil];
+            [self presentViewController:pickerView animated:YES completion:nil];
         }];
         UIAlertAction *cancelAct = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         [alertController addAction:photoLibraryAct];
         [alertController addAction:cameraAct];
         [alertController addAction:cancelAct];
-        
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
+- (UIViewController *)fetchViewControllerWithView:(UIView *)view {
+    UIViewController *vc = nil;
+    for (UIView *tView = view; tView.nextResponder;tView = tView.superview) {
+        if ([tView isKindOfClass:[UIViewController class]]) {
+            vc = (UIViewController *)tView.nextResponder;
+        }
+    }
+    return vc;
+}
 
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
