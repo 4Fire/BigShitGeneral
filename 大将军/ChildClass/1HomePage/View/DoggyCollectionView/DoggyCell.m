@@ -43,6 +43,16 @@
     return _doggyIcon;
 }
 
+- (UIView *)coverView {
+    if (!_coverView) {
+        _coverView = [[UIView alloc]initWithFrame:self.bounds];
+        _coverView.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.5];
+        [self.contentView addSubview:_coverView];
+        [self.contentView bringSubviewToFront:_coverView];
+    }
+    return _coverView;
+}
+
 
 
 @end
