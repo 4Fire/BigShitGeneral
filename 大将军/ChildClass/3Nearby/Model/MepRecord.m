@@ -72,7 +72,7 @@
 
 - (NSString *)subTitle
 {
-    return [NSString stringWithFormat:@"point:%ld, distance: %.2fm, duration: %.2fs", self.locationsArray.count, [self totalDistance], [self totalDuration]];
+    return [NSString stringWithFormat:@"距离: %.2fm, 时间: %.2fs",  [self totalDistance], [self totalDuration]];
 }
 
 - (CLLocationDistance)totalDistance
