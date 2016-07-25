@@ -26,4 +26,6 @@
 @property (nonatomic, assign) BOOL isDeleted;
 @property (nonatomic, strong) UILongPressGestureRecognizer *gesture;
 @property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, assign) NSInteger colorInt;
+@property (nonatomic, strong)  CAShapeLayer *shapeLayer;
 @end

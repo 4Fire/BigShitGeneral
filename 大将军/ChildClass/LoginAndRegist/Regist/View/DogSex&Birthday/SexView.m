@@ -16,6 +16,8 @@
 @property (nonatomic, strong) UILabel *sexLab;
 @property (nonatomic, strong) UIButton *maleBtn;
 @property (nonatomic, strong) UIButton *famaleBtn;
+@property (nonatomic, strong) UILabel *maleLab;
+@property (nonatomic, strong) UILabel *famaleLab;
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *nextBtn;
 @property (nonatomic, strong) NSMutableDictionary *userInfo;

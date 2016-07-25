@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSArray<UIColor *> *colors;
 @property (nonatomic, strong) UIButton *delateBtn;
 
+
 @end
 
 @implementation PersonDogsCell
@@ -48,6 +49,12 @@
         _delateBtn.hidden = YES;
         self.alpha = 1;
     }
+}
+
+- (void)setColorInt:(NSInteger)colorInt {
+    _colorInt = colorInt;
+    [self addSubview:self.dogIcon];
+//    NSLog(@"????%ld", colorInt);
 }
 
 -(void)hidDeleteButton:(NSNotification *)notfi{
@@ -97,20 +104,36 @@
 - (UIImageView *)dogIcon {
     if (!_dogIcon) {
         _dogIcon = [[UIImageView alloc] initWithFrame:self.bounds];
-        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:_dogIcon.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(CGRectGetWidth(self.bounds) * 0.5, CGRectGetWidth(self.bounds) * 0.5)];
-        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-        shapeLayer.path = bezierPath.CGPath;
-        shapeLayer.strokeColor = self.colors[arc4random() % self.colors.count].CGColor;;
-        shapeLayer.lineWidth = 5;
-        shapeLayer.fillColor = [UIColor clearColor].CGColor;
-        [_dogIcon.layer addSublayer:shapeLayer];
-//        _dogIcon.layer.masksToBounds = YES;
+//        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:_dogIcon.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(CGRectGetWidth(self.bounds) * 0.5, CGRectGetWidth(self.bounds) * 0.5)];
+//        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
+//        shapeLayer.path = bezierPath.CGPath;
+//        shapeLayer.strokeColor = self.colors[self.colorInt].CGColor;
+////        NSLog(@"%ld",_colorInt);
+//        shapeLayer.lineWidth = 5;
+//        shapeLayer.fillColor = [UIColor clearColor].CGColor;
+        [_dogIcon.layer addSublayer:self.shapeLayer];
     }
     return _dogIcon;
 }
 
+- (CAShapeLayer *)shapeLayer {
+//    if (!_shapeLayer) {
+//        <#statements#>
+//    }
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:_dogIcon.bounds byRoundingCorners:UIRectCornerAllCorners cornerRadii:CGSizeMake(CGRectGetWidth(self.bounds) * 0.5, CGRectGetWidth(self.bounds) * 0.5)];
+    _shapeLayer = [CAShapeLayer layer];
+    _shapeLayer.path = bezierPath.CGPath;
+    _shapeLayer.strokeColor = self.colors[_colorInt].CGColor;
+            NSLog(@"%ld",_colorInt);
+    _shapeLayer.lineWidth = 5;
+    _shapeLayer.fillColor = [UIColor clearColor].CGColor;
+    return _shapeLayer;
+}
+
+
+
 - (NSArray<UIColor *> *)colors {
-    return @[COLOR(247, 68, 97), COLOR(147, 224, 254), COLOR(255, 95, 73), COLOR(236, 1, 18), COLOR(177, 153, 185), COLOR(140, 221, 73), COLOR(172, 237, 239)];
+    return @[COLOR(247, 68, 97), COLOR(147, 224, 254), COLOR(190, 195, 199)];
 }
 
 - (UILabel *)nameLab {
