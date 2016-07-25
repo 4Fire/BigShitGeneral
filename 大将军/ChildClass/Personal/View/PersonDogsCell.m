@@ -28,10 +28,10 @@
     if (self) {
         self.layer.cornerRadius = CGRectGetWidth(self.bounds) * 0.5;
         self.layer.masksToBounds = YES;
-        [self addSubview:self.dogIcon];
-        [self addSubview:self.nameLab];
-        [self addGestureRecognizer:self.gesture];
-        [self addSubview:self.delateBtn];
+//        [self addSubview:self.dogIcon];
+//        [self addSubview:self.nameLab];
+//        [self addGestureRecognizer:self.gesture];
+//        [self addSubview:self.delateBtn];
         self.delateBtn.hidden = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hidDeleteButton:) name:@"H_HideDelete" object:nil];
         
@@ -54,6 +54,9 @@
 - (void)setColorInt:(NSInteger)colorInt {
     _colorInt = colorInt;
     [self addSubview:self.dogIcon];
+    [self addSubview:self.nameLab];
+    [self addGestureRecognizer:self.gesture];
+    [self addSubview:self.delateBtn];
 //    NSLog(@"????%ld", colorInt);
 }
 
@@ -97,7 +100,6 @@
     [alertController addAction:cancel];
     [alertController addAction:delate];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
-    
 }
 
 #pragma mark - Getter

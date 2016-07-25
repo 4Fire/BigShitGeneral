@@ -213,13 +213,16 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     cell.delegate = self;
     cell.rowIndex = indexPath.row;
     cell.indexPath = indexPath;
+    
     NSString *key = [NSString stringWithFormat:@"cell%ld", (long)indexPath.row];
     BOOL isDelete = [_statusInfo[key] boolValue];
     if (indexPath.item < _dogs.count) {
+        cell.colorInt = _dogs[indexPath.row].sex.integerValue;
         cell.dogIcon.image = [UIImage imageWithData:_dogs[indexPath.row].iconImage];
         cell.nameLab.text = _dogs[indexPath.row].name;
         cell.isDeleted = isDelete;
     }else {
+        cell.colorInt = 2;
         cell.dogIcon.image = [UIImage imageNamed:@"addImage_default.png"];
         cell.nameLab.hidden = YES;
         cell.isDeleted = isDelete;
