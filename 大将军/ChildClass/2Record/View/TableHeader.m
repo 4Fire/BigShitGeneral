@@ -73,9 +73,8 @@ static NSInteger recode = -1;
     NSCalendar *calender = [NSCalendar currentCalendar];
     calender.timeZone = [NSTimeZone systemTimeZone];
     
-
     
-    if ([_dateModel year:self.date] < [_dateModel year:[NSDate date]] && [_dateModel month:self.date] < [_dateModel month:[NSDate date]]) {
+    if ([_dateModel year:self.date] < [_dateModel year:[NSDate date]]) {
         recode = indexPath.row;
         NSDate *date = [calender dateFromComponents:components];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -83,12 +82,11 @@ static NSInteger recode = -1;
         if ([self.tableHeaderDelegate respondsToSelector:@selector(TableHeader:selectTime:)]) {
             [self.tableHeaderDelegate TableHeader:self selectTime:[formatter stringFromDate:date]];
         }
-    } else if ([_dateModel year:self.date] == [_dateModel year:[NSDate date]] && [_dateModel month:self.date] == [_dateModel month:[NSDate date]]){
-        if (indexPath.row < firstDay) {
-//            recode = -1;
-        } else if (indexPath.row >= [_dateModel day:[NSDate date]] + firstDay) {
-//            recode = -1;
-        } else {
+        
+    } else if ([_dateModel year:self.date] == [_dateModel year:[NSDate date]]) {
+        
+        if ([_dateModel month:self.date] < [_dateModel month:[NSDate date]]) {
+            
             recode = indexPath.row;
             NSDate *date = [calender dateFromComponents:components];
             NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
@@ -96,9 +94,37 @@ static NSInteger recode = -1;
             if ([self.tableHeaderDelegate respondsToSelector:@selector(TableHeader:selectTime:)]) {
                 [self.tableHeaderDelegate TableHeader:self selectTime:[formatter stringFromDate:date]];
             }
+            
+        } else if ([_dateModel month:self.date] == [_dateModel month:[NSDate date]]) {
+            
+            if (indexPath.row + 1 < [_dateModel day:self.date] + firstDay) {
+                
+                recode = indexPath.row;
+                NSDate *date = [calender dateFromComponents:components];
+                NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+                formatter.dateFormat = @"YYYY年MM月d日";
+                if ([self.tableHeaderDelegate respondsToSelector:@selector(TableHeader:selectTime:)]) {
+                    [self.tableHeaderDelegate TableHeader:self selectTime:[formatter stringFromDate:date]];
+                }
+            } else if (indexPath.row + 1 == [_dateModel day:self.date] + firstDay) {
+                
+                recode = indexPath.row;
+                NSDate *date = [calender dateFromComponents:components];
+                NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+                formatter.dateFormat = @"YYYY年MM月d日";
+                if ([self.tableHeaderDelegate respondsToSelector:@selector(TableHeader:selectTime:)]) {
+                    [self.tableHeaderDelegate TableHeader:self selectTime:[formatter stringFromDate:date]];
+                }
+            } else if (indexPath.row + 1 > [_dateModel day:self.date] + firstDay) {
+//                recode = -1;
+            }
+            
+        } else if ([_dateModel month:self.date] > [_dateModel month:[NSDate date]]) {
+//            recode = -1;
         }
-    } else {
-        recode = -1;
+        
+    } else if ([_dateModel year:self.date] > [_dateModel year:[NSDate date]]) {
+//        recode = -1;
     }
     
     [self.collection reloadData];
@@ -114,11 +140,7 @@ static NSInteger recode = -1;
     NSInteger firstDay = [self.dateModel firstWeekdayInThisMonth:self.date];
     NSInteger total = [self.dateModel totaldaysInMonth:self.date];
     
-    if (indexPath.row == recode) {
-        cell.backgroundColor = COLOR(255, 95, 73);
-    } else {
-        cell.backgroundColor = COLOR(254, 255, 213);
-    }
+    
     
     if (indexPath.item < firstDay) {
         cell.day.text = @"";
@@ -128,32 +150,49 @@ static NSInteger recode = -1;
         cell.day.text = [NSString stringWithFormat:@"%ld",indexPath.row - firstDay + 1];
     }
     
-    if ([_dateModel year:self.date] < [_dateModel year:[NSDate date]] && [_dateModel month:self.date] < [_dateModel month:[NSDate date]]) {
-
+    
+    if ([_dateModel year:self.date] < [_dateModel year:[NSDate date]]) {
+        cell.backgroundColor = COLOR(254, 255, 213);
         
-    } else {
+    } else if ([_dateModel year:self.date] == [_dateModel year:[NSDate date]]) {
         
-        if ([self.date compare:[NSDate date]] < 0) {
-            if (indexPath.row + 1 == [_dateModel day:self.date] + firstDay) {
+        if ([_dateModel month:self.date] < [_dateModel month:[NSDate date]]) {
+            cell.backgroundColor = COLOR(254, 255, 213);
+            
+        } else if ([_dateModel month:self.date] == [_dateModel month:[NSDate date]]) {
+            
+            if (indexPath.row + 1 < [_dateModel day:self.date] + firstDay) {
+                cell.backgroundColor = COLOR(254, 255, 213);
+            } else if (indexPath.row + 1 == [_dateModel day:self.date] + firstDay) {
                 cell.backgroundColor =  COLOR(1, 174, 240);
             } else if (indexPath.row + 1 > [_dateModel day:self.date] + firstDay) {
                 cell.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
             }
-        } else if ([self.date compare:[NSDate date]] > 0) {
+            
+        } else if ([_dateModel month:self.date] > [_dateModel month:[NSDate date]]) {
             cell.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
         }
+            
+    } else if ([_dateModel year:self.date] > [_dateModel year:[NSDate date]]) {
+        cell.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
     }
     
+    if (indexPath.row == recode) {
+        cell.backgroundColor = COLOR(255, 95, 73);
+    }
 
     
     return cell;
 }
 
 - (void)nextMonth {
+    recode = -1;
    self.date = [_dateModel nextMonth:self.date];
+    
 }
 
 - (void)lastMonth {
+    recode = -1;
     self.date = [_dateModel lastMonth:self.date];
 }
 
