@@ -113,7 +113,7 @@
             pickerView.sourceType = UIImagePickerControllerSourceTypeCamera;
             pickerView.cameraDevice = UIImagePickerControllerCameraDeviceRear;
             pickerView.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:pickerView animated:YES completion:nil];
+            [[self fetchViewControllerByView:self] presentViewController:pickerView animated:true  completion:nil];
         }];
         UIAlertAction *cancelAct = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         [alertController addAction:photoLibraryAct];
@@ -136,7 +136,7 @@
     }
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
         UIImage *photo = info[UIImagePickerControllerOriginalImage];
-        [[NSUserDefaults standardUserDefaults] setObject:photo forKey:@"dogImage"];
+//        [[NSUserDefaults standardUserDefaults] setObject:photo forKey:@"dogImage"];
 //        NSLog(@"%@", photo);
         [self.headIcon setImage:photo forState:UIControlStateNormal];
     }

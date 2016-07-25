@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Dog.h"
+
+@protocol DogInfoViewControllerDelegate <NSObject>
+
+- (void)dogInfoDidChanged;
+
+@end
+
 
 @interface DogInfoViewController : UIViewController
+@property (nonatomic, strong) Dog *dog;
+
+@property (nonatomic, weak) id<DogInfoViewControllerDelegate> delegate;
 
 @end

@@ -14,6 +14,7 @@
 #import "LoginViewController.h"
 #import "OwnerSettingController.h"
 #import "AddDogViewController.h"
+#import "DogInfoViewController.h"
 
 #define PERSONAL_WIDTH self.bounds.size.width
 #define PERSONAL_HEIGHT self.bounds.size.height
@@ -22,7 +23,7 @@
 #define SCROLL_HEIGHT self.scrollView.bounds.size.height
 
 
-@interface PersonalView ()<UICollectionViewDelegate,UICollectionViewDataSource,PersonDogsCellDelegate>
+@interface PersonalView ()<UICollectionViewDelegate,UICollectionViewDataSource,PersonDogsCellDelegate,DogInfoViewControllerDelegate>
 
 //用户头像
 @property (nonatomic, strong) UIImageView *userHeader;
@@ -92,11 +93,6 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     [self.scrollView addSubview:self.quitBtn];
     [self addSubview:self.welcomeLab];
    }
-
-//- (void)delateDog:(NSNotification *)notif {
-//    
-//    [self.collectionView reloadData];
-//}
 
 - (void)ownerSetting {
     NSManagedObjectContext *ctx = [Context context];
@@ -184,18 +180,18 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 #pragma mark - <UICollectionViewDelegate,UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    NSManagedObjectContext *ctx = [Context context];
-    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
-    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
-     _dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
+//    NSManagedObjectContext *ctx = [Context context];
+//    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
+//    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
+//     _dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
     
-    if (_dogs.count < 3) {
+    if (self.dogs.count < 3) {
         self.collectionView.scrollEnabled = NO;
     }else {
         self.collectionView.scrollEnabled = YES;
     }
 
-    return _dogs.count + 1;
+    return self.dogs.count + 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -219,8 +215,13 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.item == _dogs.count) {
+    if (indexPath.row == self.dogs.count) {
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[AddDogViewController alloc] init] animated:YES completion:nil];
+    }else {
+        DogInfoViewController *vc = [[DogInfoViewController alloc] init];
+        vc.delegate = self;
+        vc.dog = self.dogs[indexPath.row];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:NO completion:nil];
     }
 }
 
@@ -232,6 +233,7 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     NSManagedObjectContext *ctx = [Context context] ;
     [Dog deleteDogFromSQLiterWithContext:ctx Name:cell.nameLab.text owner:[Owner fetchOwnerToSQLiterWithContext:ctx Account:[[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"]]];
     [self.statusInfo removeObjectForKey:[NSString stringWithFormat:@"cell%ld", cell.indexPath.row]];
+    [self.collectionView deleteItemsAtIndexPaths:@[cell.indexPath]];
     [self.collectionView reloadData];
 }
 
@@ -240,6 +242,10 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     NSString *key = [NSString stringWithFormat:@"cell%ld", (long)indexPath.row];
     [_statusInfo setObject:@(YES) forKey:key];
     [_collectionView reloadItemsAtIndexPaths:@[indexPath]];
+}
+
+- (void)dogInfoDidChanged {
+    [self.collectionView reloadData];
 }
 
 #pragma mark - getter
@@ -375,6 +381,14 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 
 - (NSArray<UIColor *> *)colors {
     return @[COLOR(247, 68, 97), COLOR(147, 224, 254), COLOR(255, 95, 73), COLOR(236, 1, 18), COLOR(177, 153, 185), COLOR(140, 221, 73), COLOR(172, 237, 239)];
+}
+
+- (NSArray<Dog *> *)dogs {
+    NSManagedObjectContext *ctx = [Context context];
+    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
+    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
+    _dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
+    return _dogs;
 }
 @end
 
