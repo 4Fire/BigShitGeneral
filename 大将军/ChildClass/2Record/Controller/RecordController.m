@@ -346,7 +346,7 @@ static NSInteger currentDog = 0;
     cell.layer.cornerRadius = SCREEN_WIDTH * 0.095;
     cell.layer.masksToBounds = YES;
     
-    if (self.dogs[indexPath.row].neutering.integerValue == 1) {
+    if (self.dogs[indexPath.row].sex.integerValue == 0) {
         cell.backgroundColor = COLOR(247, 68, 97);
     } else {
         cell.backgroundColor = COLOR(147, 224, 254);
