@@ -19,6 +19,9 @@
 		188D021C1D41AC1C00B0B8E2 /* DogInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D021B1D41AC1C00B0B8E2 /* DogInfoViewController.m */; };
 		188D021E1D41C74F00B0B8E2 /* 背景.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 188D021D1D41C74F00B0B8E2 /* 背景.jpeg */; };
 		188D02231D45BFDF00B0B8E2 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D02221D45BFDF00B0B8E2 /* cancel.png */; };
+		188D02271D45F34A00B0B8E2 /* clould.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D02241D45F34A00B0B8E2 /* clould.png */; };
+		188D02281D45F34A00B0B8E2 /* clould2.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D02251D45F34A00B0B8E2 /* clould2.png */; };
+		188D02291D45F34A00B0B8E2 /* sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D02261D45F34A00B0B8E2 /* sun.png */; };
 		188FED441D3E4EE30087FF79 /* PersonDogsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188FED431D3E4EE30087FF79 /* PersonDogsCell.m */; };
 		188FED461D3E60480087FF79 /* ownerMale.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 188FED451D3E60480087FF79 /* ownerMale.jpeg */; };
 		18A6989B1D3D19B200D688EC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6989A1D3D19B200D688EC /* Security.framework */; };
@@ -321,6 +324,9 @@
 		188D021B1D41AC1C00B0B8E2 /* DogInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DogInfoViewController.m; path = "大将军/ChildClass/Personal/View/DogInfoViewController.m"; sourceTree = SOURCE_ROOT; };
 		188D021D1D41C74F00B0B8E2 /* 背景.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "背景.jpeg"; path = "../../背景.jpeg"; sourceTree = "<group>"; };
 		188D02221D45BFDF00B0B8E2 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		188D02241D45F34A00B0B8E2 /* clould.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clould.png; sourceTree = "<group>"; };
+		188D02251D45F34A00B0B8E2 /* clould2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clould2.png; sourceTree = "<group>"; };
+		188D02261D45F34A00B0B8E2 /* sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sun.png; sourceTree = "<group>"; };
 		188FED421D3E4EE30087FF79 /* PersonDogsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDogsCell.h; sourceTree = "<group>"; };
 		188FED431D3E4EE30087FF79 /* PersonDogsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDogsCell.m; sourceTree = "<group>"; };
 		188FED451D3E60480087FF79 /* ownerMale.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ownerMale.jpeg; sourceTree = "<group>"; };
@@ -703,6 +709,9 @@
 		18BBC1811D3CCD0900DE8431 /* 4Fire */ = {
 			isa = PBXGroup;
 			children = (
+				188D02241D45F34A00B0B8E2 /* clould.png */,
+				188D02251D45F34A00B0B8E2 /* clould2.png */,
+				188D02261D45F34A00B0B8E2 /* sun.png */,
 				188D02221D45BFDF00B0B8E2 /* cancel.png */,
 				188D021D1D41C74F00B0B8E2 /* 背景.jpeg */,
 				188D02061D3F9F9800B0B8E2 /* 狗2.jpeg */,
@@ -1656,6 +1665,7 @@
 				5EFBEC091D38CB6C00FE838A /* background1.jpeg in Resources */,
 				5EFBEBC41D38CB6C00FE838A /* dogs_name49@2x.png in Resources */,
 				5EFBEC281D38CB6C00FE838A /* 生日.png in Resources */,
+				188D02291D45F34A00B0B8E2 /* sun.png in Resources */,
 				5EFBEB981D38CB6B00FE838A /* dogs_name29@2x.png in Resources */,
 				5EFBEC211D38CB6C00FE838A /* 性别.png in Resources */,
 				5EFBEBB21D38CB6C00FE838A /* dogs_name40@2x.png in Resources */,
@@ -1710,6 +1720,7 @@
 				5EFBEBAB1D38CB6C00FE838A /* dogs_name37s@2x.png in Resources */,
 				5EFBEBE71D38CB6C00FE838A /* dogs_name64s@2x.png in Resources */,
 				5EFBEC751D38CD2C00FE838A /* icon_play@2x.png in Resources */,
+				188D02271D45F34A00B0B8E2 /* clould.png in Resources */,
 				18A698BF1D3E0D1500D688EC /* cell12.jpeg in Resources */,
 				5EFBEC101D38CB6C00FE838A /* change5.png in Resources */,
 				18A698B91D3E0D1500D688EC /* cell5.jpeg in Resources */,
@@ -1783,6 +1794,7 @@
 				5EFBEBDC1D38CB6C00FE838A /* dogs_name5@2x.png in Resources */,
 				5EFBEB911D38CB6B00FE838A /* dogs_name25s@2x.png in Resources */,
 				5EFBEBDB1D38CB6C00FE838A /* dogs_name59s@2x.png in Resources */,
+				188D02281D45F34A00B0B8E2 /* clould2.png in Resources */,
 				5EFBEC231D38CB6C00FE838A /* 拍照@2x.png in Resources */,
 				5EFBEBBC1D38CB6C00FE838A /* dogs_name45@2x.png in Resources */,
 				5EFBEBBA1D38CB6C00FE838A /* dogs_name44@2x.png in Resources */,
