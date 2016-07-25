@@ -14,6 +14,26 @@
 
 @implementation Dog
 
++ (void)changeDogInfoWithNewName:(NSString *)newName
+                         OldName:(NSString *)oldName
+                         Icon:(NSData *)iconImage
+                      Account:(NSString *)account {
+    NSManagedObjectContext *ctx = [Context context];
+    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
+    Dog *dog = [Dog fetchDogFromSQLiterWithContext:ctx Name:oldName owner:owner];
+    [dog setValue:newName forKey:@"name"];
+//    NSLog(@"name = %@", newName);
+    [dog setValue:iconImage forKey:@"iconImage"];
+    NSError *error = nil;
+    BOOL success = [ctx save:&error];
+    if (!success) {
+        [NSException raise:@"访问数据库错误" format:@"%@", [error localizedDescription]];
+    }else {
+//                NSLog(@"保存成功");
+    }
+    [ctx save:nil];
+}
+
 + (void)insertDogToSQLiterWithContext:(NSManagedObjectContext *)ctx
                                  Name:(NSString *)name
                                  Icon:(NSData *)iconImage

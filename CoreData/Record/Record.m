@@ -10,19 +10,21 @@
 #import "Dog.h"
 
 @implementation Record
-+ (BOOL)insertRecordOfFamaleDogToSQLiterWithContext:(NSManagedObjectContext *)ctx
-                                     ppv:(NSDate *)ppv
-                               distemper:(NSDate *)distemper
-                             coronavirus:(NSDate *)coronavirus
-                                  rabies:(NSDate *)rabies
-                              toxoplasma:(NSDate *)toxoplasma
-                           ininsecticide:(NSDate *)ininsecticide
-                          outinsecticide:(NSDate *)outinsecticide
-                                pregnant:(NSDate *)pregnant
-                                delivery:(NSDate *)delivery
-                               neutering:(NSNumber *)neutering
-                                   other:(NSString *)other
-                                    Dog:(NSManagedObject *)dog {
+
++ (BOOL)insertRecordDogToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                                ppv:(NSNumber *)ppv
+                                          distemper:(NSNumber *)distemper
+                                        coronavirus:(NSNumber *)coronavirus
+                                             rabies:(NSNumber *)rabies
+                                         toxoplasma:(NSNumber *)toxoplasma
+                                      ininsecticide:(NSNumber *)ininsecticide
+                                     outinsecticide:(NSNumber *)outinsecticide
+                                           pregnant:(NSNumber *)pregnant
+                                           delivery:(NSNumber *)delivery
+                                          neutering:(NSNumber *)neutering
+                                               date:(NSDate *)date
+                                              other:(NSString *)other
+                                                Dog:(NSManagedObject *)dog {
     //传入上下文,创建Dog对象
     NSManagedObject *record = [NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:ctx];
     
@@ -37,62 +39,16 @@
     [record setValue:other forKey:@"other"];
     [record setValue:outinsecticide forKey:@"outinsecticide"];
     [record setValue:dog forKey:@"dog"];
+    [record setValue:date forKey:@"date"];
     NSError *error = nil;
     BOOL success = [ctx save:&error];
     if (!success) {
         [NSException raise:@"访问数据库错误" format:@"%@", [error localizedDescription]];
     }else {
-//        NSLog(@"用户保存成功");
         return YES;
     }
     return YES;
 }
-
-+ (BOOL)insertRecordOfMmaleDogToSQLiterWithContext:(NSManagedObjectContext *)ctx
-                                               ppv:(NSDate *)ppv
-                                         distemper:(NSDate *)distemper
-                                       coronavirus:(NSDate *)coronavirus
-                                            rabies:(NSDate *)rabies
-                                        toxoplasma:(NSDate *)toxoplasma
-                                     ininsecticide:(NSDate *)ininsecticide
-                                    outinsecticide:(NSDate *)outinsecticide
-                                         neutering:(NSNumber *)neutering
-                                             other:(NSString *)other
-                                               Dog:(NSManagedObject *)dog {
-    //传入上下文,创建Dog对象
-    NSManagedObject *record = [NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:ctx];
-    
-    [record setValue:ppv forKey:@"ppv"];
-    [record setValue:distemper forKey:@"distemper"];
-    [record setValue:coronavirus forKey:@"coronavirus"];
-    [record setValue:rabies forKey:@"rabies"];
-    [record setValue:toxoplasma forKey:@"toxoplasma"];
-    [record setValue:ininsecticide forKey:@"ininsecticide"];
-    [record setValue:other forKey:@"other"];
-    [record setValue:outinsecticide forKey:@"outinsecticide"];
-    [record setValue:dog forKey:@"dog"];
-    NSError *error = nil;
-    BOOL success = [ctx save:&error];
-    if (!success) {
-        [NSException raise:@"访问数据库错误" format:@"%@", [error localizedDescription]];
-    }else {
-//        NSLog(@"用户保存成功");
-        return YES;
-    }
-    return YES;
-}
-
-+ (BOOL)duplicateCheckingRecordWithContext:(NSManagedObjectContext *)ctx
-                                   DogName:(NSString *)dogName {
-    Record *recordObj = [self fetchRecordToSQLiterWithContext:ctx DogName:dogName];
-    if (recordObj) {
-//        NSLog(@"这只狗狗已经有记录了");
-        return YES;
-    }else {
-        return NO;
-    }
-}
-
 
 + (Record *)fetchRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
                                     DogName:(NSString *)dogName {
@@ -109,10 +65,6 @@
     if (error) {
         [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
     }
-    //遍历数据
-//    for (NSManagedObject *obj in objs) {
-////        NSLog(@"account = %@",[obj valueForKey:@"account"]);
-//    }
     return [objs firstObject];
 }
 

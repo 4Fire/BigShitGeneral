@@ -41,10 +41,10 @@
             self.window.rootViewController = nav;
         }else {
             NSArray<Dog *> *dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
-            for (Dog *dog in dogs) {
-                NSLog(@"%@", dog.name);
-                NSLog(@"%@", dog.iconImage);
-            }
+//            for (Dog *dog in dogs) {
+//                NSLog(@"%@", dog.name);
+//                NSLog(@"%@", dog.iconImage);
+//            }
             if (dogs.count > 0) {
                 MainTabbarController *tabbarVc = [[MainTabbarController alloc] init];
                 self.window.rootViewController = tabbarVc;

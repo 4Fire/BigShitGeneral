@@ -105,20 +105,24 @@
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"请选择照片来源" preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *photoLibraryAct = [UIAlertAction actionWithTitle:@"打开照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             pickerView.sourceType = UIImagePickerControllerSourceTypePhotoLibrary | UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:pickerView animated:YES completion:nil];
+//            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:pickerView animated:YES completion:nil];
+            [[self fetchViewControllerByView:self] presentViewController:pickerView animated:true  completion:nil];
+
         }];
         UIAlertAction *cameraAct = [UIAlertAction actionWithTitle:@"打开照相机" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             pickerView.sourceType = UIImagePickerControllerSourceTypeCamera;
             pickerView.cameraDevice = UIImagePickerControllerCameraDeviceRear;
             pickerView.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:pickerView animated:YES completion:nil];
+            [[self fetchViewControllerByView:self] presentViewController:pickerView animated:true  completion:nil];
         }];
         UIAlertAction *cancelAct = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         [alertController addAction:photoLibraryAct];
         [alertController addAction:cameraAct];
         [alertController addAction:cancelAct];
         
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+        [[self fetchViewControllerByView:self] presentViewController:alertController animated:true  completion:nil];
+
     }
 }
 
@@ -132,7 +136,7 @@
     }
     if (picker.sourceType == UIImagePickerControllerSourceTypeCamera) {
         UIImage *photo = info[UIImagePickerControllerOriginalImage];
-        [[NSUserDefaults standardUserDefaults] setObject:photo forKey:@"dogImage"];
+//        [[NSUserDefaults standardUserDefaults] setObject:photo forKey:@"dogImage"];
 //        NSLog(@"%@", photo);
         [self.headIcon setImage:photo forState:UIControlStateNormal];
     }

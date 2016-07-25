@@ -15,6 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Dog : NSManagedObject
 
++ (void)changeDogInfoWithNewName:(NSString *)newName
+                         OldName:(NSString *)oldName
+                            Icon:(NSData *)iconImage
+                         Account:(NSString *)account;
+
 + (void)insertDogToSQLiterWithContext:(NSManagedObjectContext *)ctx
                                  Name:(NSString *)name
                                  Icon:(NSData *)iconImage
