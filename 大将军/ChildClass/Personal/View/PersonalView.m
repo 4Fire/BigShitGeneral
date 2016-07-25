@@ -14,6 +14,7 @@
 #import "LoginViewController.h"
 #import "OwnerSettingController.h"
 #import "AddDogViewController.h"
+#import "DogInfoViewController.h"
 
 #define PERSONAL_WIDTH self.bounds.size.width
 #define PERSONAL_HEIGHT self.bounds.size.height
@@ -22,7 +23,7 @@
 #define SCROLL_HEIGHT self.scrollView.bounds.size.height
 
 
-@interface PersonalView ()<UICollectionViewDelegate,UICollectionViewDataSource,PersonDogsCellDelegate>
+@interface PersonalView ()<UICollectionViewDelegate,UICollectionViewDataSource,PersonDogsCellDelegate,DogInfoViewControllerDelegate>
 
 //用户头像
 @property (nonatomic, strong) UIImageView *userHeader;
@@ -52,6 +53,8 @@
 
 @property (nonatomic, strong) NSArray<UIColor *> *colors;
 
+@property (nonatomic, strong) NSMutableDictionary *statusInfo;
+
 
 @end
 
@@ -64,6 +67,7 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.statusInfo = [NSMutableDictionary dictionary];
         self.userInteractionEnabled = YES;
         [self initUserInterface];
         
@@ -74,6 +78,9 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     return self;
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)initUserInterface {
     self.backgroundColor = BACKGROUNDCOLOR;
     [self addSubview:self.userHeader];
@@ -86,11 +93,6 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     [self.scrollView addSubview:self.quitBtn];
     [self addSubview:self.welcomeLab];
    }
-
-//- (void)delateDog:(NSNotification *)notif {
-//    
-//    [self.collectionView reloadData];
-//}
 
 - (void)ownerSetting {
     NSManagedObjectContext *ctx = [Context context];
@@ -131,7 +133,10 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 #pragma mark - Event
 - (void)quit {
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ownerAccount"];
-    [UIApplication sharedApplication].keyWindow.rootViewController = [[LoginViewController alloc] init];
+//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[LoginViewController alloc] init] animated:YES completion:nil];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+    
+    [UIApplication sharedApplication].keyWindow.rootViewController = nav;
 }
 
 - (void)responseToOwnerSettingBtn {
@@ -175,47 +180,72 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 #pragma mark - <UICollectionViewDelegate,UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    NSManagedObjectContext *ctx = [Context context];
-    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
-    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
-     _dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
+//    NSManagedObjectContext *ctx = [Context context];
+//    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
+//    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
+//     _dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
     
-    if (_dogs.count < 3) {
+    if (self.dogs.count < 3) {
         self.collectionView.scrollEnabled = NO;
     }else {
         self.collectionView.scrollEnabled = YES;
     }
 
-    return _dogs.count + 1;
+    return self.dogs.count + 1;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     PersonDogsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:PersonDogsCellID forIndexPath:indexPath];
     cell.delegate = self;
     cell.rowIndex = indexPath.row;
+    cell.indexPath = indexPath;
+    NSString *key = [NSString stringWithFormat:@"cell%ld", (long)indexPath.row];
+    BOOL isDelete = [_statusInfo[key] boolValue];
     if (indexPath.item < _dogs.count) {
-        cell.dogIcon.image = [UIImage imageWithData:_dogs[indexPath.item].iconImage];
-        cell.nameLab.text = _dogs[indexPath.item].name;
-        cell.isDeleted = NO;
+        cell.dogIcon.image = [UIImage imageWithData:_dogs[indexPath.row].iconImage];
+        cell.nameLab.text = _dogs[indexPath.row].name;
+        cell.isDeleted = isDelete;
     }else {
         cell.dogIcon.image = [UIImage imageNamed:@"addImage_default.png"];
         cell.nameLab.hidden = YES;
-        cell.isDeleted = NO;
+        cell.isDeleted = isDelete;
         cell.gesture.enabled = NO;
     }
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.item == _dogs.count) {
+    if (indexPath.row == self.dogs.count) {
         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[AddDogViewController alloc] init] animated:YES completion:nil];
+    }else {
+        DogInfoViewController *vc = [[DogInfoViewController alloc] init];
+        vc.delegate = self;
+        vc.dog = self.dogs[indexPath.row];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:NO completion:nil];
     }
 }
 
 #pragma mark ---- Delete
--(void)personDogsCellDeletecell:(PersonDogsCell *)cell{
-    NSIndexPath * indexPath = [self.collectionView indexPathForCell:cell];
-//    [self.dogs ]
+- (void)personDogsCellDeletecell:(PersonDogsCell *)cell{
+    NSMutableArray *deleteArr = [self.dogs mutableCopy];
+    [deleteArr removeObjectAtIndex:cell.indexPath.row];
+    self.dogs = deleteArr;
+    NSManagedObjectContext *ctx = [Context context] ;
+    [Dog deleteDogFromSQLiterWithContext:ctx Name:cell.nameLab.text owner:[Owner fetchOwnerToSQLiterWithContext:ctx Account:[[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"]]];
+    [self.statusInfo removeObjectForKey:[NSString stringWithFormat:@"cell%ld", cell.indexPath.row]];
+    [self.collectionView deleteItemsAtIndexPaths:@[cell.indexPath]];
+    [self.collectionView reloadData];
+}
+
+- (void)personDogsCellDidChangeStatusCell:(PersonDogsCell *)cell {
+    NSIndexPath * indexPath = cell.indexPath;
+    NSString *key = [NSString stringWithFormat:@"cell%ld", (long)indexPath.row];
+    [_statusInfo setObject:@(YES) forKey:key];
+    [_collectionView reloadItemsAtIndexPaths:@[indexPath]];
+}
+
+- (void)dogInfoDidChanged {
+    [self.collectionView reloadData];
 }
 
 #pragma mark - getter
@@ -351,6 +381,14 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 
 - (NSArray<UIColor *> *)colors {
     return @[COLOR(247, 68, 97), COLOR(147, 224, 254), COLOR(255, 95, 73), COLOR(236, 1, 18), COLOR(177, 153, 185), COLOR(140, 221, 73), COLOR(172, 237, 239)];
+}
+
+- (NSArray<Dog *> *)dogs {
+    NSManagedObjectContext *ctx = [Context context];
+    NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
+    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
+    _dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
+    return _dogs;
 }
 @end
 

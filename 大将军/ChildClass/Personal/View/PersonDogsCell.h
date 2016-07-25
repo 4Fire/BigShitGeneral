@@ -12,7 +12,8 @@
 @protocol PersonDogsCellDelegate <NSObject>
 
 @optional
--(void)personDogsCellDeletecell:(PersonDogsCell *)cell;
+- (void)personDogsCellDeletecell:(PersonDogsCell *)cell;
+- (void)personDogsCellDidChangeStatusCell:(PersonDogsCell *)cell;
 
 @end
 
@@ -24,4 +25,5 @@
 @property (nonatomic, assign) NSInteger rowIndex;
 @property (nonatomic, assign) BOOL isDeleted;
 @property (nonatomic, strong) UILongPressGestureRecognizer *gesture;
+@property (nonatomic, strong) NSIndexPath *indexPath;
 @end

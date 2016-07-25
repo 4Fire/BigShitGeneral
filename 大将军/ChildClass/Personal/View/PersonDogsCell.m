@@ -33,9 +33,21 @@
         [self addSubview:self.delateBtn];
         self.delateBtn.hidden = YES;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hidDeleteButton:) name:@"H_HideDelete" object:nil];
-        self.isDeleted = NO;
+        
     }
     return self;
+}
+
+- (void)setIsDeleted:(BOOL)isDeleted {
+    _isDeleted = isDeleted;
+    if (_isDeleted) {
+        self.delateBtn.hidden = NO;
+        self.delateBtn.alpha = 1.0;
+        self.alpha = 0.5;
+    } else {
+        _delateBtn.hidden = YES;
+        self.alpha = 1;
+    }
 }
 
 -(void)hidDeleteButton:(NSNotification *)notfi{
@@ -52,21 +64,21 @@
 
 - (void)responseToGesture:(UILongPressGestureRecognizer *)gesture {
     [UIView animateWithDuration:0.5 animations:^{
-        self.alpha = 0.2;
+        self.alpha = 0.5;
     } completion:^(BOOL finished) {
         self.delateBtn.hidden = NO;
         self.delateBtn.alpha = 1.0;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"H_HideDelete" object:@{@"index":@(_rowIndex)}];
-        self.isDeleted = YES;
+        if (_delegate && [_delegate respondsToSelector:@selector(personDogsCellDidChangeStatusCell:)]) {
+            [_delegate personDogsCellDidChangeStatusCell:self];
+        }
     }];
 }
 
 - (void)delate {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"主人你不要我了吗" message:@"删除后汪星人将永远离开" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"不不不,手抖按错了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
-        self.alpha = 1.0;
-        self.delateBtn.hidden = YES;
-        self.isDeleted = NO;
+            self.isDeleted = NO;
     }];
     UIAlertAction *delate = [UIAlertAction actionWithTitle:@"确认删除" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
 //        [[NSNotificationCenter defaultCenter] postNotificationName:@"delete" object:self];
