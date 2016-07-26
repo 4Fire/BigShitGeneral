@@ -301,6 +301,7 @@
 		5EFBEC781D38CD2C00FE838A /* location_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEC6A1D38CD2C00FE838A /* location_yes@2x.png */; };
 		5EFBEC791D38CD2C00FE838A /* vr-3d.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEC6B1D38CD2C00FE838A /* vr-3d.png */; };
 		5EFBEC7A1D38CD2C00FE838A /* 猫狗.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBEC6C1D38CD2C00FE838A /* 猫狗.png */; };
+		F44229981D45F9CC00C42498 /* 记录.png in Resources */ = {isa = PBXBuildFile; fileRef = F44229971D45F9CC00C42498 /* 记录.png */; };
 		F4D2FED41D3CBF67002B927D /* DisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D2FED11D3CBF67002B927D /* DisplayViewController.m */; };
 		F4D2FED51D3CBF67002B927D /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D2FED31D3CBF67002B927D /* RecordViewController.m */; };
 /* End PBXBuildFile section */
@@ -665,6 +666,7 @@
 		5EFBEC6B1D38CD2C00FE838A /* vr-3d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vr-3d.png"; sourceTree = "<group>"; };
 		5EFBEC6C1D38CD2C00FE838A /* 猫狗.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "猫狗.png"; sourceTree = "<group>"; };
 		D01CFD577D9F55C762DC7E52 /* Pods-大将军.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-大将军.debug.xcconfig"; path = "Pods/Target Support Files/Pods-大将军/Pods-大将军.debug.xcconfig"; sourceTree = "<group>"; };
+		F44229971D45F9CC00C42498 /* 记录.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "记录.png"; sourceTree = "<group>"; };
 		F4D2FED01D3CBF67002B927D /* DisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayViewController.h; sourceTree = "<group>"; };
 		F4D2FED11D3CBF67002B927D /* DisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayViewController.m; sourceTree = "<group>"; };
 		F4D2FED21D3CBF67002B927D /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
@@ -1496,6 +1498,7 @@
 				5EFBEC6A1D38CD2C00FE838A /* location_yes@2x.png */,
 				5EFBEC6B1D38CD2C00FE838A /* vr-3d.png */,
 				5EFBEC6C1D38CD2C00FE838A /* 猫狗.png */,
+				F44229971D45F9CC00C42498 /* 记录.png */,
 			);
 			path = "素材";
 			sourceTree = "<group>";
@@ -1612,6 +1615,7 @@
 				188D02091D3FABBD00B0B8E2 /* 毛笔.png in Resources */,
 				5EFBEC251D38CB6C00FE838A /* 狗爪.png in Resources */,
 				5EFBEBE61D38CB6C00FE838A /* dogs_name64@2x.png in Resources */,
+				F44229981D45F9CC00C42498 /* 记录.png in Resources */,
 				5EFBEBA41D38CB6C00FE838A /* dogs_name34@2x.png in Resources */,
 				5EFBEBAA1D38CB6C00FE838A /* dogs_name37@2x.png in Resources */,
 				5EFBEC0C1D38CB6C00FE838A /* change1.png in Resources */,
