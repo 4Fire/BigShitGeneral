@@ -2,7 +2,7 @@
 //  Dog.m
 //  大将军
 //
-//  Created by apple on 16/7/14.
+//  Created by apple on 16/7/26.
 //  Copyright © 2016年 SingYi. All rights reserved.
 //
 
@@ -16,20 +16,20 @@
 
 + (void)changeDogInfoWithNewName:(NSString *)newName
                          OldName:(NSString *)oldName
-                         Icon:(NSData *)iconImage
-                      Account:(NSString *)account {
+                            Icon:(NSData *)iconImage
+                         Account:(NSString *)account {
     NSManagedObjectContext *ctx = [Context context];
     Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:account];
     Dog *dog = [Dog fetchDogFromSQLiterWithContext:ctx Name:oldName owner:owner];
     [dog setValue:newName forKey:@"name"];
-//    NSLog(@"name = %@", newName);
+    //    NSLog(@"name = %@", newName);
     [dog setValue:iconImage forKey:@"iconImage"];
     NSError *error = nil;
     BOOL success = [ctx save:&error];
     if (!success) {
         [NSException raise:@"访问数据库错误" format:@"%@", [error localizedDescription]];
     }else {
-//                NSLog(@"保存成功");
+        //                NSLog(@"保存成功");
     }
     [ctx save:nil];
 }
@@ -70,18 +70,18 @@
     if (!success) {
         [NSException raise:@"访问数据库错误" format:@"%@", [error localizedDescription]];
     }else {
-//        NSLog(@"保存成功");
+        //        NSLog(@"保存成功");
     }
     [ctx save:nil];
     
-   }
+}
 
 + (BOOL)duplicateCheckingDogWithContext:(NSManagedObjectContext *)ctx
-                                  Name:(NSString *)name
+                                   Name:(NSString *)name
                                   owner:(Owner *)owner {
     Dog *objDog = [self fetchDogFromSQLiterWithContext:ctx Name:name owner:owner];
     if (objDog) {
-//        NSLog(@"已存在这只狗狗!请勿重复添加!");
+        //        NSLog(@"已存在这只狗狗!请勿重复添加!");
         return YES;
     }else {
         return NO;
@@ -107,9 +107,9 @@
         [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
     }
     //遍历数据
-//    for (NSManagedObject *obj in objs) {
-////        NSLog(@"name = %@",[obj valueForKey:@"name"]);
-//    }
+    //    for (NSManagedObject *obj in objs) {
+    ////        NSLog(@"name = %@",[obj valueForKey:@"name"]);
+    //    }
     return [objs firstObject];
 }
 
@@ -143,7 +143,7 @@
     /**< 4.删除数据库中的对象*/
     //传入需要删除的实体对象
     if (!dog) {
-//        NSLog(@"不存在这个狗狗");
+        //        NSLog(@"不存在这个狗狗");
         return;
     }else {
         [ctx deleteObject:dog];
@@ -155,8 +155,9 @@
     if (error) {
         [NSException raise:@"删除错误" format:@"%@",[error localizedDescription]];
     }else {
-//        NSLog(@"删除成功");
+        //        NSLog(@"删除成功");
     }
 }
 
 @end
+

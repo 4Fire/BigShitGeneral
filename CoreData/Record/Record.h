@@ -2,7 +2,7 @@
 //  Record.h
 //  大将军
 //
-//  Created by 石燚 on 16/7/21.
+//  Created by apple on 16/7/26.
 //  Copyright © 2016年 SingYi. All rights reserved.
 //
 
@@ -15,8 +15,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Record : NSManagedObject
 
-// Insert code here to declare functionality of your managed object subclass
++ (BOOL)insertRecordDogToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                        ppv:(NSNumber *)ppv
+                                  distemper:(NSNumber *)distemper
+                                coronavirus:(NSNumber *)coronavirus
+                                     rabies:(NSNumber *)rabies
+                                 toxoplasma:(NSNumber *)toxoplasma
+                              ininsecticide:(NSNumber *)ininsecticide
+                             outinsecticide:(NSNumber *)outinsecticide
+                                   pregnant:(NSNumber *)pregnant
+                                   delivery:(NSNumber *)delivery
+                                  neutering:(NSNumber *)neutering
+                                       date:(NSDate *)date
+                                      other:(NSString *)other
+                                        Dog:(Dog *)dog;
 
++ (Record *)fetchRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                    DogName:(NSString *)dogName;
 @end
 
 NS_ASSUME_NONNULL_END

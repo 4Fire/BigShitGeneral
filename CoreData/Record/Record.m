@@ -2,9 +2,10 @@
 //  Record.m
 //  大将军
 //
-//  Created by apple on 16/7/14.
+//  Created by apple on 16/7/26.
 //  Copyright © 2016年 SingYi. All rights reserved.
 //
+
 
 #import "Record.h"
 #import "Dog.h"
@@ -12,19 +13,19 @@
 @implementation Record
 
 + (BOOL)insertRecordDogToSQLiterWithContext:(NSManagedObjectContext *)ctx
-                                                ppv:(NSNumber *)ppv
-                                          distemper:(NSNumber *)distemper
-                                        coronavirus:(NSNumber *)coronavirus
-                                             rabies:(NSNumber *)rabies
-                                         toxoplasma:(NSNumber *)toxoplasma
-                                      ininsecticide:(NSNumber *)ininsecticide
-                                     outinsecticide:(NSNumber *)outinsecticide
-                                           pregnant:(NSNumber *)pregnant
-                                           delivery:(NSNumber *)delivery
-                                          neutering:(NSNumber *)neutering
-                                               date:(NSDate *)date
-                                              other:(NSString *)other
-                                                Dog:(NSManagedObject *)dog {
+                                        ppv:(NSNumber *)ppv
+                                  distemper:(NSNumber *)distemper
+                                coronavirus:(NSNumber *)coronavirus
+                                     rabies:(NSNumber *)rabies
+                                 toxoplasma:(NSNumber *)toxoplasma
+                              ininsecticide:(NSNumber *)ininsecticide
+                             outinsecticide:(NSNumber *)outinsecticide
+                                   pregnant:(NSNumber *)pregnant
+                                   delivery:(NSNumber *)delivery
+                                  neutering:(NSNumber *)neutering
+                                       date:(NSDate *)date
+                                      other:(NSString *)other
+                                        Dog:(Dog *)dog {
     //传入上下文,创建Dog对象
     NSManagedObject *record = [NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:ctx];
     
