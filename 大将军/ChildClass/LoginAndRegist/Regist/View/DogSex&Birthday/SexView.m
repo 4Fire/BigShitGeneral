@@ -43,6 +43,8 @@
     [self addSubview:self.maleBtn];
     [self addSubview:self.famaleBtn];
     [self addSubview:self.nextBtn];
+    [self addSubview:self.maleLab];
+    [self addSubview:self.famaleLab];
 }
 
 - (void)responseToNext {

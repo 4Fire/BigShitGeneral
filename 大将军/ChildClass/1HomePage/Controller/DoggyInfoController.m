@@ -9,6 +9,11 @@
 #import "DoggyInfoController.h"
 
 @interface DoggyInfoController ()
+@property (nonatomic, strong) UIImageView *titleImage;
+@property (nonatomic, strong) UIImageView *dogIcon;
+@property (nonatomic, strong) UILabel *dogName;
+@property (nonatomic, strong) UILabel *dogSex;
+@property (nonatomic, strong) UILabel *dogAge;
 
 @end
 
@@ -35,8 +40,4 @@
 - (void)setDog:(Dog *)dog {
     _dog = dog;
 }
-
-
-
-
 @end
