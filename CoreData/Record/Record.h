@@ -31,7 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
                                         Dog:(Dog *)dog;
 
 + (Record *)fetchRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
-                                    DogName:(NSString *)dogName;
+                                 RecordDate:(NSDate *)date
+                                        Dog:(Dog *)dog;
 @end
 
 NS_ASSUME_NONNULL_END

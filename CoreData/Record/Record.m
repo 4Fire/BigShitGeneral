@@ -52,13 +52,14 @@
 }
 
 + (Record *)fetchRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
-                                    DogName:(NSString *)dogName {
+                                 RecordDate:(NSDate *)date
+                                        Dog:(Dog *)dog {
     //初始化查询请求
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     //设置要查询的实体
     request.entity = [NSEntityDescription entityForName:@"Record" inManagedObjectContext:ctx];
     //设置条件过滤
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name like %@", dogName];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"dog.name == %@ and date == %@ " , [dog valueForKey:@"name"], date];
     request.predicate = predicate;
     //执行请求
     NSError *error = nil;
