@@ -14,9 +14,21 @@
 
 @implementation DoggyInfoController
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.view.backgroundColor = BACKGROUNDCOLOR;
+    }
+    return self;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = BACKGROUNDCOLOR;
 }
 
 #pragma mark - setter
