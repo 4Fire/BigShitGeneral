@@ -16,6 +16,8 @@
 @property (nonatomic, strong) UILabel *sexLab;
 @property (nonatomic, strong) UIButton *maleBtn;
 @property (nonatomic, strong) UIButton *famaleBtn;
+@property (nonatomic, strong) UILabel *maleLab;
+@property (nonatomic, strong) UILabel *famaleLab;
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *nextBtn;
 @property (nonatomic, strong) NSMutableDictionary *userInfo;
@@ -219,4 +221,29 @@
     return _userInfo;
 }
 
+- (UILabel *)maleLab {
+    if (!_maleLab) {
+        _maleLab = [[UILabel alloc] init];
+        _maleLab.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 0.2, SCREEN_WIDTH * 0.05);
+        _maleLab.center = CGPointMake(CELL_W * 0.3, CELL_H * 0.65);
+        _maleLab.text = @"我是弟弟";
+        _maleLab.textColor = [UIColor blackColor];
+        _maleLab.textAlignment = NSTextAlignmentCenter;
+        _maleLab.font = [UIFont systemFontOfSize:15];
+    }
+    return _maleLab;
+}
+
+- (UILabel *)famaleLab {
+    if (!_famaleLab) {
+        _famaleLab = [[UILabel alloc] init];
+        _famaleLab.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 0.2, SCREEN_WIDTH * 0.05);
+        _famaleLab.center = CGPointMake(CELL_W * 0.7, CELL_H * 0.65);
+        _famaleLab.text = @"我是妹妹";
+        _famaleLab.textColor = [UIColor blackColor];
+        _famaleLab.textAlignment = NSTextAlignmentCenter;
+        _famaleLab.font = [UIFont systemFontOfSize:15];
+    }
+    return _famaleLab;
+}
 @end

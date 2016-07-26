@@ -19,6 +19,9 @@
 		188D021C1D41AC1C00B0B8E2 /* DogInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188D021B1D41AC1C00B0B8E2 /* DogInfoViewController.m */; };
 		188D021E1D41C74F00B0B8E2 /* 背景.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 188D021D1D41C74F00B0B8E2 /* 背景.jpeg */; };
 		188D02231D45BFDF00B0B8E2 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D02221D45BFDF00B0B8E2 /* cancel.png */; };
+		188D02271D45F34A00B0B8E2 /* clould.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D02241D45F34A00B0B8E2 /* clould.png */; };
+		188D02281D45F34A00B0B8E2 /* clould2.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D02251D45F34A00B0B8E2 /* clould2.png */; };
+		188D02291D45F34A00B0B8E2 /* sun.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D02261D45F34A00B0B8E2 /* sun.png */; };
 		188FED441D3E4EE30087FF79 /* PersonDogsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 188FED431D3E4EE30087FF79 /* PersonDogsCell.m */; };
 		188FED461D3E60480087FF79 /* ownerMale.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 188FED451D3E60480087FF79 /* ownerMale.jpeg */; };
 		18A6989B1D3D19B200D688EC /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6989A1D3D19B200D688EC /* Security.framework */; };
@@ -43,6 +46,10 @@
 		18BBC17F1D3CB8A400DE8431 /* Owner+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBC17C1D3CB8A400DE8431 /* Owner+CoreDataProperties.m */; };
 		18BBC1801D3CB8A400DE8431 /* Owner.m in Sources */ = {isa = PBXBuildFile; fileRef = 18BBC17E1D3CB8A400DE8431 /* Owner.m */; };
 		18BBC1851D3CD1E600DE8431 /* dogD.png in Resources */ = {isa = PBXBuildFile; fileRef = 18BBC1841D3CD1E600DE8431 /* dogD.png */; };
+		18CCECFD1D46F771002B2E0F /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCECFA1D46F771002B2E0F /* Record+CoreDataProperties.m */; };
+		18CCECFE1D46F771002B2E0F /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCECFC1D46F771002B2E0F /* Record.m */; };
+		18CCED031D46F81A002B2E0F /* Dog+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCED001D46F81A002B2E0F /* Dog+CoreDataProperties.m */; };
+		18CCED041D46F81A002B2E0F /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCED021D46F81A002B2E0F /* Dog.m */; };
 		3E1A48BCCEAB5A3688E03C56 /* libPods-大将军.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 17994362A87CBB9C05B38F37 /* libPods-大将军.a */; };
 		5E1D78951D3DB91E0062E802 /* InfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1D78941D3DB91E0062E802 /* InfoTableViewCell.m */; };
 		5E1D78C51D3E175E0062E802 /* 记录未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78BF1D3E175E0062E802 /* 记录未选中.png */; };
@@ -51,9 +58,8 @@
 		5E1D78C81D3E175E0062E802 /* 遛狗选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C21D3E175E0062E802 /* 遛狗选中.png */; };
 		5E1D78C91D3E175E0062E802 /* 主业未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C31D3E175E0062E802 /* 主业未选中.png */; };
 		5E1D78CA1D3E175E0062E802 /* 主页选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C41D3E175E0062E802 /* 主页选中.png */; };
-		5E506F4D1D40C0E5006C7E44 /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E506F4A1D40C0E5006C7E44 /* Record+CoreDataProperties.m */; };
-		5E506F4E1D40C0E5006C7E44 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E506F4C1D40C0E5006C7E44 /* Record.m */; };
 		5ED8781E1D3C65150060F83B /* DoggyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED8781D1D3C65150060F83B /* DoggyModel.m */; };
+		5EE116451D46F7B500C8D321 /* DoggyInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE116441D46F7B500C8D321 /* DoggyInfoController.m */; };
 		5EFBE9A31D388B6400FE838A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A21D388B6400FE838A /* main.m */; };
 		5EFBE9A61D388B6400FE838A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A51D388B6400FE838A /* AppDelegate.m */; };
 		5EFBE9AC1D388B6400FE838A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBE9AA1D388B6400FE838A /* Main.storyboard */; };
@@ -88,8 +94,6 @@
 		5EFBEA351D3890AD00FE838A /* TableRecord1Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA311D3890AD00FE838A /* TableRecord1Cell.m */; };
 		5EFBEA3D1D3890E300FE838A /* CircleOfFriendsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA3C1D3890E300FE838A /* CircleOfFriendsController.m */; };
 		5EFBEA751D38946900FE838A /* Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA4A1D38946900FE838A /* Context.m */; };
-		5EFBEA761D38946900FE838A /* Dog+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA4D1D38946900FE838A /* Dog+CoreDataProperties.m */; };
-		5EFBEA771D38946900FE838A /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA4F1D38946900FE838A /* Dog.m */; };
 		5EFBEA781D38946900FE838A /* Friends+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA521D38946900FE838A /* Friends+CoreDataProperties.m */; };
 		5EFBEA791D38946900FE838A /* Friends.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA541D38946900FE838A /* Friends.m */; };
 		5EFBEA7A1D38946900FE838A /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBEA551D38946900FE838A /* Model.xcdatamodeld */; };
@@ -322,6 +326,9 @@
 		188D021B1D41AC1C00B0B8E2 /* DogInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DogInfoViewController.m; path = "大将军/ChildClass/Personal/View/DogInfoViewController.m"; sourceTree = SOURCE_ROOT; };
 		188D021D1D41C74F00B0B8E2 /* 背景.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "背景.jpeg"; path = "../../背景.jpeg"; sourceTree = "<group>"; };
 		188D02221D45BFDF00B0B8E2 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		188D02241D45F34A00B0B8E2 /* clould.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clould.png; sourceTree = "<group>"; };
+		188D02251D45F34A00B0B8E2 /* clould2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clould2.png; sourceTree = "<group>"; };
+		188D02261D45F34A00B0B8E2 /* sun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sun.png; sourceTree = "<group>"; };
 		188FED421D3E4EE30087FF79 /* PersonDogsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDogsCell.h; sourceTree = "<group>"; };
 		188FED431D3E4EE30087FF79 /* PersonDogsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDogsCell.m; sourceTree = "<group>"; };
 		188FED451D3E60480087FF79 /* ownerMale.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ownerMale.jpeg; sourceTree = "<group>"; };
@@ -349,6 +356,14 @@
 		18BBC17D1D3CB8A400DE8431 /* Owner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Owner.h; sourceTree = "<group>"; };
 		18BBC17E1D3CB8A400DE8431 /* Owner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Owner.m; sourceTree = "<group>"; };
 		18BBC1841D3CD1E600DE8431 /* dogD.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dogD.png; sourceTree = "<group>"; };
+		18CCECF91D46F771002B2E0F /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
+		18CCECFA1D46F771002B2E0F /* Record+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataProperties.m"; sourceTree = "<group>"; };
+		18CCECFB1D46F771002B2E0F /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
+		18CCECFC1D46F771002B2E0F /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
+		18CCECFF1D46F81A002B2E0F /* Dog+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Dog+CoreDataProperties.h"; sourceTree = "<group>"; };
+		18CCED001D46F81A002B2E0F /* Dog+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Dog+CoreDataProperties.m"; sourceTree = "<group>"; };
+		18CCED011D46F81A002B2E0F /* Dog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dog.h; sourceTree = "<group>"; };
+		18CCED021D46F81A002B2E0F /* Dog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dog.m; sourceTree = "<group>"; };
 		54A7F2C553DF6965AC51BB43 /* Pods-大将军.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-大将军.release.xcconfig"; path = "Pods/Target Support Files/Pods-大将军/Pods-大将军.release.xcconfig"; sourceTree = "<group>"; };
 		5E1D78931D3DB91E0062E802 /* InfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoTableViewCell.h; sourceTree = "<group>"; };
 		5E1D78941D3DB91E0062E802 /* InfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoTableViewCell.m; sourceTree = "<group>"; };
@@ -358,12 +373,10 @@
 		5E1D78C21D3E175E0062E802 /* 遛狗选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "遛狗选中.png"; sourceTree = "<group>"; };
 		5E1D78C31D3E175E0062E802 /* 主业未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主业未选中.png"; sourceTree = "<group>"; };
 		5E1D78C41D3E175E0062E802 /* 主页选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主页选中.png"; sourceTree = "<group>"; };
-		5E506F491D40C0E5006C7E44 /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
-		5E506F4A1D40C0E5006C7E44 /* Record+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataProperties.m"; sourceTree = "<group>"; };
-		5E506F4B1D40C0E5006C7E44 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
-		5E506F4C1D40C0E5006C7E44 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		5ED8781C1D3C65150060F83B /* DoggyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoggyModel.h; sourceTree = "<group>"; };
 		5ED8781D1D3C65150060F83B /* DoggyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoggyModel.m; sourceTree = "<group>"; };
+		5EE116431D46F7B500C8D321 /* DoggyInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoggyInfoController.h; sourceTree = "<group>"; };
+		5EE116441D46F7B500C8D321 /* DoggyInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoggyInfoController.m; sourceTree = "<group>"; };
 		5EFBE99E1D388B6400FE838A /* 大将军.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "大将军.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFBE9A21D388B6400FE838A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EFBE9A41D388B6400FE838A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
@@ -431,10 +444,6 @@
 		5EFBEA3C1D3890E300FE838A /* CircleOfFriendsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleOfFriendsController.m; sourceTree = "<group>"; };
 		5EFBEA491D38946900FE838A /* Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Context.h; sourceTree = "<group>"; };
 		5EFBEA4A1D38946900FE838A /* Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Context.m; sourceTree = "<group>"; };
-		5EFBEA4C1D38946900FE838A /* Dog+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Dog+CoreDataProperties.h"; sourceTree = "<group>"; };
-		5EFBEA4D1D38946900FE838A /* Dog+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Dog+CoreDataProperties.m"; sourceTree = "<group>"; };
-		5EFBEA4E1D38946900FE838A /* Dog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dog.h; sourceTree = "<group>"; };
-		5EFBEA4F1D38946900FE838A /* Dog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dog.m; sourceTree = "<group>"; };
 		5EFBEA511D38946900FE838A /* Friends+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Friends+CoreDataProperties.h"; sourceTree = "<group>"; };
 		5EFBEA521D38946900FE838A /* Friends+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Friends+CoreDataProperties.m"; sourceTree = "<group>"; };
 		5EFBEA531D38946900FE838A /* Friends.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friends.h; sourceTree = "<group>"; };
@@ -705,6 +714,9 @@
 		18BBC1811D3CCD0900DE8431 /* 4Fire */ = {
 			isa = PBXGroup;
 			children = (
+				188D02241D45F34A00B0B8E2 /* clould.png */,
+				188D02251D45F34A00B0B8E2 /* clould2.png */,
+				188D02261D45F34A00B0B8E2 /* sun.png */,
 				188D02221D45BFDF00B0B8E2 /* cancel.png */,
 				188D021D1D41C74F00B0B8E2 /* 背景.jpeg */,
 				188D02061D3F9F9800B0B8E2 /* 狗2.jpeg */,
@@ -1087,6 +1099,8 @@
 			children = (
 				5EFBEA251D38908700FE838A /* HomePageController.h */,
 				5EFBEA261D38908700FE838A /* HomePageController.m */,
+				5EE116431D46F7B500C8D321 /* DoggyInfoController.h */,
+				5EE116441D46F7B500C8D321 /* DoggyInfoController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1143,10 +1157,10 @@
 		5EFBEA4B1D38946900FE838A /* Dog */ = {
 			isa = PBXGroup;
 			children = (
-				5EFBEA4C1D38946900FE838A /* Dog+CoreDataProperties.h */,
-				5EFBEA4D1D38946900FE838A /* Dog+CoreDataProperties.m */,
-				5EFBEA4E1D38946900FE838A /* Dog.h */,
-				5EFBEA4F1D38946900FE838A /* Dog.m */,
+				18CCECFF1D46F81A002B2E0F /* Dog+CoreDataProperties.h */,
+				18CCED001D46F81A002B2E0F /* Dog+CoreDataProperties.m */,
+				18CCED011D46F81A002B2E0F /* Dog.h */,
+				18CCED021D46F81A002B2E0F /* Dog.m */,
 			);
 			path = Dog;
 			sourceTree = "<group>";
@@ -1198,10 +1212,10 @@
 		5EFBEA661D38946900FE838A /* Record */ = {
 			isa = PBXGroup;
 			children = (
-				5E506F491D40C0E5006C7E44 /* Record+CoreDataProperties.h */,
-				5E506F4A1D40C0E5006C7E44 /* Record+CoreDataProperties.m */,
-				5E506F4B1D40C0E5006C7E44 /* Record.h */,
-				5E506F4C1D40C0E5006C7E44 /* Record.m */,
+				18CCECF91D46F771002B2E0F /* Record+CoreDataProperties.h */,
+				18CCECFA1D46F771002B2E0F /* Record+CoreDataProperties.m */,
+				18CCECFB1D46F771002B2E0F /* Record.h */,
+				18CCECFC1D46F771002B2E0F /* Record.m */,
 			);
 			path = Record;
 			sourceTree = "<group>";
@@ -1660,6 +1674,7 @@
 				5EFBEC091D38CB6C00FE838A /* background1.jpeg in Resources */,
 				5EFBEBC41D38CB6C00FE838A /* dogs_name49@2x.png in Resources */,
 				5EFBEC281D38CB6C00FE838A /* 生日.png in Resources */,
+				188D02291D45F34A00B0B8E2 /* sun.png in Resources */,
 				5EFBEB981D38CB6B00FE838A /* dogs_name29@2x.png in Resources */,
 				5EFBEC211D38CB6C00FE838A /* 性别.png in Resources */,
 				5EFBEBB21D38CB6C00FE838A /* dogs_name40@2x.png in Resources */,
@@ -1714,6 +1729,7 @@
 				5EFBEBAB1D38CB6C00FE838A /* dogs_name37s@2x.png in Resources */,
 				5EFBEBE71D38CB6C00FE838A /* dogs_name64s@2x.png in Resources */,
 				5EFBEC751D38CD2C00FE838A /* icon_play@2x.png in Resources */,
+				188D02271D45F34A00B0B8E2 /* clould.png in Resources */,
 				18A698BF1D3E0D1500D688EC /* cell12.jpeg in Resources */,
 				5EFBEC101D38CB6C00FE838A /* change5.png in Resources */,
 				18A698B91D3E0D1500D688EC /* cell5.jpeg in Resources */,
@@ -1787,6 +1803,7 @@
 				5EFBEBDC1D38CB6C00FE838A /* dogs_name5@2x.png in Resources */,
 				5EFBEB911D38CB6B00FE838A /* dogs_name25s@2x.png in Resources */,
 				5EFBEBDB1D38CB6C00FE838A /* dogs_name59s@2x.png in Resources */,
+				188D02281D45F34A00B0B8E2 /* clould2.png in Resources */,
 				5EFBEC231D38CB6C00FE838A /* 拍照@2x.png in Resources */,
 				5EFBEBBC1D38CB6C00FE838A /* dogs_name45@2x.png in Resources */,
 				5EFBEBBA1D38CB6C00FE838A /* dogs_name44@2x.png in Resources */,
@@ -1868,7 +1885,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18BBC1801D3CB8A400DE8431 /* Owner.m in Sources */,
-				5EFBEA761D38946900FE838A /* Dog+CoreDataProperties.m in Sources */,
+				18CCECFE1D46F771002B2E0F /* Record.m in Sources */,
 				5EFBEA1B1D388F0900FE838A /* HeadImageCollectionViewCell.m in Sources */,
 				5EFBEA121D388F0900FE838A /* RegisterViewController.m in Sources */,
 				5EFBEA0F1D388F0900FE838A /* DoggyLayout.m in Sources */,
@@ -1905,7 +1922,6 @@
 				5EFBEA351D3890AD00FE838A /* TableRecord1Cell.m in Sources */,
 				5EFBEA791D38946900FE838A /* Friends.m in Sources */,
 				5EFBEA191D388F0900FE838A /* NameView.m in Sources */,
-				5E506F4E1D40C0E5006C7E44 /* Record.m in Sources */,
 				5EFBEA861D38946900FE838A /* WalkingDog.m in Sources */,
 				5EFBEA0B1D388F0900FE838A /* CalendarView.m in Sources */,
 				5EFBEA151D388F0900FE838A /* DogCollectionLayoutAttributes.m in Sources */,
@@ -1916,16 +1932,18 @@
 				5EFBEA101D388F0900FE838A /* InfomationTableView.m in Sources */,
 				5EFBEA7C1D38946900FE838A /* News.m in Sources */,
 				5EFBEA331D3890AD00FE838A /* CollectionVCell.m in Sources */,
+				5EE116451D46F7B500C8D321 /* DoggyInfoController.m in Sources */,
 				5EFBE9A31D388B6400FE838A /* main.m in Sources */,
 				5EFBEA751D38946900FE838A /* Context.m in Sources */,
 				5EFBEA161D388F0900FE838A /* DogCollectionViewCell.m in Sources */,
 				5EFBEA7F1D38946900FE838A /* Publish+CoreDataProperties.m in Sources */,
 				5EFBEA341D3890AD00FE838A /* TableHeader.m in Sources */,
-				5EFBEA771D38946900FE838A /* Dog.m in Sources */,
+				18CCED031D46F81A002B2E0F /* Dog+CoreDataProperties.m in Sources */,
+				18CCECFD1D46F771002B2E0F /* Record+CoreDataProperties.m in Sources */,
 				5EFBEA801D38946900FE838A /* Publish.m in Sources */,
-				5E506F4D1D40C0E5006C7E44 /* Record+CoreDataProperties.m in Sources */,
 				5EFBEA831D38946900FE838A /* Remark+CoreDataProperties.m in Sources */,
 				18BBC17F1D3CB8A400DE8431 /* Owner+CoreDataProperties.m in Sources */,
+				18CCED041D46F81A002B2E0F /* Dog.m in Sources */,
 				5EFBEA1C1D388F0900FE838A /* HeadImageModel.m in Sources */,
 				5EFBEC711D38CD2C00FE838A /* MepRecord.m in Sources */,
 				5EFBEA8C1D38B5EC00FE838A /* DateModel.m in Sources */,

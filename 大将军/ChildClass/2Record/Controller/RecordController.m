@@ -11,7 +11,8 @@
 #import "TableHeader.h"
 #import "Dog.h"
 #import "DoggyModel.h"
-#import "PersonDogsCell.h"
+//#import "PersonDogsCell.h"
+#import "DoggyCell.h"
 
 @interface RecordController ()<UITableViewDelegate,UITableViewDataSource,TableHeaderDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 
@@ -35,7 +36,13 @@
 //gou
 @property (nonatomic, strong) Dog *dog;
 
+//确定按钮
+@property (nonatomic, strong) UIButton *sureBtn;
+
 @end
+
+
+static NSInteger currentDog = 0;
 
 @implementation RecordController
 
@@ -53,14 +60,9 @@
     self.navigationController.navigationBar.barTintColor = BACKGROUNDCOLOR;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-//    UIImage *view = [self imageWithColor:BACKGROUNDCOLOR rect:self.navigationController.navigationBar.bounds];
-//    view = [self imageWithColor:BACKGROUNDCOLOR rect:self.navigationController.navigationBar.bounds];
-//    self.navigationController.navigationBar.backgroundColor = BACKGROUNDCOLOR;
+    //刷新数据源
+    [self initUserDataSuource];
     
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-//                                                 forBarPosition:UIBarPositionAny
-//                                                     barMetrics:UIBarMetricsDefault];
-//    
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
@@ -77,7 +79,8 @@
 
 //初始化数据源
 - (void)initUserDataSuource {
-    
+    _dog = self.dogs[0];
+    [self.tableView reloadData];
 }
 
 //初始化界面
@@ -92,6 +95,8 @@
     
     UIBarButtonItem *rigthBtn = [[UIBarButtonItem alloc]initWithTitle:@"今天" style:(UIBarButtonItemStyleDone) target:self action:@selector(clickToday)];
     self.navigationItem.rightBarButtonItem = rigthBtn;
+    
+    self.tableView.tableFooterView = self.sureBtn;
 
 }
 
@@ -101,12 +106,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.dog.neutering) {
-        return self.cellTitleArrayOfFamale.count ;
+    if (_dog.sex.integerValue == 0) {
+        return self.cellTitleArrayOfFamale.count;
     } else {
-        return self.cellTitleArrayOfMale.count ;
+        return self.cellTitleArrayOfMale.count;
     }
-    
 }
 
 
@@ -115,7 +119,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableCell" forIndexPath:indexPath];
     
-    if (self.dog.neutering) {
+    if (_dog.sex.integerValue == 0) {
         cell.textLabel.text = self.cellTitleArrayOfFamale[indexPath.row];
         
         UISwitch *cellSwitch = [[UISwitch alloc]init];
@@ -123,6 +127,7 @@
         cellSwitch.on = NO;
         
         cell.accessoryView = cellSwitch;
+        
     } else {
         cell.textLabel.text = self.cellTitleArrayOfMale[indexPath.row];
         
@@ -145,6 +150,21 @@
     }
 }
 
+- (void)clickSureBtn {
+//    NSArray<UITableViewCell *> cells = [self.tableView sectiong]
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确定添加记录吗?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"不不不,手抖按错了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    UIAlertAction *delate = [UIAlertAction actionWithTitle:@"确认添加" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+
+    }];
+    
+    [alertController addAction:cancel];
+    [alertController addAction:delate];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+}
 #pragma mark - tableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -180,7 +200,6 @@
     [self.tableView beginUpdates];
     self.tableView.tableHeaderView = self.tableHeader;
     [self.tableView endUpdates];
-    
 }
 
 #pragma mark - nextMonthAndlastMonth
@@ -277,6 +296,22 @@
     return [DoggyModel getAllDogsWithCurrentOwner];
 }
 
+//添加记录的按钮
+- (UIButton *)sureBtn {
+    if (!_sureBtn) {
+        _sureBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        _sureBtn.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 10);
+        [_sureBtn setTitle:@"确定添加记录" forState:(UIControlStateNormal)];
+        _sureBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [_sureBtn setBackgroundColor:COLOR(230, 3, 194)];
+        _sureBtn.layer.cornerRadius = SCREEN_HEIGHT / 40;
+        _sureBtn.layer.masksToBounds = YES;
+        
+        [_sureBtn addTarget:self action:@selector(clickSureBtn) forControlEvents:(UIControlEventTouchUpInside)];
+    }
+    return _sureBtn;
+}
+
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
@@ -291,7 +326,7 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         //注册原型cell
-        [_collectionView registerClass:[PersonDogsCell class] forCellWithReuseIdentifier:@"PersonDogsCelliii"];
+        [_collectionView registerClass:[DoggyCell class] forCellWithReuseIdentifier:@"PersonDogsCelliii"];
     }
     return _collectionView;
 }
@@ -307,15 +342,33 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    PersonDogsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PersonDogsCelliii" forIndexPath:indexPath];
+    DoggyCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PersonDogsCelliii" forIndexPath:indexPath];
     
-    cell.dogIcon.image = [UIImage imageWithData:self.dogs[indexPath.row].iconImage];
+    cell.doggyIcon.image = [UIImage imageWithData:self.dogs[indexPath.row].iconImage];
+    
+    cell.layer.cornerRadius = SCREEN_WIDTH * 0.095;
+    cell.layer.masksToBounds = YES;
+    
+    if (self.dogs[indexPath.row].sex.integerValue == 0) {
+        cell.backgroundColor = COLOR(247, 68, 97);
+    } else {
+        cell.backgroundColor = COLOR(147, 224, 254);
+    }
+    
+    if (indexPath.item == currentDog) {
+        cell.coverView.hidden = YES;
+    } else {
+        cell.coverView.hidden = NO;
+    }
 
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    currentDog = indexPath.item;
     _dog = self.dogs[indexPath.item];
+    [self.collectionView reloadData];
+    [self.tableView reloadData];
 }
 
 #pragma mark - other

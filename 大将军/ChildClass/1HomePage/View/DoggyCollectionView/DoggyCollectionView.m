@@ -18,6 +18,8 @@
 
 @end
 
+static NSInteger currentDog = 0;
+
 @implementation DoggyCollectionView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -49,9 +51,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     DoggyCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"DoggyCell" forIndexPath:indexPath];
-    
-    
-    cell.backgroundColor = COLOR(247, 68, 97);
+
     
     Dog *dog = self.doggyArray[indexPath.row];
     cell.doggyIcon.image = [UIImage imageWithData:dog.iconImage];
@@ -59,7 +59,28 @@
     cell.layer.cornerRadius = (SCREEN_WIDTH - 30) / 6;
     cell.layer.masksToBounds = YES;
     
+    if (dog.sex.integerValue == 0) {
+        cell.backgroundColor = COLOR(247, 68, 97);
+    } else {
+        cell.backgroundColor = COLOR(147, 224, 254);
+    }
+    
+    if (indexPath.item == currentDog) {
+        cell.coverView.hidden = YES;
+    } else {
+        cell.coverView.hidden = NO;
+    }
+    
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    currentDog = indexPath.item;
+    [collectionView reloadData];
+    
+    if ([self.delegate respondsToSelector:@selector(didselectDoggy:)]) {
+        [self.delegate didselectDoggy:self.doggyArray[indexPath.row]];
+    }
 }
 
 
@@ -74,6 +95,7 @@
         layout.itemSize = CGSizeMake((SCREEN_WIDTH - 30) / 3, (SCREEN_WIDTH - 30) / 3);
     
         _collection = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:layout];
+        
         _collection.delegate = self;
         _collection.dataSource = self;
         

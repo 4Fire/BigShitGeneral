@@ -55,6 +55,10 @@
 
 @property (nonatomic, strong) NSMutableDictionary *statusInfo;
 
+@property (nonatomic, strong) UIImageView *imageV1;
+@property (nonatomic, strong) UIImageView *imageV2;
+@property (nonatomic, strong) UIImageView *imageV3;
+
 
 @end
 
@@ -92,6 +96,9 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     [self.scrollView addSubview:self.aboutUsBtn];
     [self.scrollView addSubview:self.quitBtn];
     [self addSubview:self.welcomeLab];
+    [self.scrollView addSubview:self.imageV1];
+    [self.scrollView addSubview:self.imageV2];
+    [self.scrollView addSubview:self.imageV3];
    }
 
 - (void)ownerSetting {
@@ -132,11 +139,18 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 
 #pragma mark - Event
 - (void)quit {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ownerAccount"];
-//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[LoginViewController alloc] init] animated:YES completion:nil];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
-    
-    [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确认退出铲屎大将军?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"不不不" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    UIAlertAction *delate = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ownerAccount"];
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+        
+        [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+    }];
+    [alertController addAction:cancel];
+    [alertController addAction:delate];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)responseToOwnerSettingBtn {
@@ -199,13 +213,16 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     cell.delegate = self;
     cell.rowIndex = indexPath.row;
     cell.indexPath = indexPath;
+    
     NSString *key = [NSString stringWithFormat:@"cell%ld", (long)indexPath.row];
     BOOL isDelete = [_statusInfo[key] boolValue];
     if (indexPath.item < _dogs.count) {
+        cell.colorInt = _dogs[indexPath.row].sex.integerValue;
         cell.dogIcon.image = [UIImage imageWithData:_dogs[indexPath.row].iconImage];
         cell.nameLab.text = _dogs[indexPath.row].name;
         cell.isDeleted = isDelete;
     }else {
+        cell.colorInt = 2;
         cell.dogIcon.image = [UIImage imageNamed:@"addImage_default.png"];
         cell.nameLab.hidden = YES;
         cell.isDeleted = isDelete;
@@ -390,16 +407,32 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     _dogs = [Dog fetchAllDogsFromSQLiterWithContext:ctx withOwner:owner];
     return _dogs;
 }
+
+- (UIImageView *)imageV1 {
+    if (!_imageV1) {
+        _imageV1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sun.png"]];
+        _imageV1.bounds = CGRectMake(0, 0, CGRectGetWidth(self.scrollView.bounds) * 0.7, CGRectGetWidth(self.scrollView.bounds) * 0.9);
+        _imageV1.center = CGPointMake(CGRectGetMidX(self.scrollView.frame) * 0.55, CGRectGetHeight(self.scrollView.frame) * 0.27);
+    }
+    return _imageV1;
+}
+
+- (UIImageView *)imageV2 {
+    if (!_imageV2) {
+        _imageV2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"clould2.png"]];
+        _imageV2.bounds = CGRectMake(0, 0, CGRectGetWidth(self.scrollView.bounds) * 0.7, CGRectGetWidth(self.scrollView.bounds) * 0.9);
+        _imageV2.center = CGPointMake(CGRectGetMidX(self.scrollView.frame) * 0.75, CGRectGetHeight(self.scrollView.frame) * 0.5);
+    }
+    return _imageV2;
+}
+
+- (UIImageView *)imageV3 {
+    if (!_imageV3) {
+        _imageV3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"clould.png"]];
+        _imageV3.bounds = CGRectMake(0, 0, CGRectGetWidth(self.scrollView.bounds) , CGRectGetWidth(self.scrollView.bounds));
+        _imageV3.center = CGPointMake(CGRectGetMidX(self.scrollView.frame) * 1.1, CGRectGetHeight(self.scrollView.frame) * 1.1);
+    }
+    return _imageV3;
+}
+
 @end
-
-
-
-
-
-
-
-
-
-
-
-
