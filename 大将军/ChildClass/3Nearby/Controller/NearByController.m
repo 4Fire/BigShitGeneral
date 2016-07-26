@@ -39,13 +39,18 @@
 @property (nonatomic, strong) MepRecord *currentRecord;
 @property (nonatomic, strong) UIButton *recordBtn;
 
+@property (nonatomic, strong) UILabel *timeLable;
+@property (nonatomic, strong) UILabel *distanceLable;
+@property (nonatomic, strong) UILabel *time;
+@property (nonatomic, strong) UILabel *distance;
+
 @end
 
 @implementation NearByController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [AMapServices sharedServices].apiKey = @"11a3f1a0a4f8188685dd6b1e23225060";
+    [AMapServices sharedServices].apiKey = @"b49a48a1dd3bc124ae01778a3ecc22c4";
     [_mapView removeAnnotations:self.annoArr];
     self.annoArr = nil;
     _isRecording = NO;
@@ -53,7 +58,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor grayColor];
+    self.view.backgroundColor = [UIColor colorWithRed:16 / 255.0 green:168 / 255.0 blue:173 / 255.0 alpha:1];
     [self.view addSubview:self.mapView];
     [self.view addSubview:self.locationBtn];
     [self.view addSubview:self.tdBtn];
@@ -143,10 +148,10 @@
 - (UIButton *)startBtn {
     if (!_startBtn) {
         _startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _startBtn.frame = CGRectMake(self.view.bounds.size.width / 2 - 30, 505, 60, 60);
+        _startBtn.frame = CGRectMake(self.view.bounds.size.width / 2 - 30, 550, 60, 60);
         _startBtn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
-        _startBtn.layer.cornerRadius = 5;
-        _startBtn.backgroundColor = [UIColor whiteColor];
+        _startBtn.layer.cornerRadius = 30;
+        _startBtn.backgroundColor = [UIColor greenColor];
         
         [_startBtn setImage:[UIImage imageNamed:@"icon_play.png"] forState:UIControlStateNormal];
         [_startBtn addTarget:self action:@selector(action_startBtnPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -171,11 +176,41 @@
 - (UIButton *)recordBtn {
     if (!_recordBtn) {
         _recordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _recordBtn.frame = CGRectMake(300, 300, 44, 44);
-        _recordBtn.backgroundColor = [UIColor orangeColor];
+        _recordBtn.frame = CGRectMake(320, 120, 36, 36);
+        _recordBtn.layer.cornerRadius = 18;
+        _recordBtn.backgroundColor = [UIColor whiteColor];
+        [_recordBtn setImage:[UIImage imageNamed:@"记录"] forState:UIControlStateNormal];
         [_recordBtn addTarget:self action:@selector(action_recordBtnPressed) forControlEvents:UIControlEventTouchUpInside];
     }
     return _recordBtn;
+}
+
+- (UILabel *)timeLable {
+    if (!_timeLable) {
+        _timeLable = [[UILabel alloc] init];
+        _timeLable.text = @"时间";
+        _timeLable.font = [UIFont systemFontOfSize:28];
+        _timeLable.frame = CGRectMake(30, 520, 100, 44);
+    }
+    return _timeLable;
+}
+
+- (UILabel *)distanceLable {
+    if (!_distanceLable) {
+        _distanceLable = [[UILabel alloc] init];
+        _distanceLable.text = @"路程";
+        _distanceLable.font = [UIFont systemFontOfSize:28];
+        _distanceLable.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, 520, 100, 44);
+    }
+    return _distanceLable;
+}
+
+- (UILabel *)time {
+    if (!_time) {
+        _time = [[UILabel alloc] init];
+//        _time.text = []
+    }
+    return _time;
 }
 
 
@@ -201,7 +236,7 @@
 - (void)action_rightBtnPressed {
     //构造上传数据对象
     AMapNearbyUploadInfo *info = [[AMapNearbyUploadInfo alloc] init];
-    info.userID = @"zjy";//业务逻辑id
+    info.userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];//业务逻辑id
     info.coordinateType = AMapSearchCoordinateTypeAMap;//坐标系类型
     info.coordinate = CLLocationCoordinate2DMake(_currentLocation.coordinate.latitude, _currentLocation.coordinate.longitude);//用户位置信息
     if ([_nearbyManager uploadNearbyInfo:info]) {
@@ -225,17 +260,21 @@
 - (void)action_startBtnPressed {
     
     self.isRecording = !self.isRecording;
+    
     if (self.isRecording) {
         [_startBtn setImage:[UIImage imageNamed:@"icon_stop.png"] forState:UIControlStateNormal];
 //        [self.view addSubview:self.detailView];
-        self.tdBtn.hidden = YES;
+        self.recordBtn.hidden = YES;
+        
         [UIView animateWithDuration:0.6 animations:^{
             self.mapView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height * 3 / 4);
             self.tabBarController.tabBar.hidden = YES;
             self.locationBtn.frame = CGRectMake(10, self.view.bounds.size.height * 3 / 4 - 85, 35, 35);
+            self.tdBtn.frame = CGRectMake(10, self.view.bounds.size.height * 3 / 4 - 130, 35, 35);
             
         } completion:^(BOOL finished) {
-            
+            [self.view addSubview:self.timeLable];
+            [self.view addSubview:self.distanceLable];
         }];
         if (self.currentRecord == nil) {
             self.currentRecord = [[MepRecord alloc] init];
@@ -244,19 +283,26 @@
         
         [self saveRoute];
         
+        [self.timeLable removeFromSuperview];
+        
+        [self.distanceLable removeFromSuperview];
+        
         [self.mutablePolyline removeAllPoints];
         
         [self.mutableView referenceDidChange];
         
         [_startBtn setImage:[UIImage imageNamed:@"icon_play.png"] forState:UIControlStateNormal];
         
+        self.recordBtn.hidden = NO;
+        
         [UIView animateWithDuration:0.6 animations:^{
             self.mapView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
             self.tabBarController.tabBar.hidden = NO;
             self.locationBtn.frame = CGRectMake(10, 550, 35, 35);
+            self.tdBtn.frame = CGRectMake(10, 505, 35, 35);
             
         } completion:^(BOOL finished) {
-            self.tdBtn.hidden = NO;
+           
         }];
         
     }
@@ -264,8 +310,9 @@
 }
 
 - (void)action_recordBtnPressed {
+    
     UIViewController *recordController = [[RecordViewController alloc] initWithNibName:nil bundle:nil];
-    recordController.title = @"Records";
+    recordController.title = @"遛狗记录";
     
     [self.navigationController pushViewController:recordController animated:YES];
 }
