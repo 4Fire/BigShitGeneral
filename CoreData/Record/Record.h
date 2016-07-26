@@ -31,11 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
                                   neutering:(NSNumber *)neutering
                                        date:(NSDate *)date
                                       other:(NSString *)other
-                                        Dog:(NSManagedObject *)dog;
+                                        Dog:(Dog *)dog;
 
-
-// Insert code here to declare functionality of your managed object subclass
-
++ (Record *)fetchRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                 RecordDate:(NSDate *)date
+                                        Dog:(Dog *)dog;
 @end
 
 NS_ASSUME_NONNULL_END
