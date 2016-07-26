@@ -66,9 +66,9 @@ static NSInteger currentDog = 0;
     }
     
     if (indexPath.item == currentDog) {
-        cell.coverView.hidden = NO;
-    } else {
         cell.coverView.hidden = YES;
+    } else {
+        cell.coverView.hidden = NO;
     }
     
     return cell;
@@ -77,6 +77,10 @@ static NSInteger currentDog = 0;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     currentDog = indexPath.item;
     [collectionView reloadData];
+    
+    if ([self.delegate respondsToSelector:@selector(didselectDoggy:)]) {
+        [self.delegate didselectDoggy:self.doggyArray[indexPath.row]];
+    }
 }
 
 

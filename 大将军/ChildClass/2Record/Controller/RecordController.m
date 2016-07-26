@@ -60,14 +60,9 @@ static NSInteger currentDog = 0;
     self.navigationController.navigationBar.barTintColor = BACKGROUNDCOLOR;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
-//    UIImage *view = [self imageWithColor:BACKGROUNDCOLOR rect:self.navigationController.navigationBar.bounds];
-//    view = [self imageWithColor:BACKGROUNDCOLOR rect:self.navigationController.navigationBar.bounds];
-//    self.navigationController.navigationBar.backgroundColor = BACKGROUNDCOLOR;
+    //刷新数据源
+    [self initUserDataSuource];
     
-//    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
-//                                                 forBarPosition:UIBarPositionAny
-//                                                     barMetrics:UIBarMetricsDefault];
-//    
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
@@ -84,7 +79,8 @@ static NSInteger currentDog = 0;
 
 //初始化数据源
 - (void)initUserDataSuource {
-    
+    _dog = self.dogs[0];
+    [self.tableView reloadData];
 }
 
 //初始化界面
@@ -110,12 +106,11 @@ static NSInteger currentDog = 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.dog.neutering.integerValue == 1) {
+    if (_dog.sex.integerValue == 0) {
         return self.cellTitleArrayOfFamale.count;
     } else {
         return self.cellTitleArrayOfMale.count;
     }
-    
 }
 
 
@@ -124,7 +119,7 @@ static NSInteger currentDog = 0;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tableCell" forIndexPath:indexPath];
     
-    if (self.dog.neutering.integerValue == 1) {
+    if (_dog.sex.integerValue == 0) {
         cell.textLabel.text = self.cellTitleArrayOfFamale[indexPath.row];
         
         UISwitch *cellSwitch = [[UISwitch alloc]init];
@@ -132,6 +127,7 @@ static NSInteger currentDog = 0;
         cellSwitch.on = NO;
         
         cell.accessoryView = cellSwitch;
+        
     } else {
         cell.textLabel.text = self.cellTitleArrayOfMale[indexPath.row];
         
@@ -155,6 +151,8 @@ static NSInteger currentDog = 0;
 }
 
 - (void)clickSureBtn {
+//    NSArray<UITableViewCell *> cells = [self.tableView sectiong]
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确定添加记录吗?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"不不不,手抖按错了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
 
@@ -298,12 +296,17 @@ static NSInteger currentDog = 0;
     return [DoggyModel getAllDogsWithCurrentOwner];
 }
 
+//添加记录的按钮
 - (UIButton *)sureBtn {
     if (!_sureBtn) {
         _sureBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
         _sureBtn.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 10);
         [_sureBtn setTitle:@"确定添加记录" forState:(UIControlStateNormal)];
         _sureBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [_sureBtn setBackgroundColor:COLOR(230, 3, 194)];
+        _sureBtn.layer.cornerRadius = SCREEN_HEIGHT / 40;
+        _sureBtn.layer.masksToBounds = YES;
+        
         [_sureBtn addTarget:self action:@selector(clickSureBtn) forControlEvents:(UIControlEventTouchUpInside)];
     }
     return _sureBtn;
@@ -353,9 +356,9 @@ static NSInteger currentDog = 0;
     }
     
     if (indexPath.item == currentDog) {
-        cell.coverView.hidden = NO;
-    } else {
         cell.coverView.hidden = YES;
+    } else {
+        cell.coverView.hidden = NO;
     }
 
     return cell;

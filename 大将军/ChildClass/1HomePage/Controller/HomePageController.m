@@ -14,8 +14,9 @@
 #import "Dog.h"
 #import "Context.h"
 #import "DoggyModel.h"
+#import "DoggyInfoController.h"
 
-@interface HomePageController ()
+@interface HomePageController ()<CalendarDelegate,doggyCollectionDelegate>
 
 //日历
 @property (nonatomic, strong) CalendarView *calendar;
@@ -23,6 +24,8 @@
 @property (nonatomic, strong) DoggyCollectionView *doggyCollection;
 //信息
 @property (nonatomic, strong) InfomationTableView *infomationTable;
+//狗狗信息
+@property (nonatomic, strong) DoggyInfoController *doggyInfoController;
 
 //用户信息
 @property (nonatomic, strong) Owner *owner;
@@ -91,8 +94,15 @@
     [self.calendar scrollToCenter];
 }
 
+#pragma mark - delegate
+- (void)didselectDate {
+    self.tabBarController.selectedIndex = 1;
+}
 
-
+- (void)didselectDoggy:(Dog *)dog {
+    self.doggyInfoController.dog = dog;
+    [self.navigationController pushViewController:self.doggyInfoController animated:YES];
+}
 
 #pragma mark - getter 
 - (UIButton *)drawBtn {
@@ -106,6 +116,7 @@
 - (CalendarView *)calendar {
     if (!_calendar) {
         _calendar = [[CalendarView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT / 7)];
+        _calendar.delegate = self;
     }
     return _calendar;
 }
@@ -134,6 +145,7 @@
         
         NSArray *test = [DoggyModel getAllDogsWithCurrentOwner];
         _doggyCollection = [[DoggyCollectionView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.25, SCREEN_WIDTH, SCREEN_HEIGHT * 0.25) WithDoggyArray:test];
+        _doggyCollection.delegate = self;
     }
     return _doggyCollection;
 }
@@ -152,6 +164,13 @@
         _owner = [DoggyModel getOwnerInfo];
     }
     return _owner;
+}
+
+- (DoggyInfoController *)doggyInfoController {
+    if (!_doggyInfoController) {
+        _doggyInfoController = [[DoggyInfoController alloc]init];
+    }
+    return _doggyInfoController;
 }
 #pragma mark - other
 //imagewithColor

@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class DoggyCollectionView;
+
+@protocol doggyCollectionDelegate <NSObject>
+
+- (void)didselectDoggy:(Dog *)dog;
+
+@end
+
 @interface DoggyCollectionView : UIView
+
+@property (nonatomic, weak) id<doggyCollectionDelegate> delegate;
 
 @property (nonatomic, strong) NSArray *doggyArray;
 

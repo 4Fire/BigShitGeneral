@@ -90,6 +90,11 @@
     NSInteger idx = indexPath.row;
     [self.collectionView setContentOffset:CGPointMake((idx - 2) * SCREEN_WIDTH / 5, 0) animated:YES];
     
+    if ([self.delegate respondsToSelector:@selector(didselectDate)]) {
+        [self.delegate didselectDate];
+    }
+
+    
 }
 
 #pragma mark - getter

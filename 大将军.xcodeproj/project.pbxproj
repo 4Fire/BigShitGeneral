@@ -57,6 +57,7 @@
 		5E506F4D1D40C0E5006C7E44 /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E506F4A1D40C0E5006C7E44 /* Record+CoreDataProperties.m */; };
 		5E506F4E1D40C0E5006C7E44 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E506F4C1D40C0E5006C7E44 /* Record.m */; };
 		5ED8781E1D3C65150060F83B /* DoggyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED8781D1D3C65150060F83B /* DoggyModel.m */; };
+		5EE116451D46F7B500C8D321 /* DoggyInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE116441D46F7B500C8D321 /* DoggyInfoController.m */; };
 		5EFBE9A31D388B6400FE838A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A21D388B6400FE838A /* main.m */; };
 		5EFBE9A61D388B6400FE838A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A51D388B6400FE838A /* AppDelegate.m */; };
 		5EFBE9AC1D388B6400FE838A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EFBE9AA1D388B6400FE838A /* Main.storyboard */; };
@@ -369,6 +370,8 @@
 		5E506F4C1D40C0E5006C7E44 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
 		5ED8781C1D3C65150060F83B /* DoggyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoggyModel.h; sourceTree = "<group>"; };
 		5ED8781D1D3C65150060F83B /* DoggyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoggyModel.m; sourceTree = "<group>"; };
+		5EE116431D46F7B500C8D321 /* DoggyInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoggyInfoController.h; sourceTree = "<group>"; };
+		5EE116441D46F7B500C8D321 /* DoggyInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoggyInfoController.m; sourceTree = "<group>"; };
 		5EFBE99E1D388B6400FE838A /* 大将军.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "大将军.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFBE9A21D388B6400FE838A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5EFBE9A41D388B6400FE838A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../AppDelegate.h; sourceTree = "<group>"; };
@@ -1094,6 +1097,8 @@
 			children = (
 				5EFBEA251D38908700FE838A /* HomePageController.h */,
 				5EFBEA261D38908700FE838A /* HomePageController.m */,
+				5EE116431D46F7B500C8D321 /* DoggyInfoController.h */,
+				5EE116441D46F7B500C8D321 /* DoggyInfoController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1924,6 +1929,7 @@
 				5EFBEA101D388F0900FE838A /* InfomationTableView.m in Sources */,
 				5EFBEA7C1D38946900FE838A /* News.m in Sources */,
 				5EFBEA331D3890AD00FE838A /* CollectionVCell.m in Sources */,
+				5EE116451D46F7B500C8D321 /* DoggyInfoController.m in Sources */,
 				5EFBE9A31D388B6400FE838A /* main.m in Sources */,
 				5EFBEA751D38946900FE838A /* Context.m in Sources */,
 				5EFBEA161D388F0900FE838A /* DogCollectionViewCell.m in Sources */,

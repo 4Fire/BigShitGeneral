@@ -8,7 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class CalendarView;
+
+@protocol CalendarDelegate <NSObject>
+
+- (void)didselectDate;
+
+@end
+
+
 @interface CalendarView : UIView
+
+@property (nonatomic, weak) id<CalendarDelegate> delegate;
 
 - (instancetype)init;
 
