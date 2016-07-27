@@ -57,7 +57,7 @@
         return;
     }
     
-    NSDate *birthday = self.pickerView.date;
+    NSString *birthday = self.birthday.text;
 //    NSLog(@"bir = %@",birthday);
     NSNumber *sex = [NSNumber numberWithBool:self.dogSex];
     [self.userInfo setObject:birthday forKey:@"birthday"];
@@ -66,7 +66,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"clickedNext" object:self userInfo:self.userInfo];
 }
 
--(UIViewController *)fetchViewControllerByView:(UIView *)aView{
+- (UIViewController *)fetchViewControllerByView:(UIView *)aView{
     UIViewController * vc = nil;
     for (UIView * tView = aView; tView.nextResponder; tView = tView.superview) {
         if ([tView.nextResponder isKindOfClass:[UIViewController class]]) {
@@ -227,7 +227,7 @@
     if (!_maleLab) {
         _maleLab = [[UILabel alloc] init];
         _maleLab.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 0.2, SCREEN_WIDTH * 0.05);
-        _maleLab.center = CGPointMake(CELL_W * 0.3, CELL_H * 0.65);
+        _maleLab.center = CGPointMake(CELL_W * 0.3, CELL_H * 0.72);
         _maleLab.text = @"我是弟弟";
         _maleLab.textColor = [UIColor blackColor];
         _maleLab.textAlignment = NSTextAlignmentCenter;
@@ -240,7 +240,7 @@
     if (!_famaleLab) {
         _famaleLab = [[UILabel alloc] init];
         _famaleLab.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 0.2, SCREEN_WIDTH * 0.05);
-        _famaleLab.center = CGPointMake(CELL_W * 0.7, CELL_H * 0.65);
+        _famaleLab.center = CGPointMake(CELL_W * 0.7, CELL_H * 0.72);
         _famaleLab.text = @"我是妹妹";
         _famaleLab.textColor = [UIColor blackColor];
         _famaleLab.textAlignment = NSTextAlignmentCenter;
