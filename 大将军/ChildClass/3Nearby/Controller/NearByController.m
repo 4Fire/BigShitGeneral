@@ -59,6 +59,9 @@
     [super viewDidLoad];
     [AMapServices sharedServices].apiKey = @"b49a48a1dd3bc124ae01778a3ecc22c4";
     self.view.backgroundColor = [UIColor colorWithRed:16 / 255.0 green:168 / 255.0 blue:173 / 255.0 alpha:1];
+    self.navigationController.navigationBar.barTintColor = BACKGROUNDCOLOR;
+    [self.navigationController.navigationBar setTintColor:COLOR(255, 255, 255)];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:COLOR(250, 205, 174),NSFontAttributeName:[UIFont boldSystemFontOfSize:28]}];
     [self.view addSubview:self.mapView];
     [self.view addSubview:self.locationBtn];
     [self.view addSubview:self.tdBtn];
@@ -124,7 +127,7 @@
 - (UIButton *)locationBtn {
     if (!_locationBtn) {
         _locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _locationBtn.frame = CGRectMake(10, 550, 35, 35);
+        _locationBtn.frame = CGRectMake(10, 570, 35, 35);
         _locationBtn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
         _locationBtn.layer.cornerRadius = 5;
         _locationBtn.backgroundColor = [UIColor whiteColor];
@@ -138,7 +141,7 @@
 - (UIButton *)tdBtn {
     if (!_tdBtn) {
         _tdBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _tdBtn.frame = CGRectMake(10, 505, 35, 35);
+        _tdBtn.frame = CGRectMake(10, 525, 35, 35);
         _tdBtn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
         _tdBtn.layer.cornerRadius = 5;
         _tdBtn.backgroundColor = [UIColor whiteColor];
@@ -155,7 +158,7 @@
         _startBtn.frame = CGRectMake(self.view.bounds.size.width / 2 - 30, 550, 60, 60);
         _startBtn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
         _startBtn.layer.cornerRadius = 30;
-        _startBtn.backgroundColor = [UIColor greenColor];
+        _startBtn.backgroundColor = COLOR(254, 168, 195);
         
         [_startBtn setImage:[UIImage imageNamed:@"icon_play.png"] forState:UIControlStateNormal];
         [_startBtn addTarget:self action:@selector(action_startBtnPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -258,7 +261,7 @@
 - (void)action_rightBtnPressed {
     //构造上传数据对象
     AMapNearbyUploadInfo *info = [[AMapNearbyUploadInfo alloc] init];
-    info.userID = @"夏钰";//[[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];//业务逻辑id
+    info.userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];//业务逻辑id
     info.coordinateType = AMapSearchCoordinateTypeAMap;//坐标系类型
     info.coordinate = CLLocationCoordinate2DMake(_currentLocation.coordinate.latitude, _currentLocation.coordinate.longitude);//用户位置信息
     if ([_nearbyManager uploadNearbyInfo:info]) {
@@ -287,7 +290,6 @@
         [_startBtn setImage:[UIImage imageNamed:@"icon_stop.png"] forState:UIControlStateNormal];
 //        [self.view addSubview:self.detailView];
         self.recordBtn.hidden = YES;
-        
         [UIView animateWithDuration:0.6 animations:^{
             self.mapView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height * 3 / 4);
             self.tabBarController.tabBar.hidden = YES;
@@ -319,15 +321,15 @@
         [UIView animateWithDuration:0.6 animations:^{
             self.mapView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
             self.tabBarController.tabBar.hidden = NO;
-            self.locationBtn.frame = CGRectMake(10, 550, 35, 35);
-            self.tdBtn.frame = CGRectMake(10, 505, 35, 35);
+            self.locationBtn.frame = CGRectMake(10, 570, 35, 35);
+            self.tdBtn.frame = CGRectMake(10, 525, 35, 35);
             self.timeLable.frame = CGRectMake(30, self.view.bounds.size.height, 100, 44);
             self.distanceLable.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, self.view.bounds.size.height, 100, 44);
             self.time.frame = CGRectMake(30, self.view.bounds.size.height, 200, 30);
             self.distance.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, self.view.bounds.size.height, 200, 30);
-            
-        } completion:^(BOOL finished) {
            
+        } completion:^(BOOL finished) {
+            self.recordBtn.hidden = NO;
         }];
         
     }
@@ -354,6 +356,7 @@
 }
 
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation {
+    
     //当前位置更新后，赋值
     _currentLocation = [userLocation.location copy];
     if (!updatingLocation) {
@@ -361,7 +364,28 @@
     }
     
     if (self.isRecording) {
-        if (userLocation.location.horizontalAccuracy < 80 && userLocation.location.horizontalAccuracy > 0)
+        
+        //构造上传数据对象
+        AMapNearbyUploadInfo *info2 = [[AMapNearbyUploadInfo alloc] init];
+        info2.userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];//业务逻辑id
+        info2.coordinateType = AMapSearchCoordinateTypeAMap;//坐标系类型
+        info2.coordinate = CLLocationCoordinate2DMake(_currentLocation.coordinate.latitude, _currentLocation.coordinate.longitude);//用户位置信息
+        if ([_nearbyManager uploadNearbyInfo:info2]) {
+            NSLog(@"yes");
+        }else {
+            NSLog(@"no");
+        }
+        //构造AMapNearbySearchRequest对象，配置周边搜索参数
+        AMapNearbySearchRequest *request2 = [[AMapNearbySearchRequest alloc] init];
+        request2.center = [AMapGeoPoint locationWithLatitude:_mapView.userLocation.coordinate.latitude longitude:_mapView.userLocation.coordinate.longitude];//中心点
+        request2.radius = 1000;//搜索半径
+        request2.timeRange = 500;//查询的时间
+        request2.searchType = AMapNearbySearchTypeLiner;//驾车距离，AMapNearbySearchTypeLiner表示直线距离
+        //发起附近周边搜索
+        [_search AMapNearbySearch:request2];
+        
+        
+        if (userLocation.location.horizontalAccuracy < 40 && userLocation.location.horizontalAccuracy > 0)
         {
             [self.locationsArray addObject:userLocation.location];
             
@@ -424,8 +448,6 @@
     for (AMapNearbyUserInfo *info in response.infos) {
         MAPointAnnotation *anno = [[MAPointAnnotation alloc] init];
         anno.title = info.userID;
-        anno.subtitle = [[NSDate dateWithTimeIntervalSince1970:info.updatetime] descriptionWithLocale:[NSLocale currentLocale]];
-        
         anno.coordinate = CLLocationCoordinate2DMake(info.location.latitude, info.location.longitude);
         
         [_mapView addAnnotation:anno];
