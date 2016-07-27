@@ -50,7 +50,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [AMapServices sharedServices].apiKey = @"b49a48a1dd3bc124ae01778a3ecc22c4";
     [_mapView removeAnnotations:self.annoArr];
     self.annoArr = nil;
     _isRecording = NO;
@@ -58,11 +57,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [AMapServices sharedServices].apiKey = @"b49a48a1dd3bc124ae01778a3ecc22c4";
     self.view.backgroundColor = [UIColor colorWithRed:16 / 255.0 green:168 / 255.0 blue:173 / 255.0 alpha:1];
     [self.view addSubview:self.mapView];
     [self.view addSubview:self.locationBtn];
     [self.view addSubview:self.tdBtn];
     [self.view addSubview:self.startBtn];
+    [self.view addSubview:self.timeLable];
+    [self.view addSubview:self.distanceLable];
+    [self.view addSubview:self.time];
+    [self.view addSubview:self.distance];
     [self.navigationItem setRightBarButtonItem:self.rightBtn animated:YES];
     [self.view addSubview:self.recordBtn];
     [self initNearBySearch];
@@ -107,7 +111,7 @@
         _mapView.pausesLocationUpdatesAutomatically = NO;
         _mapView.allowsBackgroundLocationUpdates    = YES;
         _mapView.distanceFilter = 10;
-        _mapView.desiredAccuracy =kCLLocationAccuracyBestForNavigation;
+        _mapView.desiredAccuracy =kCLLocationAccuracyNearestTenMeters;
         
         
 //        _mapView.centerCoordinate = CLLocationCoordinate2DMake(_mapView.userLocation.location.coordinate.latitude, _mapView.userLocation.location.coordinate.longitude);
@@ -190,7 +194,8 @@
         _timeLable = [[UILabel alloc] init];
         _timeLable.text = @"时间";
         _timeLable.font = [UIFont systemFontOfSize:28];
-        _timeLable.frame = CGRectMake(30, 520, 100, 44);
+        _timeLable.frame = CGRectMake(30, self.view.bounds.size.height, 100, 44);
+        _timeLable.textColor = [UIColor whiteColor];
     }
     return _timeLable;
 }
@@ -200,7 +205,8 @@
         _distanceLable = [[UILabel alloc] init];
         _distanceLable.text = @"路程";
         _distanceLable.font = [UIFont systemFontOfSize:28];
-        _distanceLable.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, 520, 100, 44);
+        _distanceLable.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, self.view.bounds.size.height, 100, 44);
+        _distanceLable.textColor = [UIColor whiteColor];
     }
     return _distanceLable;
 }
@@ -208,9 +214,25 @@
 - (UILabel *)time {
     if (!_time) {
         _time = [[UILabel alloc] init];
-//        _time.text = []
+        _time.text = [NSString stringWithFormat:@"%.2fs",[self.currentRecord totalDuration]];
+        _time.frame = CGRectMake(30, self.view.bounds.size.height, 200, 30);
+        _time.font = [UIFont systemFontOfSize:20];
+        _time.textColor = [UIColor whiteColor];
+        
+//        NSString stringWithFormat:@"距离: %.2fm, 时间: %.2fs",  [self totalDistance], [self totalDuration]
     }
     return _time;
+}
+
+- (UILabel *)distance {
+    if (!_distance) {
+        _distance = [[UILabel alloc] init];
+        _distance.text = [NSString stringWithFormat:@"%.2fm",[self.currentRecord totalDistance]];
+        _distance.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, self.view.bounds.size.height, 200, 30);
+        _distance.font = [UIFont systemFontOfSize:20];
+        _distance.textColor = [UIColor whiteColor];
+    }
+    return _distance;
 }
 
 
@@ -236,7 +258,7 @@
 - (void)action_rightBtnPressed {
     //构造上传数据对象
     AMapNearbyUploadInfo *info = [[AMapNearbyUploadInfo alloc] init];
-    info.userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];//业务逻辑id
+    info.userID = @"夏钰";//[[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];//业务逻辑id
     info.coordinateType = AMapSearchCoordinateTypeAMap;//坐标系类型
     info.coordinate = CLLocationCoordinate2DMake(_currentLocation.coordinate.latitude, _currentLocation.coordinate.longitude);//用户位置信息
     if ([_nearbyManager uploadNearbyInfo:info]) {
@@ -271,10 +293,13 @@
             self.tabBarController.tabBar.hidden = YES;
             self.locationBtn.frame = CGRectMake(10, self.view.bounds.size.height * 3 / 4 - 85, 35, 35);
             self.tdBtn.frame = CGRectMake(10, self.view.bounds.size.height * 3 / 4 - 130, 35, 35);
+            self.timeLable.frame = CGRectMake(30, 520, 100, 44);
+            self.distanceLable.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, 520, 100, 44);
+            self.time.frame = CGRectMake(30, 584, 200, 30);
+            self.distance.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, 584, 200, 30);
             
         } completion:^(BOOL finished) {
-            [self.view addSubview:self.timeLable];
-            [self.view addSubview:self.distanceLable];
+            
         }];
         if (self.currentRecord == nil) {
             self.currentRecord = [[MepRecord alloc] init];
@@ -282,10 +307,6 @@
     }else {
         
         [self saveRoute];
-        
-        [self.timeLable removeFromSuperview];
-        
-        [self.distanceLable removeFromSuperview];
         
         [self.mutablePolyline removeAllPoints];
         
@@ -300,6 +321,10 @@
             self.tabBarController.tabBar.hidden = NO;
             self.locationBtn.frame = CGRectMake(10, 550, 35, 35);
             self.tdBtn.frame = CGRectMake(10, 505, 35, 35);
+            self.timeLable.frame = CGRectMake(30, self.view.bounds.size.height, 100, 44);
+            self.distanceLable.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, self.view.bounds.size.height, 100, 44);
+            self.time.frame = CGRectMake(30, self.view.bounds.size.height, 200, 30);
+            self.distance.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, self.view.bounds.size.height, 200, 30);
             
         } completion:^(BOOL finished) {
            

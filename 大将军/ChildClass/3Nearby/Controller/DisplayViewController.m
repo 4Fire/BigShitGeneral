@@ -38,7 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Display";
+    self.title = @"遛狗回放";
     
     [self initMapView];
     
@@ -79,12 +79,12 @@
     
     MAPointAnnotation *startPoint = [[MAPointAnnotation alloc] init];
     startPoint.coordinate = [self.record startLocation].coordinate;
-    startPoint.title = @"start";
+    startPoint.title = @"起点";
     [self.mapView addAnnotation:startPoint];
     
     MAPointAnnotation *endPoint = [[MAPointAnnotation alloc] init];
     endPoint.coordinate = [self.record endLocation].coordinate;
-    endPoint.title = @"end";
+    endPoint.title = @"终点";
     [self.mapView addAnnotation:endPoint];
     
     NSMutableArray *mutableArray = [[NSMutableArray alloc] init];

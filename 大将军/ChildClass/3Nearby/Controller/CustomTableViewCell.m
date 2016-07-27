@@ -51,7 +51,7 @@
 - (UILabel *)ownerID {
     if (!_ownerID) {
         _ownerID = [[UILabel alloc] init];
-        _ownerID.frame = CGRectMake(120, 10, 100, 35);
+        _ownerID.frame = CGRectMake(120, 10, 300, 35);
         
     }
     return _ownerID;
