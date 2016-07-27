@@ -286,10 +286,15 @@
     
     self.isRecording = !self.isRecording;
     
+    self.rightBtn.title = @"";
+    
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    
     if (self.isRecording) {
         [_startBtn setImage:[UIImage imageNamed:@"icon_stop.png"] forState:UIControlStateNormal];
 //        [self.view addSubview:self.detailView];
         self.recordBtn.hidden = YES;
+//        self.navigationItem.rightBarButtonItem= YES;
         [UIView animateWithDuration:0.6 animations:^{
             self.mapView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height * 3 / 4);
             self.tabBarController.tabBar.hidden = YES;
@@ -307,6 +312,10 @@
             self.currentRecord = [[MepRecord alloc] init];
         }
     }else {
+        
+        self.rightBtn.title = @"附近的狗";
+        
+        self.navigationItem.rightBarButtonItem.enabled = YES;
         
         [self saveRoute];
         
