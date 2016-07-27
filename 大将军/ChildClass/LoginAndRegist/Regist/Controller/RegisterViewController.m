@@ -154,8 +154,8 @@
 
 - (NSMutableAttributedString *)getBtnTitle {
     NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:@"注册表示你同意铲屎大将军服务使用协议和隐私条款" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12], NSForegroundColorAttributeName:COLOR(102, 103, 104)}];
-    [title addAttributes:@{NSForegroundColorAttributeName:COLOR(212, 20, 24)} range:NSMakeRange(7, 11)];
-    [title addAttributes:@{NSForegroundColorAttributeName:COLOR(212, 20, 24)} range:NSMakeRange(19, 4)];
+    [title addAttributes:@{NSForegroundColorAttributeName:BACKGROUNDCOLOR} range:NSMakeRange(7, 11)];
+    [title addAttributes:@{NSForegroundColorAttributeName:BACKGROUNDCOLOR} range:NSMakeRange(19, 4)];
     return title;
 }
 
@@ -196,7 +196,7 @@
 
 - (UITextField *)passwordTextField {
     if (!_passwordTextField) {
-        _passwordTextField = [self createTextFieldWithCenterH:SCREEN_HEIGHT * 0.3 Placeholder:@" 请输入大将军密文" SecureTextEntry:NO LeftLabelText:@"密   文: "];
+        _passwordTextField = [self createTextFieldWithCenterH:SCREEN_HEIGHT * 0.3 Placeholder:@" 请输入大将军密文" SecureTextEntry:YES LeftLabelText:@"密   文: "];
         _passwordTextField.delegate = self;
         _passwordTextField.keyboardType = UIKeyboardTypeAlphabet;
     }
@@ -208,8 +208,8 @@
         _registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _registerBtn.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 0.76, SCREEN_HEIGHT * 0.064);
         _registerBtn.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.4);
-        _registerBtn.backgroundColor = COLOR(212, 20, 24);
-//        _registerBtn.backgroundColor = BACKGROUNDCOLOR;
+//        _registerBtn.backgroundColor = COLOR(212, 20, 24);
+        _registerBtn.backgroundColor = BACKGROUNDCOLOR;
         [_registerBtn setTitle:@"注    册" forState:UIControlStateNormal];
         [_registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_registerBtn addTarget:self action:@selector(responseToRegisterBtn) forControlEvents:UIControlEventTouchUpInside];

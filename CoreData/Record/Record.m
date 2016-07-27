@@ -27,8 +27,7 @@
                                       other:(NSString *)other
                                         Dog:(Dog *)dog {
     //传入上下文,创建Dog对象
-    NSManagedObject *record = [NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:ctx];
-    
+    Record *record = [NSEntityDescription insertNewObjectForEntityForName:@"Record" inManagedObjectContext:ctx];
     [record setValue:ppv forKey:@"ppv"];
     [record setValue:distemper forKey:@"distemper"];
     [record setValue:coronavirus forKey:@"coronavirus"];
@@ -39,8 +38,9 @@
     [record setValue:delivery forKey:@"delivery"];
     [record setValue:other forKey:@"other"];
     [record setValue:outinsecticide forKey:@"outinsecticide"];
-    [record setValue:dog forKey:@"dog"];
     [record setValue:date forKey:@"date"];
+    record.dog = dog;
+    [dog addRecordObject:record];
     NSError *error = nil;
     BOOL success = [ctx save:&error];
     if (!success) {
@@ -69,5 +69,205 @@
     }
     return [objs firstObject];
 }
+
++ (Record *)fetchLastRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                        Dog:(Dog *)dog {
+    //初始化查询请求
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    //设置要查询的实体
+    request.entity = [NSEntityDescription entityForName:@"Record" inManagedObjectContext:ctx];
+    //设置条件过滤
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"dog.name == %@", [dog valueForKey:@"name"]];
+    request.predicate = predicate;
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sort];
+
+    //执行请求
+    NSError *error = nil;
+    NSArray<Record *> *objs = [ctx executeFetchRequest:request error:&error];
+    if (error) {
+        [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
+    }
+    [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSLog(@"=================%@", obj.date);
+    }];
+    return [objs firstObject];
+}
+
+//细小
++ (Record *)fetchPPVRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                            Dog:(Dog *)dog {
+    //初始化查询请求
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    //设置要查询的实体
+    request.entity = [NSEntityDescription entityForName:@"Record" inManagedObjectContext:ctx];
+    //设置条件过滤
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"dog.name == %@ and ppv == 1", [dog valueForKey:@"name"]];
+    request.predicate = predicate;
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sort];
+    
+    //执行请求
+    NSError *error = nil;
+    NSArray<Record *> *objs = [ctx executeFetchRequest:request error:&error];
+    if (error) {
+        [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
+    }
+    [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+//        NSLog(@"=================%@", obj.date);
+    }];
+    return [objs firstObject];
+}
+
+//犬瘟热
++ (Record *)fetchDistemperRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                           Dog:(Dog *)dog {
+    //初始化查询请求
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    //设置要查询的实体
+    request.entity = [NSEntityDescription entityForName:@"Record" inManagedObjectContext:ctx];
+    //设置条件过滤
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"dog.name == %@ and distemper == 1", [dog valueForKey:@"name"]];
+    request.predicate = predicate;
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sort];
+    
+    //执行请求
+    NSError *error = nil;
+    NSArray<Record *> *objs = [ctx executeFetchRequest:request error:&error];
+    if (error) {
+        [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
+    }
+    [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //        NSLog(@"=================%@", obj.date);
+    }];
+    return [objs firstObject];
+}
+
+//冠状病毒
++ (Record *)fetchCoronavirusRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                                 Dog:(Dog *)dog {
+    //初始化查询请求
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    //设置要查询的实体
+    request.entity = [NSEntityDescription entityForName:@"Record" inManagedObjectContext:ctx];
+    //设置条件过滤
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"dog.name == %@ and coronavirus == 1", [dog valueForKey:@"name"]];
+    request.predicate = predicate;
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sort];
+    
+    //执行请求
+    NSError *error = nil;
+    NSArray<Record *> *objs = [ctx executeFetchRequest:request error:&error];
+    if (error) {
+        [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
+    }
+    [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //        NSLog(@"=================%@", obj.date);
+    }];
+    return [objs firstObject];
+}
+
+//狂犬病
++ (Record *)fetchRabiesRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                                   Dog:(Dog *)dog {
+    //初始化查询请求
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    //设置要查询的实体
+    request.entity = [NSEntityDescription entityForName:@"Record" inManagedObjectContext:ctx];
+    //设置条件过滤
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"dog.name == %@ and rabies == 1", [dog valueForKey:@"name"]];
+    request.predicate = predicate;
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sort];
+    
+    //执行请求
+    NSError *error = nil;
+    NSArray<Record *> *objs = [ctx executeFetchRequest:request error:&error];
+    if (error) {
+        [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
+    }
+    [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //        NSLog(@"=================%@", obj.date);
+    }];
+    return [objs firstObject];
+}
+
+//弓形虫
++ (Record *)fetchToxoplasmaRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                                   Dog:(Dog *)dog {
+    //初始化查询请求
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    //设置要查询的实体
+    request.entity = [NSEntityDescription entityForName:@"Record" inManagedObjectContext:ctx];
+    //设置条件过滤
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"dog.name == %@ and toxoplasma == 1", [dog valueForKey:@"name"]];
+    request.predicate = predicate;
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sort];
+    
+    //执行请求
+    NSError *error = nil;
+    NSArray<Record *> *objs = [ctx executeFetchRequest:request error:&error];
+    if (error) {
+        [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
+    }
+    [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //        NSLog(@"=================%@", obj.date);
+    }];
+    return [objs firstObject];
+}
+
+//体内驱虫
++ (Record *)fetchIninsecticideRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                                     Dog:(Dog *)dog {
+    //初始化查询请求
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    //设置要查询的实体
+    request.entity = [NSEntityDescription entityForName:@"Record" inManagedObjectContext:ctx];
+    //设置条件过滤
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"dog.name == %@ and ininsecticide == 1", [dog valueForKey:@"name"]];
+    request.predicate = predicate;
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sort];
+    
+    //执行请求
+    NSError *error = nil;
+    NSArray<Record *> *objs = [ctx executeFetchRequest:request error:&error];
+    if (error) {
+        [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
+    }
+    [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //        NSLog(@"=================%@", obj.date);
+    }];
+    return [objs firstObject];
+}
+
+//体外驱虫
++ (Record *)fetchOutinsecticideRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
+                                                   Dog:(Dog *)dog {
+    //初始化查询请求
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    //设置要查询的实体
+    request.entity = [NSEntityDescription entityForName:@"Record" inManagedObjectContext:ctx];
+    //设置条件过滤
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"dog.name == %@ and outinsecticide == 1", [dog valueForKey:@"name"]];
+    request.predicate = predicate;
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
+    request.sortDescriptors = [NSArray arrayWithObject:sort];
+    
+    //执行请求
+    NSError *error = nil;
+    NSArray<Record *> *objs = [ctx executeFetchRequest:request error:&error];
+    if (error) {
+        [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
+    }
+    [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        //        NSLog(@"=================%@", obj.date);
+    }];
+    return [objs firstObject];
+}
+
 
 @end

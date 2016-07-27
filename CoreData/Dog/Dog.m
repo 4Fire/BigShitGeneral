@@ -40,7 +40,7 @@
                                   Sex:(NSNumber *)sex
                               Variety:(NSString *)variety
                             Neutering:(NSNumber *)neuterying
-                             Birthday:(NSDate *)birthday
+                             Birthday:(NSString *)birthday
                                 Owner:(Owner *)owner {
     /**< 2.添加数据到数据库 */
     //传入上下文,创建一个实体Dog对象
