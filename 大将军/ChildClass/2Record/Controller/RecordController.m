@@ -11,7 +11,6 @@
 #import "TableHeader.h"
 #import "Dog.h"
 #import "DoggyModel.h"
-//#import "PersonDogsCell.h"
 #import "DoggyCell.h"
 
 @interface RecordController ()<UITableViewDelegate,UITableViewDataSource,TableHeaderDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
@@ -38,6 +37,12 @@
 
 //确定按钮
 @property (nonatomic, strong) UIButton *sureBtn;
+
+//记录用的
+@property (nonatomic, strong) Record *record;
+@property (nonatomic, strong) NSDictionary *recordDic;
+//列表前的
+@property (nonatomic, strong) NSMutableDictionary *tableDic;
 
 @end
 
@@ -80,6 +85,18 @@ static NSInteger currentDog = 0;
 //初始化数据源
 - (void)initUserDataSuource {
     _dog = self.dogs[0];
+    _record = [DoggyModel getRecordWithDoggyName:_dog date:[NSDate date]];
+    if (_record) {
+        _recordDic = [DoggyModel DictionartFromRecord:_record WithDog:_dog];
+    }
+    
+    if (_dog.sex.integerValue == 0) {
+        _tableDic = [@{@"体内驱虫":@NO,@"体外驱虫":@NO,@"细小病毒免疫":@NO,@"犬瘟热病毒免疫":@NO,@"冠状病毒免疫":@NO,@"狂犬病疫苗":@NO,@"弓形虫疫苗":@NO,@"怀孕":@NO,@"分娩":@NO,@"绝育":@NO} mutableCopy];
+    } else {
+        _tableDic = [@{@"体内驱虫":@NO,@"体外驱虫":@NO,@"细小病毒免疫":@NO,@"犬瘟热病毒免疫":@NO,@"冠状病毒免疫":@NO,@"狂犬病疫苗":@NO,@"弓形虫疫苗":@NO,@"绝育":@NO} mutableCopy];
+    }
+    
+    
     [self.tableView reloadData];
 }
 
@@ -107,9 +124,17 @@ static NSInteger currentDog = 0;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (_dog.sex.integerValue == 0) {
-        return self.cellTitleArrayOfFamale.count;
+        if (_dog.neutering.integerValue == 0) {
+            return self.cellTitleArrayOfFamale.count;
+        } else {
+            return self.cellTitleArrayOfFamale.count - 3;
+        }
     } else {
-        return self.cellTitleArrayOfMale.count;
+        if (_dog.neutering.integerValue == 0) {
+            return self.cellTitleArrayOfMale.count;
+        } else {
+            return self.cellTitleArrayOfMale.count - 1;
+        }
     }
 }
 
@@ -121,20 +146,17 @@ static NSInteger currentDog = 0;
     
     if (_dog.sex.integerValue == 0) {
         cell.textLabel.text = self.cellTitleArrayOfFamale[indexPath.row];
-        
         UISwitch *cellSwitch = [[UISwitch alloc]init];
         [cellSwitch addTarget:self action:@selector(switchAction:) forControlEvents:(UIControlEventValueChanged)];
-        cellSwitch.on = NO;
-        
+        cellSwitch.on = [self.tableDic[self.cellTitleArrayOfFamale[indexPath.row]] boolValue];
+        cellSwitch.tag = 1000 + indexPath.row;
         cell.accessoryView = cellSwitch;
-        
     } else {
         cell.textLabel.text = self.cellTitleArrayOfMale[indexPath.row];
-        
         UISwitch *cellSwitch = [[UISwitch alloc]init];
         [cellSwitch addTarget:self action:@selector(switchAction:) forControlEvents:(UIControlEventValueChanged)];
-        cellSwitch.on = NO;
-        
+        cellSwitch.on = [self.tableDic[self.cellTitleArrayOfFamale[indexPath.row]] boolValue];
+        cellSwitch.tag = 1000 + indexPath.row;
         cell.accessoryView = cellSwitch;
     }
     
@@ -143,22 +165,38 @@ static NSInteger currentDog = 0;
 
 #pragma makr - CELLSWITCH
 - (void)switchAction:(UISwitch *)sender {
-    if (sender.on) {
-        NSLog(@"1");
+    if (_dog.sex.integerValue == 0) {
+        if (sender.isOn) {
+            [self.tableDic setObject:@YES forKey:self.cellTitleArrayOfFamale[sender.tag - 1000]];
+        } else {
+            [self.tableDic setObject:@NO forKey:self.cellTitleArrayOfFamale[sender.tag - 1000]];
+        }
     } else {
-        NSLog(@"2");
+        if (sender.isOn) {
+            [self.tableDic setObject:@YES forKey:self.cellTitleArrayOfMale[sender.tag - 1000]];
+        } else {
+            [self.tableDic setObject:@NO forKey:self.cellTitleArrayOfFamale[sender.tag - 1000]];
+        }
     }
+//    NSLog(@"%@",[self.tableDic[@"体内驱虫"] boolValue]);
+    NSLog(@"%@",self.tableDic);
 }
 
 - (void)clickSureBtn {
-//    NSArray<UITableViewCell *> cells = [self.tableView sectiong]
-    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"确定添加记录吗?" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"不不不,手抖按错了" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
 
     }];
     UIAlertAction *delate = [UIAlertAction actionWithTitle:@"确认添加" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-
+        NSDateFormatter *formatter = [NSDateFormatter new];
+        
+        formatter.dateFormat = @"YYYY年MM月dd日";
+        
+        
+        [DoggyModel insertRecordDogWithppv:@YES distemper:@YES coronavirus:@YES rabies:@YES toxoplasma:@YES ininsecticide:@YES outinsecticide:@YES pregnant:@YES delivery:@YES neutering:@YES date:[formatter dateFromString:self.navigationItem.title] other:nil Dog:_dog];
+        
+        
+        
     }];
     
     [alertController addAction:cancel];
@@ -280,14 +318,14 @@ static NSInteger currentDog = 0;
 
 - (NSArray *)cellTitleArrayOfMale {
     if (!_cellTitleArrayOfMale) {
-        _cellTitleArrayOfMale = @[@"体内驱虫",@"体外驱虫",@"细小病毒免疫",@"犬瘟热病毒免疫",@"冠状病毒免疫",@"狂犬病疫苗",@"弓形虫疫苗"];
+        _cellTitleArrayOfMale = @[@"体内驱虫",@"体外驱虫",@"细小病毒免疫",@"犬瘟热病毒免疫",@"冠状病毒免疫",@"狂犬病疫苗",@"弓形虫疫苗",@"绝育"];
     }
     return _cellTitleArrayOfMale;
 }
 
 - (NSArray *)cellTitleArrayOfFamale {
     if (!_cellTitleArrayOfFamale) {
-        _cellTitleArrayOfFamale = @[@"体内驱虫",@"体外驱虫",@"细小病毒免疫",@"犬瘟热病毒免疫",@"冠状病毒免疫",@"狂犬病疫苗",@"弓形虫疫苗",@"怀孕",@"分娩"];
+        _cellTitleArrayOfFamale = @[@"体内驱虫",@"体外驱虫",@"细小病毒免疫",@"犬瘟热病毒免疫",@"冠状病毒免疫",@"狂犬病疫苗",@"弓形虫疫苗",@"怀孕",@"分娩",@"绝育"];
     }
     return _cellTitleArrayOfFamale;
 }
@@ -295,6 +333,10 @@ static NSInteger currentDog = 0;
 - (NSArray<Dog *> *)dogs {
     return [DoggyModel getAllDogsWithCurrentOwner];
 }
+
+//- (NSMutableDictionary *)tableDic {
+//    return _tableDic;
+//}
 
 //添加记录的按钮
 - (UIButton *)sureBtn {
@@ -367,6 +409,18 @@ static NSInteger currentDog = 0;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     currentDog = indexPath.item;
     _dog = self.dogs[indexPath.item];
+    _record = [DoggyModel getRecordWithDoggyName:_dog date:[NSDate date]];
+    if (_record) {
+        _recordDic = [DoggyModel DictionartFromRecord:_record WithDog:_dog];
+    }
+    
+    if (_dog.sex.integerValue == 0) {
+        _tableDic = [@{@"体内驱虫":@NO,@"体外驱虫":@NO,@"细小病毒免疫":@NO,@"犬瘟热病毒免疫":@NO,@"冠状病毒免疫":@NO,@"狂犬病疫苗":@NO,@"弓形虫疫苗":@NO,@"怀孕":@NO,@"分娩":@NO,@"绝育":@NO} mutableCopy];
+    } else {
+        _tableDic = [@{@"体内驱虫":@NO,@"体外驱虫":@NO,@"细小病毒免疫":@NO,@"犬瘟热病毒免疫":@NO,@"冠状病毒免疫":@NO,@"狂犬病疫苗":@NO,@"弓形虫疫苗":@NO,@"绝育":@NO} mutableCopy];
+    }
+    
+    NSLog(@"%@",_recordDic);
     [self.collectionView reloadData];
     [self.tableView reloadData];
 }
@@ -383,6 +437,7 @@ static NSInteger currentDog = 0;
     
     return img;
 }
+
 
 
 @end

@@ -24,8 +24,10 @@
 //获取当前用户的某只狗
 + (Dog *)getDogWithName:(NSString *)name;
 
-//根据狗狗的名字获取记录
-+ (Record *)getRecordWithDoggyName:(NSString *)doggname;
+//根据狗狗的名字和日期获取记录
++ (Record *)getRecordWithDoggyName:(Dog *)dog date:(NSDate *)date;
+
++ (NSMutableDictionary *)DictionartFromRecord:(Record *)record WithDog:(Dog *)dog;
 
 + (BOOL)insertRecordDogWithppv:(NSNumber *)ppv
                      distemper:(NSNumber *)distemper
@@ -39,7 +41,7 @@
                      neutering:(NSNumber *)neutering
                           date:(NSDate *)date
                          other:(NSString *)other
-                           Dog:(NSManagedObject *)dog;
+                           Dog:(Dog *)dog;
 
 + (NSArray<Owner *> *)getAllOwners;
 

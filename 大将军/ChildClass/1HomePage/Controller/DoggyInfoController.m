@@ -159,6 +159,8 @@ static NSString *headerId = @"DoggyInfoHeader";
     _coronavirusStr = date5 == nil ? @"暂时还未做过冠状病毒免疫!" : [format stringFromDate:date5];
     _rabiesStr = date6 == nil ? @"暂时还未做过狂犬病病毒免疫!" : [format stringFromDate:date6];
     _toxoplasmaStr = date7 == nil ? @"暂时还未做过弓形虫病毒免疫!" : [format stringFromDate:date7];
+    
+    [self.tableView reloadData];
 }
 
 

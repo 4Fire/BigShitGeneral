@@ -33,8 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (Record *)fetchRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
                                  RecordDate:(NSDate *)date
                                         Dog:(Dog *)dog;
+
 + (Record *)fetchLastRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
                                             Dog:(Dog *)dog;
+
 + (Record *)fetchPPVRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
                                            Dog:(Dog *)dog; //查找上次细小
 + (Record *)fetchDistemperRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
