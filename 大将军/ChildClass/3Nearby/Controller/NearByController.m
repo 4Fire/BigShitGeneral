@@ -50,7 +50,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [AMapServices sharedServices].apiKey = @"b49a48a1dd3bc124ae01778a3ecc22c4";
     [_mapView removeAnnotations:self.annoArr];
     self.annoArr = nil;
     _isRecording = NO;
@@ -58,11 +57,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [AMapServices sharedServices].apiKey = @"b49a48a1dd3bc124ae01778a3ecc22c4";
     self.view.backgroundColor = [UIColor colorWithRed:16 / 255.0 green:168 / 255.0 blue:173 / 255.0 alpha:1];
+    self.navigationController.navigationBar.barTintColor = BACKGROUNDCOLOR;
+    [self.navigationController.navigationBar setTintColor:COLOR(255, 255, 255)];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:COLOR(250, 205, 174),NSFontAttributeName:[UIFont boldSystemFontOfSize:28]}];
     [self.view addSubview:self.mapView];
     [self.view addSubview:self.locationBtn];
     [self.view addSubview:self.tdBtn];
     [self.view addSubview:self.startBtn];
+    [self.view addSubview:self.timeLable];
+    [self.view addSubview:self.distanceLable];
+    [self.view addSubview:self.time];
+    [self.view addSubview:self.distance];
     [self.navigationItem setRightBarButtonItem:self.rightBtn animated:YES];
     [self.view addSubview:self.recordBtn];
     [self initNearBySearch];
@@ -107,7 +114,7 @@
         _mapView.pausesLocationUpdatesAutomatically = NO;
         _mapView.allowsBackgroundLocationUpdates    = YES;
         _mapView.distanceFilter = 10;
-        _mapView.desiredAccuracy =kCLLocationAccuracyBestForNavigation;
+        _mapView.desiredAccuracy =kCLLocationAccuracyNearestTenMeters;
         
         
 //        _mapView.centerCoordinate = CLLocationCoordinate2DMake(_mapView.userLocation.location.coordinate.latitude, _mapView.userLocation.location.coordinate.longitude);
@@ -120,7 +127,7 @@
 - (UIButton *)locationBtn {
     if (!_locationBtn) {
         _locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _locationBtn.frame = CGRectMake(10, 550, 35, 35);
+        _locationBtn.frame = CGRectMake(10, 570, 35, 35);
         _locationBtn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
         _locationBtn.layer.cornerRadius = 5;
         _locationBtn.backgroundColor = [UIColor whiteColor];
@@ -134,7 +141,7 @@
 - (UIButton *)tdBtn {
     if (!_tdBtn) {
         _tdBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _tdBtn.frame = CGRectMake(10, 505, 35, 35);
+        _tdBtn.frame = CGRectMake(10, 525, 35, 35);
         _tdBtn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
         _tdBtn.layer.cornerRadius = 5;
         _tdBtn.backgroundColor = [UIColor whiteColor];
@@ -151,7 +158,7 @@
         _startBtn.frame = CGRectMake(self.view.bounds.size.width / 2 - 30, 550, 60, 60);
         _startBtn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
         _startBtn.layer.cornerRadius = 30;
-        _startBtn.backgroundColor = [UIColor greenColor];
+        _startBtn.backgroundColor = COLOR(254, 168, 195);
         
         [_startBtn setImage:[UIImage imageNamed:@"icon_play.png"] forState:UIControlStateNormal];
         [_startBtn addTarget:self action:@selector(action_startBtnPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -190,7 +197,8 @@
         _timeLable = [[UILabel alloc] init];
         _timeLable.text = @"时间";
         _timeLable.font = [UIFont systemFontOfSize:28];
-        _timeLable.frame = CGRectMake(30, 520, 100, 44);
+        _timeLable.frame = CGRectMake(30, self.view.bounds.size.height, 100, 44);
+        _timeLable.textColor = [UIColor whiteColor];
     }
     return _timeLable;
 }
@@ -200,7 +208,8 @@
         _distanceLable = [[UILabel alloc] init];
         _distanceLable.text = @"路程";
         _distanceLable.font = [UIFont systemFontOfSize:28];
-        _distanceLable.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, 520, 100, 44);
+        _distanceLable.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, self.view.bounds.size.height, 100, 44);
+        _distanceLable.textColor = [UIColor whiteColor];
     }
     return _distanceLable;
 }
@@ -208,9 +217,25 @@
 - (UILabel *)time {
     if (!_time) {
         _time = [[UILabel alloc] init];
-//        _time.text = []
+        _time.text = [NSString stringWithFormat:@"%.2fs",[self.currentRecord totalDuration]];
+        _time.frame = CGRectMake(30, self.view.bounds.size.height, 200, 30);
+        _time.font = [UIFont systemFontOfSize:20];
+        _time.textColor = [UIColor whiteColor];
+        
+//        NSString stringWithFormat:@"距离: %.2fm, 时间: %.2fs",  [self totalDistance], [self totalDuration]
     }
     return _time;
+}
+
+- (UILabel *)distance {
+    if (!_distance) {
+        _distance = [[UILabel alloc] init];
+        _distance.text = [NSString stringWithFormat:@"%.2fm",[self.currentRecord totalDistance]];
+        _distance.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, self.view.bounds.size.height, 200, 30);
+        _distance.font = [UIFont systemFontOfSize:20];
+        _distance.textColor = [UIColor whiteColor];
+    }
+    return _distance;
 }
 
 
@@ -261,31 +286,38 @@
     
     self.isRecording = !self.isRecording;
     
+    self.rightBtn.title = @"";
+    
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    
     if (self.isRecording) {
         [_startBtn setImage:[UIImage imageNamed:@"icon_stop.png"] forState:UIControlStateNormal];
 //        [self.view addSubview:self.detailView];
         self.recordBtn.hidden = YES;
-        
+//        self.navigationItem.rightBarButtonItem= YES;
         [UIView animateWithDuration:0.6 animations:^{
             self.mapView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height * 3 / 4);
             self.tabBarController.tabBar.hidden = YES;
             self.locationBtn.frame = CGRectMake(10, self.view.bounds.size.height * 3 / 4 - 85, 35, 35);
             self.tdBtn.frame = CGRectMake(10, self.view.bounds.size.height * 3 / 4 - 130, 35, 35);
+            self.timeLable.frame = CGRectMake(30, 520, 100, 44);
+            self.distanceLable.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, 520, 100, 44);
+            self.time.frame = CGRectMake(30, 584, 200, 30);
+            self.distance.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, 584, 200, 30);
             
         } completion:^(BOOL finished) {
-            [self.view addSubview:self.timeLable];
-            [self.view addSubview:self.distanceLable];
+            
         }];
         if (self.currentRecord == nil) {
             self.currentRecord = [[MepRecord alloc] init];
         }
     }else {
         
+        self.rightBtn.title = @"附近的狗";
+        
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+        
         [self saveRoute];
-        
-        [self.timeLable removeFromSuperview];
-        
-        [self.distanceLable removeFromSuperview];
         
         [self.mutablePolyline removeAllPoints];
         
@@ -298,11 +330,15 @@
         [UIView animateWithDuration:0.6 animations:^{
             self.mapView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
             self.tabBarController.tabBar.hidden = NO;
-            self.locationBtn.frame = CGRectMake(10, 550, 35, 35);
-            self.tdBtn.frame = CGRectMake(10, 505, 35, 35);
-            
-        } completion:^(BOOL finished) {
+            self.locationBtn.frame = CGRectMake(10, 570, 35, 35);
+            self.tdBtn.frame = CGRectMake(10, 525, 35, 35);
+            self.timeLable.frame = CGRectMake(30, self.view.bounds.size.height, 100, 44);
+            self.distanceLable.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, self.view.bounds.size.height, 100, 44);
+            self.time.frame = CGRectMake(30, self.view.bounds.size.height, 200, 30);
+            self.distance.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, self.view.bounds.size.height, 200, 30);
            
+        } completion:^(BOOL finished) {
+            self.recordBtn.hidden = NO;
         }];
         
     }
@@ -329,6 +365,7 @@
 }
 
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation {
+    
     //当前位置更新后，赋值
     _currentLocation = [userLocation.location copy];
     if (!updatingLocation) {
@@ -336,7 +373,28 @@
     }
     
     if (self.isRecording) {
-        if (userLocation.location.horizontalAccuracy < 80 && userLocation.location.horizontalAccuracy > 0)
+        
+        //构造上传数据对象
+        AMapNearbyUploadInfo *info2 = [[AMapNearbyUploadInfo alloc] init];
+        info2.userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];//业务逻辑id
+        info2.coordinateType = AMapSearchCoordinateTypeAMap;//坐标系类型
+        info2.coordinate = CLLocationCoordinate2DMake(_currentLocation.coordinate.latitude, _currentLocation.coordinate.longitude);//用户位置信息
+        if ([_nearbyManager uploadNearbyInfo:info2]) {
+            NSLog(@"yes");
+        }else {
+            NSLog(@"no");
+        }
+        //构造AMapNearbySearchRequest对象，配置周边搜索参数
+        AMapNearbySearchRequest *request2 = [[AMapNearbySearchRequest alloc] init];
+        request2.center = [AMapGeoPoint locationWithLatitude:_mapView.userLocation.coordinate.latitude longitude:_mapView.userLocation.coordinate.longitude];//中心点
+        request2.radius = 1000;//搜索半径
+        request2.timeRange = 500;//查询的时间
+        request2.searchType = AMapNearbySearchTypeLiner;//驾车距离，AMapNearbySearchTypeLiner表示直线距离
+        //发起附近周边搜索
+        [_search AMapNearbySearch:request2];
+        
+        
+        if (userLocation.location.horizontalAccuracy < 40 && userLocation.location.horizontalAccuracy > 0)
         {
             [self.locationsArray addObject:userLocation.location];
             
@@ -399,8 +457,6 @@
     for (AMapNearbyUserInfo *info in response.infos) {
         MAPointAnnotation *anno = [[MAPointAnnotation alloc] init];
         anno.title = info.userID;
-        anno.subtitle = [[NSDate dateWithTimeIntervalSince1970:info.updatetime] descriptionWithLocale:[NSLocale currentLocale]];
-        
         anno.coordinate = CLLocationCoordinate2DMake(info.location.latitude, info.location.longitude);
         
         [_mapView addAnnotation:anno];
