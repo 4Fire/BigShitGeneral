@@ -193,9 +193,7 @@ static NSInteger currentDog = 0;
         formatter.dateFormat = @"YYYY年MM月dd日";
         
         
-        [DoggyModel insertRecordDogWithppv:@YES distemper:@YES coronavirus:@YES rabies:@YES toxoplasma:@YES ininsecticide:@YES outinsecticide:@YES pregnant:@YES delivery:@YES neutering:@YES date:[formatter dateFromString:self.navigationItem.title] other:nil Dog:_dog];
-        
-        
+        [DoggyModel insertRecordDogWithppv:_tableDic[@"细小病毒免疫"] distemper:_tableDic[@"犬瘟热病毒免疫"] coronavirus:_tableDic[@"冠状病毒免疫"] rabies:_tableDic[@"狂犬病疫苗"] toxoplasma:_tableDic[@"弓形虫疫苗"] ininsecticide:_tableDic[@"体内驱虫"] outinsecticide:_tableDic[@"体外驱虫"] pregnant:_tableDic[@"怀孕"] delivery:_tableDic[@"分娩"] neutering:_tableDic[@"绝育"] date:[formatter dateFromString:self.navigationItem.title] other:nil Dog:_dog];
         
     }];
     
@@ -227,6 +225,12 @@ static NSInteger currentDog = 0;
 #pragma mark - tableHeaderDelegate 
 - (void)TableHeader:(TableHeader *)tableHeader selectTime:(NSString *)time {
     self.navigationItem.title = time;
+    if (_dog.sex.integerValue == 0) {
+        _tableDic = [@{@"体内驱虫":@NO,@"体外驱虫":@NO,@"细小病毒免疫":@NO,@"犬瘟热病毒免疫":@NO,@"冠状病毒免疫":@NO,@"狂犬病疫苗":@NO,@"弓形虫疫苗":@NO,@"怀孕":@NO,@"分娩":@NO,@"绝育":@NO} mutableCopy];
+    } else {
+        _tableDic = [@{@"体内驱虫":@NO,@"体外驱虫":@NO,@"细小病毒免疫":@NO,@"犬瘟热病毒免疫":@NO,@"冠状病毒免疫":@NO,@"狂犬病疫苗":@NO,@"弓形虫疫苗":@NO,@"绝育":@NO} mutableCopy];
+    }
+    [self.tableView reloadData];
 }
 
 - (void)TableHeader:(TableHeader *)tableHeader changeHeight:(BOOL)change {
@@ -345,7 +349,7 @@ static NSInteger currentDog = 0;
         _sureBtn.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT / 10);
         [_sureBtn setTitle:@"确定添加记录" forState:(UIControlStateNormal)];
         _sureBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [_sureBtn setBackgroundColor:COLOR(230, 3, 194)];
+        [_sureBtn setBackgroundColor:BACKGROUNDCOLOR];
         _sureBtn.layer.cornerRadius = SCREEN_HEIGHT / 40;
         _sureBtn.layer.masksToBounds = YES;
         
