@@ -37,8 +37,8 @@
 
 
 - (void)initAgain {
-    self.titleView.backgroundColor = COLOR(160, 217, 229);
-    [self addEdgingWithEdgingColor:COLOR(160, 217, 229)];
+    self.titleView.backgroundColor = BACKGROUNDCOLOR;
+    [self addEdgingWithEdgingColor:BACKGROUNDCOLOR];
     [self addSubview:self.headIcon];
     [self addSubview:self.nameTextField];
     [self addSubview:self.nextBtn];
@@ -166,7 +166,7 @@
         _headIcon = [UIButton buttonWithType:UIButtonTypeCustom];
         _headIcon.bounds = CGRectMake( 0, 0, CGRectGetWidth(self.bounds) * 0.4, CGRectGetWidth(self.bounds) * 0.4);
         _headIcon.center = CGPointMake(CELL_W * 0.5, CELL_H * 0.35);
-        _headIcon.backgroundColor = COLOR(160, 217, 229);
+        _headIcon.backgroundColor = BACKGROUNDCOLOR;
         _headIcon.layer.cornerRadius = CELL_W * 0.2;
         _headIcon.layer.masksToBounds = YES;
         [_headIcon setImage:[UIImage imageNamed:@"拍照.png"] forState:UIControlStateNormal];
@@ -200,7 +200,7 @@
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _nextBtn.bounds = CGRectMake(0, 0, CELL_W * 0.25, CELL_W * 0.25);
         _nextBtn.center = CGPointMake(CELL_W * 0.5, CELL_H * 0.85);
-        _nextBtn.backgroundColor = COLOR(160, 217, 229);
+        _nextBtn.backgroundColor = BACKGROUNDCOLOR;
         [_nextBtn setTitle:@"下一题" forState:UIControlStateNormal];
         [_nextBtn addTarget:self action:@selector(responseToNext) forControlEvents:UIControlEventTouchUpInside];
         _nextBtn.layer.cornerRadius = CELL_W * 0.25 * 0.5;
