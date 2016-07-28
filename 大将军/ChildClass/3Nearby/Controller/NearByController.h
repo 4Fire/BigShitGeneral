@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol NearbyDeleagete <NSObject>
+
+- (void)NearbyClickLeftBtn;
+
+@end
+
 @interface NearByController : UIViewController
+
+@property (nonatomic, weak) id<NearbyDeleagete> delegate;
 
 @end

@@ -71,7 +71,14 @@ static NSInteger currentDog = 0;
     self.navigationController.navigationBar.shadowImage = [UIImage new];
     
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"将军府" style:(UIBarButtonItemStyleDone) target:self action:@selector(didLeftBtn)];
     
+}
+
+- (void)didLeftBtn {
+    if ([self.delegate respondsToSelector:@selector(RecordClickLeftBtn)]) {
+        [self.delegate RecordClickLeftBtn];
+    }
 }
 
 - (void)viewDidLoad {

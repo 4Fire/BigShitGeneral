@@ -67,7 +67,7 @@
     if (error) {
         [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
     }
-    return [objs firstObject];
+    return [objs lastObject];
 }
 
 + (Record *)fetchLastRecordToSQLiterWithContext:(NSManagedObjectContext *)ctx
@@ -91,7 +91,7 @@
     [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSLog(@"=================%@", obj.date);
     }];
-    return [objs firstObject];
+    return [objs lastObject];
 }
 
 //细小
@@ -116,7 +116,7 @@
     [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
 //        NSLog(@"=================%@", obj.date);
     }];
-    return [objs firstObject];
+    return [objs lastObject];
 }
 
 //犬瘟热
@@ -141,7 +141,7 @@
     [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //        NSLog(@"=================%@", obj.date);
     }];
-    return [objs firstObject];
+    return [objs lastObject];
 }
 
 //冠状病毒
@@ -166,7 +166,7 @@
     [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //        NSLog(@"=================%@", obj.date);
     }];
-    return [objs firstObject];
+    return [objs lastObject];
 }
 
 //狂犬病
@@ -191,7 +191,7 @@
     [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //        NSLog(@"=================%@", obj.date);
     }];
-    return [objs firstObject];
+    return [objs lastObject];
 }
 
 //弓形虫
@@ -216,7 +216,7 @@
     [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //        NSLog(@"=================%@", obj.date);
     }];
-    return [objs firstObject];
+    return [objs lastObject];
 }
 
 //体内驱虫
@@ -241,7 +241,7 @@
     [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //        NSLog(@"=================%@", obj.date);
     }];
-    return [objs firstObject];
+    return [objs lastObject];
 }
 
 //体外驱虫
@@ -266,7 +266,7 @@
     [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         //        NSLog(@"=================%@", obj.date);
     }];
-    return [objs firstObject];
+    return [objs lastObject];
 }
 
 

@@ -48,7 +48,15 @@
     [self.doggyCollection.collection reloadData];
 
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"将军府" style:(UIBarButtonItemStyleDone) target:self action:@selector(didLeftBtn)];
 
+}
+
+- (void)didLeftBtn {
+    if ([self.delegate respondsToSelector:@selector(clickLeftBtn)]) {
+        [self.delegate clickLeftBtn];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -96,7 +104,7 @@
 
 #pragma mark - delegate
 - (void)didselectDate {
-    self.tabBarController.selectedIndex = 1;
+//    self.tabBarController.selectedIndex = 1;
 }
 
 - (void)didselectDoggy:(Dog *)dog {

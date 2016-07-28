@@ -53,6 +53,14 @@
     [_mapView removeAnnotations:self.annoArr];
     self.annoArr = nil;
     _isRecording = NO;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"将军府" style:(UIBarButtonItemStyleDone) target:self action:@selector(didLeftBtn)];
+    
+}
+
+- (void)didLeftBtn {
+    if ([self.delegate respondsToSelector:@selector(NearbyClickLeftBtn)]) {
+        [self.delegate NearbyClickLeftBtn];
+    }
 }
 
 - (void)viewDidLoad {

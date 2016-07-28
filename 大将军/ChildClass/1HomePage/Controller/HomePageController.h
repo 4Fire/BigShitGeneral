@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HomePageDelegate <NSObject>
+
+- (void)clickLeftBtn;
+
+@end
+
 @interface HomePageController : UIViewController
 
 @property (nonatomic, strong) UIButton *drawBtn;
+
+@property (nonatomic, weak) id<HomePageDelegate> delegate;
 
 - (void)returnToday;
 

@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol RecordDelegate <NSObject>
+
+- (void)RecordClickLeftBtn;
+
+@end
+
 @interface RecordController : UIViewController
+
+@property (nonatomic, weak) id<RecordDelegate> delegate;
 
 @end
