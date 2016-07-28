@@ -23,8 +23,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.titleView.backgroundColor = COLOR(212, 20, 24);
-        [self addEdgingWithEdgingColor:COLOR(212, 20, 24)];
+        self.titleView.backgroundColor = BACKGROUNDCOLOR;
+        [self addEdgingWithEdgingColor:BACKGROUNDCOLOR];
         [self addSubview:self.imageV];
         [self addSubview:self.textView];
         [self addSubview:self.nextBtn];
@@ -84,7 +84,7 @@
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _nextBtn.bounds = CGRectMake(0, 0, CELL_W * 0.3, CELL_W * 0.3);
         _nextBtn.center = CGPointMake(CELL_W * 0.5, CELL_H * 0.8);
-        _nextBtn.backgroundColor = COLOR(212, 20, 24);
+        _nextBtn.backgroundColor = BACKGROUNDCOLOR;
         [_nextBtn setTitle:@"谢主隆恩" forState:UIControlStateNormal];
         [_nextBtn addTarget:self action:@selector(responseToNext) forControlEvents:UIControlEventTouchUpInside];
         _nextBtn.layer.cornerRadius = CELL_W * 0.15;

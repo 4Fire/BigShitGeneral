@@ -35,8 +35,8 @@
 }
 
 - (void)initAgain {
-    self.titleView.backgroundColor = COLOR(255, 234, 71);
-    [self addEdgingWithEdgingColor:COLOR(255, 234, 71)];
+    self.titleView.backgroundColor = BACKGROUNDCOLOR;
+    [self addEdgingWithEdgingColor:BACKGROUNDCOLOR];
     [self addSubview:self.birthday];
     self.birthday.inputView = self.pickerView;
     [self addSubview:self.sexLab];
@@ -162,7 +162,7 @@
         _sexLab.center = CGPointMake(CELL_W * 0.5, CELL_H * 0.5);
         _sexLab.text = @"王子? 公主?";
         _sexLab.textAlignment = NSTextAlignmentCenter;
-        _sexLab.textColor = COLOR(255, 234, 71);
+        _sexLab.textColor = BACKGROUNDCOLOR;
     }
     return _sexLab;
 }
@@ -207,7 +207,7 @@
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         _nextBtn.bounds = CGRectMake(0, 0, CELL_W * 0.25, CELL_W * 0.25);
         _nextBtn.center = CGPointMake(CELL_W * 0.5, CELL_H * 0.85);
-        _nextBtn.backgroundColor = COLOR(255, 234, 71);
+        _nextBtn.backgroundColor = BACKGROUNDCOLOR;
         [_nextBtn setTitle:@"下一题" forState:UIControlStateNormal];
         [_nextBtn addTarget:self action:@selector(responseToNext) forControlEvents:UIControlEventTouchUpInside];
         _nextBtn.layer.cornerRadius = CELL_W * 0.25 * 0.5;
