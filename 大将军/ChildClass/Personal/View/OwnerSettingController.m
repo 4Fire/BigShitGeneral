@@ -104,7 +104,7 @@
     _famaleSelectImag.image = [UIImage imageNamed:@"选中"];
     _sex = @0;
     [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:@"ownerSex"];
-    self.sexView.image = [UIImage imageNamed:@"女性选中"];
+    self.sexView.image = [UIImage imageNamed:@"女性未选中"];
     
 //    [self.ownerIcon setImage:[UIImage imageNamed:@"ownerFamale.jpeg"] forState:UIControlStateNormal];
 }
@@ -225,7 +225,7 @@
 
 - (UIImageView *)sexView {
     if (!_sexView ) {
-        _sexView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"男性选中"]];
+        _sexView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"男性未选中"]];
         _sexView.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 0.07, SCREEN_WIDTH * 0.07);
         _sexView.center = CGPointMake(SCREEN_WIDTH * 0.64, CGRectGetHeight(self.pureColorView.bounds) * 0.73);
         _sexView.backgroundColor = [UIColor clearColor];
