@@ -186,7 +186,7 @@ static NSInteger currentDog = 0;
         }
     }
 //    NSLog(@"%@",[self.tableDic[@"体内驱虫"] boolValue]);
-    NSLog(@"%@",self.tableDic);
+//    NSLog(@"%@",self.tableDic);
 }
 
 - (void)clickSureBtn {
@@ -431,7 +431,7 @@ static NSInteger currentDog = 0;
         _tableDic = [@{@"体内驱虫":@NO,@"体外驱虫":@NO,@"细小病毒免疫":@NO,@"犬瘟热病毒免疫":@NO,@"冠状病毒免疫":@NO,@"狂犬病疫苗":@NO,@"弓形虫疫苗":@NO,@"绝育":@NO} mutableCopy];
     }
     
-    NSLog(@"%@",_recordDic);
+//    NSLog(@"%@",_recordDic);
     [self.collectionView reloadData];
     [self.tableView reloadData];
 }

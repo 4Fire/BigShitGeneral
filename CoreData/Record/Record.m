@@ -89,7 +89,7 @@
         [NSException raise:@"查询错误" format:@"%@",[error localizedDescription]];
     }
     [objs enumerateObjectsUsingBlock:^(Record * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSLog(@"=================%@", obj.date);
+//        NSLog(@"=================%@", obj.date);
     }];
     return [objs lastObject];
 }
