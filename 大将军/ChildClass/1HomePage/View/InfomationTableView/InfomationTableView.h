@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class InfomationTableView;
+
+@protocol  InfomationTableDelegate <NSObject>
+
+- (void)InfomationTableView:(UITableView *)infoTable didSelectIndepathForCell:(NSIndexPath *)indexPath;
+
+@end
+
+
 @interface InfomationTableView : UIView
+
+@property (nonatomic, weak) id<InfomationTableDelegate> delegate;
 
 @end

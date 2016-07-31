@@ -76,6 +76,7 @@
 		5E1D78C71D3E175E0062E802 /* 遛狗未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C11D3E175E0062E802 /* 遛狗未选中.png */; };
 		5E1D78C91D3E175E0062E802 /* 主业未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C31D3E175E0062E802 /* 主业未选中.png */; };
 		5ECCB9D21D4DDB0600990DAA /* HttpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCB9D11D4DDB0600990DAA /* HttpModel.m */; };
+		5ECCB9D51D4E5BCC00990DAA /* TableCellInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCB9D41D4E5BCC00990DAA /* TableCellInfoController.m */; };
 		5ED8781E1D3C65150060F83B /* DoggyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED8781D1D3C65150060F83B /* DoggyModel.m */; };
 		5EE116451D46F7B500C8D321 /* DoggyInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE116441D46F7B500C8D321 /* DoggyInfoController.m */; };
 		5EFBE9A31D388B6400FE838A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A21D388B6400FE838A /* main.m */; };
@@ -404,6 +405,8 @@
 		5E1D78C31D3E175E0062E802 /* 主业未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主业未选中.png"; sourceTree = "<group>"; };
 		5ECCB9D01D4DDB0600990DAA /* HttpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpModel.h; sourceTree = "<group>"; };
 		5ECCB9D11D4DDB0600990DAA /* HttpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpModel.m; sourceTree = "<group>"; };
+		5ECCB9D31D4E5BCC00990DAA /* TableCellInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCellInfoController.h; sourceTree = "<group>"; };
+		5ECCB9D41D4E5BCC00990DAA /* TableCellInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCellInfoController.m; sourceTree = "<group>"; };
 		5ED8781C1D3C65150060F83B /* DoggyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoggyModel.h; sourceTree = "<group>"; };
 		5ED8781D1D3C65150060F83B /* DoggyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoggyModel.m; sourceTree = "<group>"; };
 		5EE116431D46F7B500C8D321 /* DoggyInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoggyInfoController.h; sourceTree = "<group>"; };
@@ -1138,6 +1141,8 @@
 				5EFBEA261D38908700FE838A /* HomePageController.m */,
 				5EE116431D46F7B500C8D321 /* DoggyInfoController.h */,
 				5EE116441D46F7B500C8D321 /* DoggyInfoController.m */,
+				5ECCB9D31D4E5BCC00990DAA /* TableCellInfoController.h */,
+				5ECCB9D41D4E5BCC00990DAA /* TableCellInfoController.m */,
 				189549671D483F3300EB13AB /* DoggyInfoTableViewCell.h */,
 				189549681D483F3300EB13AB /* DoggyInfoTableViewCell.m */,
 			);
@@ -1963,6 +1968,7 @@
 				5EFBEC731D38CD2C00FE838A /* MAMutablePolylineView.m in Sources */,
 				5EFBEA841D38946900FE838A /* Remark.m in Sources */,
 				5EFBEA221D388F9700FE838A /* MainTabbarController.m in Sources */,
+				5ECCB9D51D4E5BCC00990DAA /* TableCellInfoController.m in Sources */,
 				5EFBEA271D38908700FE838A /* HomePageController.m in Sources */,
 				5EFBEA351D3890AD00FE838A /* TableRecord1Cell.m in Sources */,
 				5EFBEA791D38946900FE838A /* Friends.m in Sources */,

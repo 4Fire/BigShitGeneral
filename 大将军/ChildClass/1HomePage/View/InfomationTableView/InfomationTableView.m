@@ -32,6 +32,14 @@
     [self addSubview:self.infoTableView];
 }
 
+#pragma mark - delegate 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self.delegate respondsToSelector:@selector(InfomationTableView:didSelectIndepathForCell:)]) {
+        [self.delegate InfomationTableView:tableView didSelectIndepathForCell:indexPath];
+    }
+    
+}
+
 #pragma mark - dataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 5;
@@ -42,6 +50,7 @@
     cell.backgroundColor = BACKGROUNDCOLOR;
     cell.titleLabel.text = self.titleArray[indexPath.row];
     cell.TbackGround.image = [UIImage imageNamed:[NSString stringWithFormat:@"cell%ld.jpeg",indexPath.row + 1]];
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }

@@ -15,8 +15,9 @@
 #import "Context.h"
 #import "DoggyModel.h"
 #import "DoggyInfoController.h"
+#import "TableCellInfoController.h"
 
-@interface HomePageController ()<CalendarDelegate,doggyCollectionDelegate>
+@interface HomePageController ()<CalendarDelegate,doggyCollectionDelegate,InfomationTableDelegate>
 
 //日历
 @property (nonatomic, strong) CalendarView *calendar;
@@ -112,6 +113,15 @@
 //    self.tabBarController.selectedIndex = 1;
 }
 
+//点击infomation代理事件
+- (void)InfomationTableView:(UITableView *)infoTable didSelectIndepathForCell:(NSIndexPath *)indexPath {
+#warning 夏雨---
+    TableCellInfoController *TCC = [[TableCellInfoController alloc]init];
+    [self.navigationController pushViewController:TCC animated:YES];
+//    [infoTable.delegate tableView:infoTable didDeselectRowAtIndexPath:indexPath];
+    
+}
+
 //点击选择了哪只狗狗的代理
 - (void)didselectDoggy:(Dog *)dog {
     self.doggyInfoController.dog = dog;
@@ -127,13 +137,6 @@
     }
     return _calendar;
 }
-
-//- (UIBarButtonItem *)todayItem {
-//    if (!_todayItem) {
-//        _todayItem = [[UIBarButtonItem alloc]initWithTitle:@"今天" style:(UIBarButtonItemStyleDone) target:self action:@selector(returnToday)];
-//    }
-//    return _todayItem;
-//}
 
 //狗狗collection
 - (DoggyCollectionView *)doggyCollection {
@@ -151,6 +154,7 @@
     if (!_infomationTable) {
         _infomationTable = [[InfomationTableView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.5, SCREEN_WIDTH, SCREEN_HEIGHT / 2 - self.tabBarController.tabBar.bounds.size.height)];
         _infomationTable.backgroundColor = BACKGROUNDCOLOR;
+        _infomationTable.delegate = self;
         
     }
     return _infomationTable;
