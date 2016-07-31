@@ -111,7 +111,7 @@ static NSString *DogCollectionViewCellId = @"DogCollectionViewCell";
     if ([notif.object isKindOfClass:[SureView class]]) {
         NSManagedObjectContext *ctx = [Context context];
         NSString *ownerAccount = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
-        NSLog(@"%@", ownerAccount);
+//        NSLog(@"%@", ownerAccount);
         Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:ownerAccount];
         
 //        NSLog(@"name = %@, icon = %@, sex = %@, variety = %@, neutering = %@, birthday = %@, owner = %@", _name, _iconImage, _sex, _variety, _neutering, _birthday, owner);

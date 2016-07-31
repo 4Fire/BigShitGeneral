@@ -114,10 +114,6 @@
                 
                 [UIApplication sharedApplication].keyWindow.rootViewController = [MainTabbarController new];
             }
-            
-            
-            
-
         } else {
             
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
@@ -168,14 +164,11 @@
 - (void)responseToTripartiteLoginBtn:(UIButton *)sender {
     switch (sender.tag) {
         case 100:
-            NSLog(@"微信登录");
             break;
         case 101:
-            NSLog(@"QQ登录");
             [self qqLogin];
             break;
         case 102:
-            NSLog(@"新浪微博登录");
             [self sinaLogin];
             break;
         default:
@@ -189,9 +182,9 @@
         //获取微博用户名、uid、token等
         if (response.responseCode == UMSResponseCodeSuccess) {
 //            NSDictionary *dict = [UMSocialAccountManager socialAccountDictionary];
-            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:snsPlatform.platformName];
-            NSLog(@"\nusername = %@,\n usid = %@,\n token = %@ iconUrl = %@,\n unionId = %@,\n thirdPlatformUserProfile = %@,\n thirdPlatformResponse = %@ \n, message = %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL, snsAccount.unionId, response.thirdPlatformUserProfile, response.thirdPlatformResponse, response.message);
-            NSLog(@"%@",response.thirdPlatformUserProfile);
+//            UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:snsPlatform.platformName];
+//            NSLog(@"\nusername = %@,\n usid = %@,\n token = %@ iconUrl = %@,\n unionId = %@,\n thirdPlatformUserProfile = %@,\n thirdPlatformResponse = %@ \n, message = %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL, snsAccount.unionId, response.thirdPlatformUserProfile, response.thirdPlatformResponse, response.message);
+//            NSLog(@"%@",response.thirdPlatformUserProfile);
         }});
 }
 
@@ -203,12 +196,37 @@
         //          获取微博用户名、uid、token等
         
         if (response.responseCode == UMSResponseCodeSuccess) {
-            
-//            NSDictionary *dict = [UMSocialAccountManager socialAccountDictionary];
             UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:snsPlatform.platformName];
-         
-            NSLog(@"\nusername = %@,\n usid = %@,\n token = %@ iconUrl = %@,\n unionId = %@,\n thirdPlatformUserProfile = %@,\n thirdPlatformResponse = %@ \n, message = %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL, snsAccount.unionId, response.thirdPlatformUserProfile, response.thirdPlatformResponse, response.message);
-//            NSLog(@"========================%@",snsAccount);
+#warning  !!!!!!!
+//            NSLog(@"QQ ======  \nusername = %@,\n usid = %@,\n token = %@ iconUrl = %@,\n unionId = %@,\n thirdPlatformUserProfile = %@,\n thirdPlatformResponse = %@ \n, message = %@",snsAccount.userName,snsAccount.usid,snsAccount.accessToken,snsAccount.iconURL, snsAccount.unionId, response.thirdPlatformUserProfile, response.thirdPlatformResponse, response.message);
+            [AVUser logInWithUsernameInBackground:snsAccount.usid password:snsAccount.accessToken block:^(AVUser *user, NSError *error) {
+                if (user != nil) {
+                    
+                    BOOL flag = [Owner insertOwnerToSQLiterWithContext:[Context context] Account:user.username   Password:@"1"];
+                    if (flag == YES) {
+                        [self.view endEditing:true];
+                        
+                        [self showAlertWithMessage:@"登陆成功!" dismiss:^(void){
+                            [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"ownerAccount"];
+                        }];
+                        
+                        [UIApplication sharedApplication].keyWindow.rootViewController = [MainTabbarController new];
+                    }
+                } else {
+                    
+                    AVUser *user = [AVUser user];// 新建 AVUser 对象实例
+                    user.username = snsAccount.usid;// 设置用户名
+                    user.password = snsAccount.accessToken;// 设置密码
+                    
+                    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                        
+                        if (succeeded) {
+                            
+                        }
+                        
+                    }];
+                }
+            }];
             
             NSString *account = snsAccount.usid;
             
@@ -219,8 +237,6 @@
             BOOL check = [Owner duplicateCheckingOwnerWithContext:ctx Account:account];
             
             if (check == NO) {
-                
-//                [self.navigationController pushViewController:[[MainTabbarController alloc] init] animated:YES];
                 [UIApplication sharedApplication].keyWindow.rootViewController = [[MainTabbarController alloc] init];
                 return;
             }

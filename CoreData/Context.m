@@ -20,7 +20,7 @@ static NSManagedObjectContext * ctx = nil;
         NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
         //构建SQLite数据库文件路径
         NSString *docs = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        NSLog(@"%@",docs);
+//        NSLog(@"%@",docs);
         NSURL *url = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"dog.data"]];
         //添加永久存储库(SQLite)
         NSError *error = nil;
