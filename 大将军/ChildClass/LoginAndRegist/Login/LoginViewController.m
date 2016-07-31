@@ -128,8 +128,13 @@
 #warning 登陆
     [AVUser logInWithUsernameInBackground:self.accountTextField.text password:self.passwordTextField.text block:^(AVUser *user, NSError *error) {
         if (user != nil) {
-            NSLog(@"%@",[AVUser currentUser]);
+            NSLog(@"登陆成功");
+            [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"ownerAccount"];
+            
+            [[self fetchViewControllerByView:self.view] presentViewController:[[MainTabbarController alloc] init] animated:YES completion:nil];
+
         } else {
+            
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
                 [[self fetchViewControllerByView:self.view] presentViewController:alertController animated:YES completion:nil];
             

@@ -7,7 +7,8 @@
 //
 
 //leanCloud
-#import <AVOSCloud/AVOSCloud.h>;
+
+#import <AVOSCloud/AVOSCloud.h>
 
 
 #import "AppDelegate.h"
@@ -49,7 +50,7 @@
         //储存用户信息到本地
         [[NSUserDefaults standardUserDefaults] setObject:currentUser.username forKey:@"ownerAccount"];
 
-        [Owner fetchOwnerToSQLiterWithContext:[Context context] Account:currentUser.username];
+//        [Owner fetchOwnerToSQLiterWithContext:[Context context] Account:currentUser.username];
         
         // 跳转到首页
         MainTabbarController *mainVc = [[MainTabbarController alloc]init];

@@ -6,6 +6,8 @@
 //  Copyright © 2016年 SingYi. All rights reserved.
 //
 
+#import <AVOSCloud/AVOSCloud.h>
+
 #import "PersonalView.h"
 #import "Context.h"
 #import "Dog.h"
@@ -143,14 +145,22 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"不不不" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
     }];
     UIAlertAction *delate = [UIAlertAction actionWithTitle:@"退出" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ownerAccount"];
-        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
         
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"ownerAccount"];
+        
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
+        
+        [AVUser logOut];
         [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+        
     }];
+    
+    
     [alertController addAction:cancel];
     [alertController addAction:delate];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+    
+    [(UIViewController *)self.nextResponder.nextResponder presentViewController:alertController animated:YES completion:nil];
+//    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)responseToOwnerSettingBtn {

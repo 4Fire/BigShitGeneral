@@ -64,17 +64,6 @@
         [self showAlertWithMessage:@"请输入至少6为密码" dismiss:nil];
         return;
     }
-    
-//    NSManagedObjectContext *ctx = [Context context];
-//       BOOL check = [Owner duplicateCheckingOwnerWithContext:ctx Account:self.accountTextField.text];
-//    
-//    if (check == NO) {
-//        [self showAlertWithMessage:@"用户名已存在!" dismiss:nil];
-//        return;
-//    }
-//    BOOL flag = [Owner insertOwnerToSQLiterWithContext:ctx Account:self.accountTextField.text   Password:self.passwordTextField.text];
-//    if (flag == YES) {
-//        [self.view endEditing:true];
 #warning 注册
         AVUser *user = [AVUser user];// 新建 AVUser 对象实例
         user.username = self.accountTextField.text;// 设置用户名
@@ -84,33 +73,23 @@
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 // 注册成功
-                NSLog(@"注册成功");
-                [self showAlertWithMessage:@"注册成功!" dismiss:^(void){
-                    [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"ownerAccount"];
-                    
-                    [self.navigationController pushViewController:[[AddDogViewController alloc] init] animated:YES];
-                }];
+                BOOL flag = [Owner insertOwnerToSQLiterWithContext:[Context context] Account:self.accountTextField.text   Password:self.passwordTextField.text];
+                    if (flag == YES) {
+                        [self.view endEditing:true];
+                        
+                        [self showAlertWithMessage:@"注册成功!" dismiss:^(void){
+                            [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"ownerAccount"];
+                            
+                            [self.navigationController pushViewController:[[AddDogViewController alloc] init] animated:YES];
+                        }];
+                    }
 
             } else {
-                NSLog(@"注册失败%@",error.localizedDescription);
+//                NSLog(@"注册失败%@",error.localizedDescription);
                 // 失败的原因可能有多种，常见的是用户名已经存在。
                 [self showAlertWithMessage:error.localizedDescription dismiss:nil];
             }
         }];
-        
-        //自己写的登陆
-//        [HttpModel registerWihtUsername:self.accountTextField.text AndPassword:self.passwordTextField.text];
-        
-//        [self showAlertWithMessage:@"注册成功!" dismiss:^(void){
-//            [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"ownerAccount"];
-//
-//            [self.navigationController pushViewController:[[AddDogViewController alloc] init] animated:YES];
-//        }];
-//
-//    }else {
-//        [self showAlertWithMessage:@"注册失败!" dismiss:nil];
-//        return;
-//    }
 }
 
 - (void)showAlertWithMessage:(NSString *)message dismiss:(void(^)(void))dismiss{
