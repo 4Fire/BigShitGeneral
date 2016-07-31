@@ -130,12 +130,16 @@
         if (user != nil) {
             NSLog(@"%@",[AVUser currentUser]);
         } else {
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+                [[self fetchViewControllerByView:self.view] presentViewController:alertController animated:YES completion:nil];
             
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [alertController dismissViewControllerAnimated:YES completion:nil];
+            });
+
         }
     }];
     
-    //自己写的
-//    [HttpModel logingWithUsername:self.accountTextField.text AndPassword:self.passwordTextField.text];
 }
 
 - (UIViewController *)fetchViewControllerByView:(UIView *)aView{
@@ -311,13 +315,15 @@
 
 //添加三方登录按钮
 - (void)AddTripartiteLoginBtn {
-    NSArray *imagesArr = @[@"wechet.png", @"qq.png", @"sina.png"];
-    for (NSInteger i = 0; i < 3; i ++) {
+    NSArray *imagesArr = @[@"qq.png"];
+    for (NSInteger i = 0; i < imagesArr.count; i ++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.bounds = CGRectMake(0, 0, SCREEN_WIDTH * 0.05, SCREEN_WIDTH * 0.05);
-        btn.center = CGPointMake(SCREEN_WIDTH * 0.34 + i * SCREEN_WIDTH * 0.16, SCREEN_HEIGHT * 0.89);
+//        btn.center = CGPointMake(SCREEN_WIDTH * 0.34 + i * SCREEN_WIDTH * 0.16, SCREEN_HEIGHT * 0.89);
+        btn.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.89);
         [btn setImage:[UIImage imageNamed:imagesArr[i]] forState:UIControlStateNormal];
-        btn.tag = 100 + i;
+//        btn.tag = 100 + i;
+        btn.tag = 101;
         [btn addTarget:self action:@selector(responseToTripartiteLoginBtn:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btn];
     }
