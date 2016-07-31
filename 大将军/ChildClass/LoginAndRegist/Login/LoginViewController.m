@@ -202,15 +202,30 @@
             [AVUser logInWithUsernameInBackground:snsAccount.usid password:snsAccount.accessToken block:^(AVUser *user, NSError *error) {
                 if (user != nil) {
                     
-                    BOOL flag = [Owner insertOwnerToSQLiterWithContext:[Context context] Account:user.username   Password:@"1"];
-                    if (flag == YES) {
-                        [self.view endEditing:true];
+                    NSString *account = snsAccount.usid;
+                    
+                    [[NSUserDefaults standardUserDefaults] setObject:account forKey:@"ownerAccount"];
+                    
+                    NSManagedObjectContext *ctx = [Context context];
+                    
+                    BOOL check = [Owner duplicateCheckingOwnerWithContext:ctx Account:account];
+                    
+                    if (check == NO) {
+                        [UIApplication sharedApplication].keyWindow.rootViewController = [[MainTabbarController alloc] init];
+                    } else {
+                        BOOL flag = [Owner insertOwnerToSQLiterWithContext:[Context context] Account:user.username   Password:@"1"];
                         
-                        [self showAlertWithMessage:@"登陆成功!" dismiss:^(void){
-                            [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"ownerAccount"];
-                        }];
-                        
-                        [UIApplication sharedApplication].keyWindow.rootViewController = [MainTabbarController new];
+                        if (flag == YES) {
+                            [self.view endEditing:true];
+                            [self showAlertWithMessage:@"注册成功!" dismiss:^(void){
+                                [[NSUserDefaults standardUserDefaults] setObject:account forKey:@"ownerAccount"];
+                                [self.navigationController pushViewController:[[AddDogViewController alloc] init] animated:YES];
+                            }];
+                            
+                        }else {
+                            [self showAlertWithMessage:@"注册失败!" dismiss:nil];
+                            return;
+                        }
                     }
                 } else {
                     
@@ -221,37 +236,25 @@
                     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                         
                         if (succeeded) {
-                            
+                            BOOL flag = [Owner insertOwnerToSQLiterWithContext:[Context context] Account:self.accountTextField.text   Password:self.passwordTextField.text];
+                            if (flag == YES) {
+                                [self.view endEditing:true];
+                                
+                                [self showAlertWithMessage:@"注册成功!" dismiss:^(void){
+                                    [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"ownerAccount"];
+                                    
+                                    [self.navigationController pushViewController:[[AddDogViewController alloc] init] animated:YES];
+                                }];
+                            }
+                        } else {
+                            // 失败的原因可能有多种，常见的是用户名已经存在。
+                            [self showAlertWithMessage:error.localizedDescription dismiss:nil];
                         }
                         
                     }];
                 }
             }];
             
-            NSString *account = snsAccount.usid;
-            
-            [[NSUserDefaults standardUserDefaults] setObject:account forKey:@"ownerAccount"];
-            
-            NSManagedObjectContext *ctx = [Context context];
-            
-            BOOL check = [Owner duplicateCheckingOwnerWithContext:ctx Account:account];
-            
-            if (check == NO) {
-                [UIApplication sharedApplication].keyWindow.rootViewController = [[MainTabbarController alloc] init];
-                return;
-            }
-            BOOL flag = [Owner insertOwnerToSQLiterWithContext:ctx Account:account      Password:@"summerLovesDogs"];
-            if (flag == YES) {
-                [self.view endEditing:true];
-                [self showAlertWithMessage:@"注册成功!" dismiss:^(void){
-                    [[NSUserDefaults standardUserDefaults] setObject:account forKey:@"ownerAccount"];
-                    [self.navigationController pushViewController:[[AddDogViewController alloc] init] animated:YES];
-                }];
-                
-            }else {
-                [self showAlertWithMessage:@"注册失败!" dismiss:nil];
-                return;
-            }
         }});
 }
 
