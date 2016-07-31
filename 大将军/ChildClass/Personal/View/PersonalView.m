@@ -202,21 +202,71 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     return btn;
 }
 
+#pragma mark --/*清理缓存的详情页*/
+
+/**< 计算单个文件的大小 */
+- (float)fileSizeAtPath:(NSString *)path{
+    NSFileManager *fileManager=[NSFileManager defaultManager];
+    if([fileManager fileExistsAtPath:path]){
+        long long size=[fileManager attributesOfItemAtPath:path error:nil].fileSize;
+        return size/1024.0/1024.0;
+    }
+    return 0;
+}
+
+/**< 计算整个目录的大小 */
+- (float)floderSizeAtPath:(NSString *)path{
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    float floderSize;
+    if ([fileManager fileExistsAtPath:path]) {
+        
+        NSArray *chiderFiles = [fileManager subpathsAtPath:path];
+        for (NSString *fileName in chiderFiles) {
+            NSString *absolutePath = [path stringByAppendingPathComponent:fileName];
+            floderSize += [self fileSizeAtPath:absolutePath];
+            
+        }
+        return floderSize;
+    }
+    
+    return 0;
+}
 
 //清除缓存
 - (void)responseToClearBtn {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"正在清理,请稍后...." message:nil preferredStyle:UIAlertControllerStyleAlert];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [alertController dismissViewControllerAnimated:YES completion:^{
-            UIAlertController *alert2 = [UIAlertController alertControllerWithTitle:@"清理完毕!" message:nil preferredStyle:UIAlertControllerStyleAlert];
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert2 animated:YES completion:nil];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [alert2 dismissViewControllerAnimated:YES completion:nil];
-            });
-        }];
-    });
-}
+    NSString *cachPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    /**< 这里写清理缓存 */
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"温馨提示" message:[NSString stringWithFormat:@"当前缓存为%.2fM是否清理?",[self floderSizeAtPath:cachPath]] preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAct = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+    }];
+    UIAlertAction *sureAct = [UIAlertAction actionWithTitle:@"清理" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            if ([fileManager fileExistsAtPath:cachPath]) {
+                
+                NSArray *chiderFiles = [fileManager subpathsAtPath:cachPath];
+                for (NSString *fileName in chiderFiles) {
+                    NSString *absolutePath = [cachPath stringByAppendingPathComponent:fileName];
+                    [fileManager removeItemAtPath:absolutePath error:nil];
+//                    NSLog(@"清理成功");
+                    UIAlertController *alert2 = [UIAlertController alertControllerWithTitle:@"清理完毕!" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert2 animated:YES completion:nil];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [alert2 dismissViewControllerAnimated:YES completion:nil];
+                    });
+
+                }
+                
+            }
+            
+        });
+
+    }];
+    [alertController addAction:cancelAct];
+    [alertController addAction:sureAct];
+    [[UIApplication sharedApplication].keyWindow.rootViewController  presentViewController:alertController animated:YES completion:nil];
+     }
 
 //版本信息
 - (void)responseToAboutUsBtn {
@@ -323,6 +373,10 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
         shapeLayer.lineWidth = 5;
         shapeLayer.fillColor = [UIColor clearColor].CGColor;
         [_userHeader.layer addSublayer:shapeLayer];
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(responseToOwnerSettingBtn)];
+        [_userHeader addGestureRecognizer:tapGesture];
+        _userHeader.userInteractionEnabled = YES;
     }
     return _userHeader;
 }
@@ -400,7 +454,7 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 
 - (UIButton *)versionBtn {
     if (!_versionBtn) {
-        _versionBtn = [self getBtnwithColor:COLOR(246, 87, 9) title:@"清理缓存" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.3)  left:NO];
+        _versionBtn = [self getBtnwithColor:COLOR(246, 87, 9) title:@"清理缓存" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.5)  left:YES];
         [_versionBtn addTarget:self action:@selector(responseToClearBtn) forControlEvents:UIControlEventTouchUpInside];
     }
     return _versionBtn;
@@ -408,7 +462,7 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 
 - (UIButton *)aboutUsBtn {
     if (!_aboutUsBtn) {
-        _aboutUsBtn = [self getBtnwithColor:COLOR(251, 212, 10) title:@"大将军版本信息" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.5) left:YES];
+        _aboutUsBtn = [self getBtnwithColor:COLOR(251, 212, 10) title:@"大将军版本信息" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.3) left:NO];
         [_aboutUsBtn addTarget:self action:@selector(responseToAboutUsBtn) forControlEvents:UIControlEventTouchUpInside];
     }
     return _aboutUsBtn;
