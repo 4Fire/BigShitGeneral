@@ -1598,7 +1598,7 @@
 				TargetAttributes = {
 					5EFBE99D1D388B6400FE838A = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = M8Q7Z4J3QQ;
+						DevelopmentTeam = FR99SGT85T;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -2106,6 +2106,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/大将军/Ohter/PrefixHeader.pch";
 				INFOPLIST_FILE = "大将军/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2203,6 +2204,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/大将军/Ohter/PrefixHeader.pch";
 				INFOPLIST_FILE = "大将军/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

@@ -18,8 +18,9 @@
 
 @interface MainTabbarController ()<HomePageDelegate,RecordDelegate,NearbyDeleagete>
 
-
+//主页面的tabbar
 @property (nonatomic, strong) UITabBarController *tabbarController;
+
 //4个页面视图(套navigation的)
 @property (nonatomic, strong) UINavigationController *homePage;
 @property (nonatomic, strong) UINavigationController *record;
@@ -40,8 +41,9 @@
 
 @end
 
-
+//记录home的指针
 static HomePageController *home = nil;
+
 @implementation MainTabbarController
 
 - (instancetype)init {
@@ -65,11 +67,12 @@ static HomePageController *home = nil;
     
 }
 
-
+//初始化数据源
 - (void)initUserDataSource {
     
 }
 
+//初始化界面
 - (void)initUserInterface {
     [self.view addSubview:self.drawView];
     
@@ -82,6 +85,7 @@ static HomePageController *home = nil;
     
 }
 
+//三个页面点击个人中心的代理事件
 #pragma mark - delegate
 - (void)clickLeftBtn {
     [self drawOpenOrClose];
@@ -95,8 +99,7 @@ static HomePageController *home = nil;
     [self drawOpenOrClose];
 }
 
-
-
+//打开或者关闭个人中心
 - (void)drawOpenOrClose {
     if (_isOpen) {
         
@@ -122,6 +125,7 @@ static HomePageController *home = nil;
     }
 }
 
+
 //设置带导航的 UIViewController
 - (UINavigationController *)setViewController:(UIViewController *)VC WithTitle:(NSString *)title TabBarTitle:(NSString *)tabBarTitle TabBarImage:(NSString *)tabBarImage SelectTabBarImage:(NSString *)selectTabBarImage {
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
@@ -142,24 +146,20 @@ static HomePageController *home = nil;
         VC.tabBarItem.image = [[UIImage imageNamed:tabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         
         VC.tabBarItem.selectedImage = [[UIImage imageNamed:selectTabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//        NSLog(@"66666666666666666666666================%@",tabBarImage);
     } else {
         VC.navigationItem.leftBarButtonItem = self.drawBtn;
-    
-        
-//        VC.tabBarItem.image = [[UIImage imageNamed:tabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-//        VC.tabBarItem.selectedImage = [[UIImage imageNamed:selectTabBarImage] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }
-    
     return nav;
 }
 
 #pragma mark - enents
+//返回今天
 - (void)returnToday {
     [home returnToday];
 }
 
 #pragma mark - getter
+//抽屉视图
 - (PersonalView *)drawView {
     if (!_drawView) {
         _drawView = [[PersonalView alloc]initWithFrame:CGRectMake(-SCREEN_WIDTH / 6 * 5, 0, SCREEN_WIDTH / 6 * 5, SCREEN_HEIGHT)];
@@ -167,13 +167,7 @@ static HomePageController *home = nil;
     return _drawView;
 }
 
-- (UIBarButtonItem *)drawBtn {
-    if (!_drawBtn) {
-        _drawBtn = [[UIBarButtonItem alloc]initWithTitle:@"将军府" style:(UIBarButtonItemStyleDone) target:self action:@selector(drawOpenOrClose)];
-    }
-    return _drawBtn;
-}
-
+//今天按钮
 - (UIBarButtonItem *)todayItem {
     if (!_todayItem) {
         _todayItem = [[UIBarButtonItem alloc]initWithTitle:@"今天" style:(UIBarButtonItemStyleDone) target:self action:@selector(returnToday)];
@@ -181,6 +175,7 @@ static HomePageController *home = nil;
     return _todayItem;
 }
 
+//遮盖用的按钮
 - (UIButton *)coverBtn {
     if (!_coverBtn) {
         _coverBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
@@ -191,6 +186,7 @@ static HomePageController *home = nil;
     return _coverBtn;
 }
 
+//主页
 - (UINavigationController *)homePage {
     if (!_homePage) {
         HomePageController *homepage = [HomePageController new];
@@ -200,6 +196,7 @@ static HomePageController *home = nil;
     return _homePage;
 }
 
+//记录页面
 - (UINavigationController *)record {
     if (!_record) {
         RecordController *record = [RecordController new];
@@ -209,6 +206,7 @@ static HomePageController *home = nil;
     return _record;
 }
 
+//附近页面
 - (UINavigationController *)nearby {
     if (!_nearby) {
         NearByController *near =  [NearByController new];
@@ -218,6 +216,7 @@ static HomePageController *home = nil;
     return _nearby;
 }
 
+//朋友圈
 - (UINavigationController *)circleOfFriend {
     if (!_circleOfFriend) {
         _circleOfFriend = [self setViewController:[CircleOfFriendsController new] WithTitle:@"朋友圈" TabBarTitle:@"朋友圈" TabBarImage:nil SelectTabBarImage:nil];

@@ -12,6 +12,8 @@
 #import "MainTabbarController.h"
 #import "AddDogViewController.h"
 
+//learCloud
+#import <AVOSCloud/AVOSCloud.h>
 #import "HttpModel.h"
 
 #import <CoreData/CoreData.h>
@@ -122,8 +124,18 @@
 //        }
 //    }
     
+    
 #warning 登陆
-    [HttpModel logingWithUsername:self.accountTextField.text AndPassword:self.passwordTextField.text];
+    [AVUser logInWithUsernameInBackground:self.accountTextField.text password:self.passwordTextField.text block:^(AVUser *user, NSError *error) {
+        if (user != nil) {
+            NSLog(@"登陆成功");
+        } else {
+            
+        }
+    }];
+    
+    //自己写的
+//    [HttpModel logingWithUsername:self.accountTextField.text AndPassword:self.passwordTextField.text];
 }
 
 - (UIViewController *)fetchViewControllerByView:(UIView *)aView{

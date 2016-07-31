@@ -41,18 +41,21 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    //导航栏透明
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
                                                  forBarPosition:UIBarPositionAny
                                                      barMetrics:UIBarMetricsDefault];
-    
+    //狗狗视图刷新
     [self.doggyCollection.collection reloadData];
 
+    //分割线 透明
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     
+    //设置左边的个人中心按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"将军府" style:(UIBarButtonItemStyleDone) target:self action:@selector(didLeftBtn)];
 
 }
-
+//点击个人中心按钮
 - (void)didLeftBtn {
     if ([self.delegate respondsToSelector:@selector(clickLeftBtn)]) {
         [self.delegate clickLeftBtn];
@@ -71,11 +74,12 @@
     
 }
 
+//初始化数据源
 - (void)initUserDataSource {
    
 }
 
-
+//初始化界面
 - (void)initUserInterface {
     self.view.backgroundColor = BACKGROUNDCOLOR;
     
@@ -103,24 +107,19 @@
 }
 
 #pragma mark - delegate
+//点击日历的代理
 - (void)didselectDate {
 //    self.tabBarController.selectedIndex = 1;
 }
 
+//点击选择了哪只狗狗的代理
 - (void)didselectDoggy:(Dog *)dog {
     self.doggyInfoController.dog = dog;
     [self.navigationController pushViewController:self.doggyInfoController animated:YES];
 }
 
-#pragma mark - getter 
-- (UIButton *)drawBtn {
-    if (!_drawBtn) {
-        _drawBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _drawBtn.backgroundColor = [UIColor blackColor];
-    }
-    return _drawBtn;
-}
-
+#pragma mark - getter
+//日历视图
 - (CalendarView *)calendar {
     if (!_calendar) {
         _calendar = [[CalendarView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT / 7)];
@@ -129,25 +128,14 @@
     return _calendar;
 }
 
-- (UIButton *)todayBtn {
-    if (!_todayBtn) {
-        _todayBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
-        _todayBtn.bounds = CGRectMake(0, 0, SCREEN_WIDTH / 12, SCREEN_WIDTH / 12);
-        [_todayBtn setImage:[UIImage imageNamed:@"today-red.png"] forState:(UIControlStateNormal)];
-        [_todayBtn setTitleColor:[UIColor blackColor] forState:(UIControlStateNormal)];
-        _todayBtn.center = CGPointMake(SCREEN_WIDTH / 6 * 5, 20);
-        [_todayBtn addTarget:self action:@selector(returnToday) forControlEvents:(UIControlEventTouchUpInside)];
-    }
-    return _todayBtn;
-}
+//- (UIBarButtonItem *)todayItem {
+//    if (!_todayItem) {
+//        _todayItem = [[UIBarButtonItem alloc]initWithTitle:@"今天" style:(UIBarButtonItemStyleDone) target:self action:@selector(returnToday)];
+//    }
+//    return _todayItem;
+//}
 
-- (UIBarButtonItem *)todayItem {
-    if (!_todayItem) {
-        _todayItem = [[UIBarButtonItem alloc]initWithTitle:@"今天" style:(UIBarButtonItemStyleDone) target:self action:@selector(returnToday)];
-    }
-    return _todayItem;
-}
-
+//狗狗collection
 - (DoggyCollectionView *)doggyCollection {
     if (!_doggyCollection) {
         
@@ -158,6 +146,7 @@
     return _doggyCollection;
 }
 
+//信息的tableveiw
 - (InfomationTableView *)infomationTable {
     if (!_infomationTable) {
         _infomationTable = [[InfomationTableView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.5, SCREEN_WIDTH, SCREEN_HEIGHT / 2 - self.tabBarController.tabBar.bounds.size.height)];
@@ -167,6 +156,7 @@
     return _infomationTable;
 }
 
+//主人
 - (Owner *)owner {
     if (!_owner) {
         _owner = [DoggyModel getOwnerInfo];
@@ -174,26 +164,13 @@
     return _owner;
 }
 
+//狗狗详细信息的页面
 - (DoggyInfoController *)doggyInfoController {
     if (!_doggyInfoController) {
         _doggyInfoController = [[DoggyInfoController alloc]init];
     }
     return _doggyInfoController;
 }
-#pragma mark - other
-//imagewithColor
-- (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size {
-    CGRect rect = CGRectMake(0, 0, size.width, size.height);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context,color.CGColor);
-    CGContextFillRect(context, rect);
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return img;
-}
-
 
 @end
 

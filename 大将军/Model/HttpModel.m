@@ -79,12 +79,7 @@
     //配置头部请求
     [request setValue:POST_Url_Id forHTTPHeaderField:@"X-LC-Id"];
     [request setValue:POST_Url_Apikey forHTTPHeaderField:@"X-LC-Key"];
-    
-//    NSDictionary *parmStr = @{@"data-urlencode":username,@"data-urlencode":password};
-//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:parmStr options:NSJSONWritingPrettyPrinted error:nil];
-//    request.HTTPBody = jsonData;
-    
-    
+
     //4.创建网络会话
     NSURLSession *session = [NSURLSession sharedSession];
     

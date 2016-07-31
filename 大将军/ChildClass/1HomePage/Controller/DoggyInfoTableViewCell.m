@@ -33,7 +33,6 @@
 - (void)initializeUserInterface {
     self.layer.cornerRadius = SCREEN_HEIGHT * 0.025 * 0.5;
     self.layer.masksToBounds = YES;
-//    self.backgroundColor = [UIColor colorWithWhite:0.8 alpha:1];
     [self addSubview:self.titleLab];
     [self addSubview:self.lineView];
     [self addSubview:self.imageV];
@@ -81,7 +80,6 @@
         _infoLab.center = CGPointMake(SCREEN_WIDTH * 0.5 + CGRectGetMaxX(self.imageV.frame) * 0.5, SCREEN_HEIGHT * 0.1 );
         _infoLab.font = [UIFont systemFontOfSize:17];
         _infoLab.textColor = BACKGROUNDCOLOR;
-//        _infoLab.backgroundColor = [UIColor orangeColor];
     }
     return _infoLab;
 }
@@ -94,7 +92,6 @@
         _dateLab.font = [UIFont boldSystemFontOfSize:20];
         _dateLab.textColor = BACKGROUNDCOLOR;
         _dateLab.adjustsFontSizeToFitWidth = YES;
-//        _dateLab.backgroundColor = [UIColor grayColor];
     }
     return _dateLab;
 }

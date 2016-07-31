@@ -6,6 +6,10 @@
 //  Copyright © 2016年 SingYi. All rights reserved.
 //
 
+//leanCloud
+#import <AVOSCloud/AVOSCloud.h>;
+
+
 #import "AppDelegate.h"
 
 #import "MainTabbarController.h"
@@ -28,6 +32,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //leanCloud
+    [AVOSCloud setApplicationId:@"1g0inh8S6gA6zmogkU6bkA19-gzGzoHsz"
+                      clientKey:@"8qhdXls0HgxhHpqp6LN0vXGS"];
+    
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
     NSString *account = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
@@ -54,7 +62,6 @@
             }
         }
     }else {
-    
          LoginViewController *mainVc = [[LoginViewController alloc]init];
          UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:mainVc];
         self.window.rootViewController = nav;

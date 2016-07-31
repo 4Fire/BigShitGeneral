@@ -9,6 +9,8 @@
 #import "RegisterViewController.h"
 #import "AddDogViewController.h"
 
+//leanCloud
+#import <AVOSCloud/AVOSCloud.h>
 #import "HttpModel.h"
 
 #import <CoreData/CoreData.h>
@@ -74,8 +76,23 @@
     if (flag == YES) {
         [self.view endEditing:true];
 #warning 注册
+        AVUser *user = [AVUser user];// 新建 AVUser 对象实例
+        user.username = self.accountTextField.text;// 设置用户名
+        user.password = self.passwordTextField.text;// 设置密码
+//        user.email = @"tom@leancloud.cn";// 设置邮箱
         
-        [HttpModel registerWihtUsername:self.accountTextField.text AndPassword:self.passwordTextField.text];
+        [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                // 注册成功
+                NSLog(@"注册成功");
+            } else {
+                NSLog(@"注册失败%@",error.localizedDescription);
+                // 失败的原因可能有多种，常见的是用户名已经存在。
+            }
+        }];
+        
+        //自己写的登陆
+//        [HttpModel registerWihtUsername:self.accountTextField.text AndPassword:self.passwordTextField.text];
         
         [self showAlertWithMessage:@"注册成功!" dismiss:^(void){
             [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"ownerAccount"];
