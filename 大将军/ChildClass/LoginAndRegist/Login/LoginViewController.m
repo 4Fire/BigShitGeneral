@@ -128,7 +128,7 @@
 #warning 登陆
     [AVUser logInWithUsernameInBackground:self.accountTextField.text password:self.passwordTextField.text block:^(AVUser *user, NSError *error) {
         if (user != nil) {
-            NSLog(@"登陆成功");
+            NSLog(@"%@",[AVUser currentUser]);
         } else {
             
         }
