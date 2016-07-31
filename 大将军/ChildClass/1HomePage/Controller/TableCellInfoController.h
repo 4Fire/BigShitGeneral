@@ -10,4 +10,6 @@
 
 @interface TableCellInfoController : UIViewController
 
+@property (nonatomic, strong) NSDictionary *infoDic;
+
 @end
