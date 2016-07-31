@@ -12,6 +12,8 @@
 #import "MainTabbarController.h"
 #import "AddDogViewController.h"
 
+#import "HttpModel.h"
+
 #import <CoreData/CoreData.h>
 #import "Dog.h"
 #import "Owner.h"
@@ -96,29 +98,32 @@
 
 #pragma mark - Events
 - (void)responseToLoginBtn {
-    NSManagedObjectContext *ctx = [Context context];
-    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:self.accountTextField.text];
-    if (!owner) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"大将军未受封!请注册!" preferredStyle:UIAlertControllerStyleAlert];
-        [[self fetchViewControllerByView:self.view] presentViewController:alertController animated:YES completion:nil];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [alertController dismissViewControllerAnimated:YES completion:nil];
-        });
-    }else {
-        if ( [owner.password isEqualToString:self.passwordTextField.text]) {
-            [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"ownerAccount"];
-//            [[[UIApplication sharedApplication].delegate window] setRootViewController:[[MainTabbarController alloc] init]];
-            [[self fetchViewControllerByView:self.view] presentViewController:[[MainTabbarController alloc] init] animated:YES completion:nil];
-        }else {
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"大将军口令错误!请查正!" preferredStyle:UIAlertControllerStyleAlert];
-//            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
-            [[self fetchViewControllerByView:self.view] presentViewController:alertController animated:YES completion:nil];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [alertController dismissViewControllerAnimated:YES completion:nil];
-            });
-        }
-    }
+//    NSManagedObjectContext *ctx = [Context context];
+//    Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:self.accountTextField.text];
+//    if (!owner) {
+//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"大将军未受封!请注册!" preferredStyle:UIAlertControllerStyleAlert];
+//        [[self fetchViewControllerByView:self.view] presentViewController:alertController animated:YES completion:nil];
+//        
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [alertController dismissViewControllerAnimated:YES completion:nil];
+//        });
+//    }else {
+//        if ( [owner.password isEqualToString:self.passwordTextField.text]) {
+//            [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"ownerAccount"];
+////            [[[UIApplication sharedApplication].delegate window] setRootViewController:[[MainTabbarController alloc] init]];
+//            [[self fetchViewControllerByView:self.view] presentViewController:[[MainTabbarController alloc] init] animated:YES completion:nil];
+//        }else {
+//            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:@"大将军口令错误!请查正!" preferredStyle:UIAlertControllerStyleAlert];
+////            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+//            [[self fetchViewControllerByView:self.view] presentViewController:alertController animated:YES completion:nil];
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [alertController dismissViewControllerAnimated:YES completion:nil];
+//            });
+//        }
+//    }
+    
+#warning 登陆
+    [HttpModel logingWithUsername:self.accountTextField.text AndPassword:self.passwordTextField.text];
 }
 
 - (UIViewController *)fetchViewControllerByView:(UIView *)aView{

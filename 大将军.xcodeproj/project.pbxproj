@@ -74,6 +74,7 @@
 		5E1D78C51D3E175E0062E802 /* 记录未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78BF1D3E175E0062E802 /* 记录未选中.png */; };
 		5E1D78C71D3E175E0062E802 /* 遛狗未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C11D3E175E0062E802 /* 遛狗未选中.png */; };
 		5E1D78C91D3E175E0062E802 /* 主业未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C31D3E175E0062E802 /* 主业未选中.png */; };
+		5ECCB9D21D4DDB0600990DAA /* HttpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCB9D11D4DDB0600990DAA /* HttpModel.m */; };
 		5ED8781E1D3C65150060F83B /* DoggyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED8781D1D3C65150060F83B /* DoggyModel.m */; };
 		5EE116451D46F7B500C8D321 /* DoggyInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE116441D46F7B500C8D321 /* DoggyInfoController.m */; };
 		5EFBE9A31D388B6400FE838A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFBE9A21D388B6400FE838A /* main.m */; };
@@ -398,6 +399,8 @@
 		5E1D78BF1D3E175E0062E802 /* 记录未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "记录未选中.png"; sourceTree = "<group>"; };
 		5E1D78C11D3E175E0062E802 /* 遛狗未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "遛狗未选中.png"; sourceTree = "<group>"; };
 		5E1D78C31D3E175E0062E802 /* 主业未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主业未选中.png"; sourceTree = "<group>"; };
+		5ECCB9D01D4DDB0600990DAA /* HttpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpModel.h; sourceTree = "<group>"; };
+		5ECCB9D11D4DDB0600990DAA /* HttpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpModel.m; sourceTree = "<group>"; };
 		5ED8781C1D3C65150060F83B /* DoggyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoggyModel.h; sourceTree = "<group>"; };
 		5ED8781D1D3C65150060F83B /* DoggyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoggyModel.m; sourceTree = "<group>"; };
 		5EE116431D46F7B500C8D321 /* DoggyInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoggyInfoController.h; sourceTree = "<group>"; };
@@ -1093,6 +1096,8 @@
 				5EFBEA8B1D38B5EC00FE838A /* DateModel.m */,
 				5ED8781C1D3C65150060F83B /* DoggyModel.h */,
 				5ED8781D1D3C65150060F83B /* DoggyModel.m */,
+				5ECCB9D01D4DDB0600990DAA /* HttpModel.h */,
+				5ECCB9D11D4DDB0600990DAA /* HttpModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1925,6 +1930,7 @@
 				5EFBEA0E1D388F0900FE838A /* DoggyCollectionView.m in Sources */,
 				5EFBEA171D388F0900FE838A /* DogCollectionViewLayout.m in Sources */,
 				5EFBEA1E1D388F0900FE838A /* NeuteringView.m in Sources */,
+				5ECCB9D21D4DDB0600990DAA /* HttpModel.m in Sources */,
 				5EFBEA0A1D388F0900FE838A /* CalendarCell.m in Sources */,
 				5EFBEA0C1D388F0900FE838A /* CustomLayout.m in Sources */,
 				5E1D78951D3DB91E0062E802 /* InfoTableViewCell.m in Sources */,

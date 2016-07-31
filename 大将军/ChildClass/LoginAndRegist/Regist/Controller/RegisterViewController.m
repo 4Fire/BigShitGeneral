@@ -9,6 +9,8 @@
 #import "RegisterViewController.h"
 #import "AddDogViewController.h"
 
+#import "HttpModel.h"
+
 #import <CoreData/CoreData.h>
 #import "Dog.h"
 #import "Owner.h"
@@ -71,6 +73,10 @@
     BOOL flag = [Owner insertOwnerToSQLiterWithContext:ctx Account:self.accountTextField.text   Password:self.passwordTextField.text];
     if (flag == YES) {
         [self.view endEditing:true];
+#warning 注册
+        
+        [HttpModel registerWihtUsername:self.accountTextField.text AndPassword:self.passwordTextField.text];
+        
         [self showAlertWithMessage:@"注册成功!" dismiss:^(void){
             [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"ownerAccount"];
 
