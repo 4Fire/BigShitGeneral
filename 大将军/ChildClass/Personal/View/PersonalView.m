@@ -17,6 +17,7 @@
 #import "OwnerSettingController.h"
 #import "AddDogViewController.h"
 #import "DogInfoViewController.h"
+#import "DevelopInfoViewController.h"
 
 #define PERSONAL_WIDTH self.bounds.size.width
 #define PERSONAL_HEIGHT self.bounds.size.height
@@ -201,6 +202,18 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
     return btn;
 }
 
+
+//清除缓存
+- (void)responseToClearBtn {
+    
+}
+
+//版本信息
+- (void)responseToAboutUsBtn {
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:[[DevelopInfoViewController alloc] init] animated:YES completion:nil];
+}
+
+
 #pragma mark - <UICollectionViewDelegate,UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
@@ -377,14 +390,15 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 
 - (UIButton *)versionBtn {
     if (!_versionBtn) {
-        _versionBtn = [self getBtnwithColor:COLOR(246, 87, 9) title:@"版本信息" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.3)  left:NO];
+        _versionBtn = [self getBtnwithColor:COLOR(246, 87, 9) title:@"清理缓存" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.3)  left:NO];
     }
     return _versionBtn;
 }
 
 - (UIButton *)aboutUsBtn {
     if (!_aboutUsBtn) {
-        _aboutUsBtn = [self getBtnwithColor:COLOR(251, 212, 10) title:@"大将军开发组" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.5) left:YES];
+        _aboutUsBtn = [self getBtnwithColor:COLOR(251, 212, 10) title:@"大将军版本信息" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.5) left:YES];
+        [_aboutUsBtn addTarget:self action:@selector(responseToAboutUsBtn) forControlEvents:UIControlEventTouchUpInside];
     }
     return _aboutUsBtn;
 }
