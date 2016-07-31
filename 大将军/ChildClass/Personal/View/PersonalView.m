@@ -205,7 +205,17 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 
 //清除缓存
 - (void)responseToClearBtn {
-    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"正在清理,请稍后...." message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [alertController dismissViewControllerAnimated:YES completion:^{
+            UIAlertController *alert2 = [UIAlertController alertControllerWithTitle:@"清理完毕!" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert2 animated:YES completion:nil];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [alert2 dismissViewControllerAnimated:YES completion:nil];
+            });
+        }];
+    });
 }
 
 //版本信息
@@ -391,6 +401,7 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
 - (UIButton *)versionBtn {
     if (!_versionBtn) {
         _versionBtn = [self getBtnwithColor:COLOR(246, 87, 9) title:@"清理缓存" center:CGPointMake(SCROLL_WIDTH * 0.5, SCROLL_HEIGHT * 0.3)  left:NO];
+        [_versionBtn addTarget:self action:@selector(responseToClearBtn) forControlEvents:UIControlEventTouchUpInside];
     }
     return _versionBtn;
 }
