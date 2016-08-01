@@ -115,7 +115,7 @@
         _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
         _mapView.delegate = self;
         _mapView.showsCompass = YES;
-        _mapView.compassOrigin = CGPointMake(320, 100 - 30);
+        _mapView.compassOrigin = CGPointMake(SCREEN_WIDTH * 12 / 14, SCREEN_HEIGHT / 8);
         _mapView.showsUserLocation = YES;
         _mapView.userTrackingMode = MAUserTrackingModeFollow;
         _mapView.skyModelEnable = YES;
@@ -135,7 +135,7 @@
 - (UIButton *)locationBtn {
     if (!_locationBtn) {
         _locationBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _locationBtn.frame = CGRectMake(10, 570, 35, 35);
+        _locationBtn.frame = CGRectMake(10, SCREEN_HEIGHT * 5 / 6, 35, 35);
         _locationBtn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
         _locationBtn.layer.cornerRadius = 5;
         _locationBtn.backgroundColor = [UIColor whiteColor];
@@ -149,7 +149,7 @@
 - (UIButton *)tdBtn {
     if (!_tdBtn) {
         _tdBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _tdBtn.frame = CGRectMake(10, 525, 35, 35);
+        _tdBtn.frame = CGRectMake(10, SCREEN_HEIGHT * 5 / 6 - 45, 35, 35);
         _tdBtn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
         _tdBtn.layer.cornerRadius = 5;
         _tdBtn.backgroundColor = [UIColor whiteColor];
@@ -163,7 +163,7 @@
 - (UIButton *)startBtn {
     if (!_startBtn) {
         _startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _startBtn.frame = CGRectMake(self.view.bounds.size.width / 2 - 30, 550, 60, 60);
+        _startBtn.frame = CGRectMake(self.view.bounds.size.width / 2 - 30, SCREEN_HEIGHT * 5 / 6 - 35, 60, 60);
         _startBtn.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
         _startBtn.layer.cornerRadius = 30;
         _startBtn.backgroundColor = COLOR(254, 168, 195);
@@ -191,7 +191,7 @@
 - (UIButton *)recordBtn {
     if (!_recordBtn) {
         _recordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _recordBtn.frame = CGRectMake(320, 120, 36, 36);
+        _recordBtn.frame = CGRectMake(SCREEN_WIDTH * 12 / 14, SCREEN_HEIGHT / 8 + 46, 36, 36);
         _recordBtn.layer.cornerRadius = 18;
         _recordBtn.backgroundColor = [UIColor whiteColor];
         [_recordBtn setImage:[UIImage imageNamed:@"记录"] forState:UIControlStateNormal];
@@ -308,10 +308,10 @@
             self.tabBarController.tabBar.hidden = YES;
             self.locationBtn.frame = CGRectMake(10, self.view.bounds.size.height * 3 / 4 - 85, 35, 35);
             self.tdBtn.frame = CGRectMake(10, self.view.bounds.size.height * 3 / 4 - 130, 35, 35);
-            self.timeLable.frame = CGRectMake(30, 520, 100, 44);
-            self.distanceLable.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, 520, 100, 44);
-            self.time.frame = CGRectMake(30, 584, 200, 30);
-            self.distance.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, 584, 200, 30);
+            self.timeLable.frame = CGRectMake(30, SCREEN_HEIGHT * 9 / 12, 100, 44);
+            self.distanceLable.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, SCREEN_HEIGHT * 9 / 12, 100, 44);
+            self.time.frame = CGRectMake(30, SCREEN_HEIGHT * 13 / 15, 200, 30);
+            self.distance.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, SCREEN_HEIGHT * 13 / 15, 200, 30);
             
         } completion:^(BOOL finished) {
             
@@ -338,8 +338,8 @@
         [UIView animateWithDuration:0.6 animations:^{
             self.mapView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
             self.tabBarController.tabBar.hidden = NO;
-            self.locationBtn.frame = CGRectMake(10, 570, 35, 35);
-            self.tdBtn.frame = CGRectMake(10, 525, 35, 35);
+            self.locationBtn.frame = CGRectMake(10, SCREEN_HEIGHT * 5 / 6, 35, 35);
+            self.tdBtn.frame = CGRectMake(10, SCREEN_HEIGHT * 5 / 6 - 45, 35, 35);
             self.timeLable.frame = CGRectMake(30, self.view.bounds.size.height, 100, 44);
             self.distanceLable.frame = CGRectMake(self.view.bounds.size.width - 30 - 60, self.view.bounds.size.height, 100, 44);
             self.time.frame = CGRectMake(30, self.view.bounds.size.height, 200, 30);
