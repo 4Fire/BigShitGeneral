@@ -81,53 +81,54 @@ static NSString *DogCollectionViewCellId = @"DogCollectionViewCell";
 
 - (void)responseToNext:(NSNotification *)notif {
     if ([notif.object isKindOfClass:[NameView class]]) {
-//        _backBtn.hidden = YES;
         _iconImage = notif.userInfo[@"iconImage"];
         _name = notif.userInfo[@"name"];
-//        NSLog(@"%@------%@", _iconImage, _name);
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
         [self collectionView:self.detailViews didSelectItemAtIndexPath:indexPath];
     }
     if ([notif.object isKindOfClass:[SexView class]]) {
-//        _backBtn.hidden = YES;
         _birthday = notif.userInfo[@"birthday"];
         _sex = notif.userInfo[@"sex"];
-//        NSLog(@"getbir=%@----%@", _birthday, _sex);
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
         [self collectionView:self.detailViews didSelectItemAtIndexPath:indexPath];
     }
     if ([notif.object isKindOfClass:[VarietyView class]]) {
         _variety = notif.userInfo[@"variety"];
-//        NSLog(@"-------%@", _variety);
          NSIndexPath *indexPath = [NSIndexPath indexPathForItem:2 inSection:0];
         [self collectionView:self.detailViews didSelectItemAtIndexPath:indexPath];
     }
     if ([notif.object isKindOfClass:[NeuteringView class]]) {
         _neutering = notif.userInfo[@"neutering"];
-//        NSLog(@"%@",_neutering);
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:3 inSection:0];
         [self collectionView:self.detailViews didSelectItemAtIndexPath:indexPath];
     }
     if ([notif.object isKindOfClass:[SureView class]]) {
         NSManagedObjectContext *ctx = [Context context];
         NSString *ownerAccount = [[NSUserDefaults standardUserDefaults] objectForKey:@"ownerAccount"];
-//        NSLog(@"%@", ownerAccount);
         Owner *owner = [Owner fetchOwnerToSQLiterWithContext:ctx Account:ownerAccount];
-        
-//        NSLog(@"name = %@, icon = %@, sex = %@, variety = %@, neutering = %@, birthday = %@, owner = %@", _name, _iconImage, _sex, _variety, _neutering, _birthday, owner);
         [self dismissViewControllerAnimated:false completion:nil];
         [Dog insertDogToSQLiterWithContext:ctx Name:_name Icon:_iconImage Sex:_sex Variety:_variety Neutering:_neutering Birthday:_birthday Owner:owner];
          [[[UIApplication sharedApplication].delegate window] setRootViewController:[[MainTabbarController alloc] init]];
     }
 }
 
-
+#warning !!!!!!!
 - (void)responseToSwipeGesture:(UISwipeGestureRecognizer *)gesture {
+//    if (indexPath.item < 4) {
+//        [self.detailViews setContentOffset:CGPointMake((indexPath.row + 1) * SCREEN_WIDTH * 3 / 4, collectionView.contentOffset.y) animated:YES];
+//        [UIView animateWithDuration:0.2 animations:^{
+//            self.backBtn.frame = CGRectMake((indexPath.row + 1) * SCREEN_WIDTH * 3 / 4, SCREEN_HEIGHT - 64, SCREEN_WIDTH, 64);
+//        }];
+//    } else {
+//        [self.detailViews setContentOffset:CGPointMake((indexPath.row) * SCREEN_WIDTH * 3 / 4, collectionView.contentOffset.y) animated:YES];
+//    }
+    
+    
     if (gesture.direction == UISwipeGestureRecognizerDirectionRight) {
-        if (self.detailViews.contentOffset.x > 281) {
-            [self.detailViews setContentOffset:CGPointMake(self.detailViews.contentOffset.x - 281.25, self.detailViews.contentOffset.y)animated:YES];
+        if (self.detailViews.contentOffset.x > 0) {
+            [self.detailViews setContentOffset:CGPointMake(self.detailViews.contentOffset.x - SCREEN_WIDTH * 3 / 4, self.detailViews.contentOffset.y)animated:YES];
             [UIView animateWithDuration:0.2 animations:^{
-                self.backBtn.frame = CGRectMake(self.detailViews.contentOffset.x - 281.25, SCREEN_HEIGHT - 64, SCREEN_WIDTH, 64);
+                self.backBtn.frame = CGRectMake(self.detailViews.contentOffset.x - SCREEN_WIDTH * 3 / 4, SCREEN_HEIGHT - 64, SCREEN_WIDTH, 64);
             }];
         }
         
@@ -137,6 +138,7 @@ static NSString *DogCollectionViewCellId = @"DogCollectionViewCell";
         }
     }
 }
+
 
 #pragma mark - Keyboard
 - (void)keyboardAction:(NSNotification *)notif {
@@ -211,6 +213,7 @@ static NSString *DogCollectionViewCellId = @"DogCollectionViewCell";
         [_backBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_backBtn addTarget:self action:@selector(responseToBack) forControlEvents:UIControlEventTouchUpInside];
         [_detailViews addSubview:_backBtn];
+//        [self.view bringSubviewToFront:_backBtn];
         
         //添加手势
         UISwipeGestureRecognizer *gesture = [[UISwipeGestureRecognizer alloc] init];

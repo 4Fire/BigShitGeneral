@@ -75,6 +75,7 @@
 		5E1D78C51D3E175E0062E802 /* 记录未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78BF1D3E175E0062E802 /* 记录未选中.png */; };
 		5E1D78C71D3E175E0062E802 /* 遛狗未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C11D3E175E0062E802 /* 遛狗未选中.png */; };
 		5E1D78C91D3E175E0062E802 /* 主业未选中.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D78C31D3E175E0062E802 /* 主业未选中.png */; };
+		5E21A2A01D4F18EE006FF27B /* LanchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E21A29F1D4F18EE006FF27B /* LanchView.m */; };
 		5ECCB9D21D4DDB0600990DAA /* HttpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCB9D11D4DDB0600990DAA /* HttpModel.m */; };
 		5ECCB9D51D4E5BCC00990DAA /* TableCellInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ECCB9D41D4E5BCC00990DAA /* TableCellInfoController.m */; };
 		5ED8781E1D3C65150060F83B /* DoggyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED8781D1D3C65150060F83B /* DoggyModel.m */; };
@@ -403,6 +404,8 @@
 		5E1D78BF1D3E175E0062E802 /* 记录未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "记录未选中.png"; sourceTree = "<group>"; };
 		5E1D78C11D3E175E0062E802 /* 遛狗未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "遛狗未选中.png"; sourceTree = "<group>"; };
 		5E1D78C31D3E175E0062E802 /* 主业未选中.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "主业未选中.png"; sourceTree = "<group>"; };
+		5E21A29E1D4F18EE006FF27B /* LanchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanchView.h; sourceTree = "<group>"; };
+		5E21A29F1D4F18EE006FF27B /* LanchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanchView.m; sourceTree = "<group>"; };
 		5ECCB9D01D4DDB0600990DAA /* HttpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpModel.h; sourceTree = "<group>"; };
 		5ECCB9D11D4DDB0600990DAA /* HttpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpModel.m; sourceTree = "<group>"; };
 		5ECCB9D31D4E5BCC00990DAA /* TableCellInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCellInfoController.h; sourceTree = "<group>"; };
@@ -1093,6 +1096,8 @@
 		5EFBEA051D388F0900FE838A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5E21A29E1D4F18EE006FF27B /* LanchView.h */,
+				5E21A29F1D4F18EE006FF27B /* LanchView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1981,6 +1986,7 @@
 				5EFBEC701D38CD2C00FE838A /* FileHelper.m in Sources */,
 				5EFBEA781D38946900FE838A /* Friends+CoreDataProperties.m in Sources */,
 				5EFBEA101D388F0900FE838A /* InfomationTableView.m in Sources */,
+				5E21A2A01D4F18EE006FF27B /* LanchView.m in Sources */,
 				5EFBEA7C1D38946900FE838A /* News.m in Sources */,
 				5EFBEA331D3890AD00FE838A /* CollectionVCell.m in Sources */,
 				5EE116451D46F7B500C8D321 /* DoggyInfoController.m in Sources */,
@@ -2200,7 +2206,7 @@
 					"\"TwitterKit\"",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ShitImperator;
+				PRODUCT_BUNDLE_IDENTIFIER = ShitImperator1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -2298,7 +2304,7 @@
 					"\"TwitterKit\"",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ShitImperator;
+				PRODUCT_BUNDLE_IDENTIFIER = ShitImperator1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

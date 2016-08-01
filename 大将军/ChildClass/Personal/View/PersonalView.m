@@ -151,7 +151,7 @@ static NSString *PersonDogsCellID = @"PersonDogsCell";
         
         UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[LoginViewController new]];
         
-//        [AVUser logOut];
+        [AVUser logOut];
         [UIApplication sharedApplication].keyWindow.rootViewController = nav;
         
     }];

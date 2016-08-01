@@ -25,6 +25,8 @@
 #import "Owner.h"
 #import "Dog.h"
 
+#import "LanchView.h"
+
 @interface AppDelegate ()
 
 @end
@@ -64,6 +66,7 @@
     
     [self.window makeKeyAndVisible];
     
+    
 #pragma mark - 配置第三方APPID
     //设置友盟社会化组件appkey
     [UMSocialData setAppKey:Appkey];
@@ -78,6 +81,11 @@
 //    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"3050076814"
 //                                              secret:@"b06eea4f9b73a3e8f6eaeb4e5cbda3b4" RedirectURL:@"http://weibo.com/u/2456110315/home?wvr=5"];
     
+    LanchView *lanchView = [[LanchView alloc] initWithFrame:self.window.bounds EndBlock:^{
+        
+    }];
+    
+    [self.window addSubview:lanchView];
     
     
     return YES;
