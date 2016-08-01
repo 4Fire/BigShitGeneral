@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1823744B1D4E37FF000FFCD9 /* DevelopInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823744A1D4E37FF000FFCD9 /* DevelopInfoViewController.m */; };
+		1823744E1D4F183C000FFCD9 /* TableCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823744D1D4F183C000FFCD9 /* TableCellTableViewCell.m */; };
 		186CA8F71D3F75AA00D5A89C /* OwnerSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 186CA8F61D3F75AA00D5A89C /* OwnerSettingController.m */; };
 		188D02071D3F9F9800B0B8E2 /* 狗2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 188D02061D3F9F9800B0B8E2 /* 狗2.jpeg */; };
 		188D020D1D3FAD7D00B0B8E2 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 188D020C1D3FAD7D00B0B8E2 /* icon.png */; };
@@ -325,6 +326,8 @@
 		17994362A87CBB9C05B38F37 /* libPods-大将军.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-大将军.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		182374491D4E37FF000FFCD9 /* DevelopInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DevelopInfoViewController.h; path = "大将军/ChildClass/Personal/View/DevelopInfoViewController.h"; sourceTree = SOURCE_ROOT; };
 		1823744A1D4E37FF000FFCD9 /* DevelopInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DevelopInfoViewController.m; path = "大将军/ChildClass/Personal/View/DevelopInfoViewController.m"; sourceTree = SOURCE_ROOT; };
+		1823744C1D4F183C000FFCD9 /* TableCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableCellTableViewCell.h; sourceTree = "<group>"; };
+		1823744D1D4F183C000FFCD9 /* TableCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableCellTableViewCell.m; sourceTree = "<group>"; };
 		186CA8F51D3F75AA00D5A89C /* OwnerSettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OwnerSettingController.h; path = "大将军/ChildClass/Personal/View/OwnerSettingController.h"; sourceTree = SOURCE_ROOT; };
 		186CA8F61D3F75AA00D5A89C /* OwnerSettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OwnerSettingController.m; path = "大将军/ChildClass/Personal/View/OwnerSettingController.m"; sourceTree = SOURCE_ROOT; };
 		188D02061D3F9F9800B0B8E2 /* 狗2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "狗2.jpeg"; path = "../../狗2.jpeg"; sourceTree = "<group>"; };
@@ -1143,6 +1146,8 @@
 				5EE116441D46F7B500C8D321 /* DoggyInfoController.m */,
 				5ECCB9D31D4E5BCC00990DAA /* TableCellInfoController.h */,
 				5ECCB9D41D4E5BCC00990DAA /* TableCellInfoController.m */,
+				1823744C1D4F183C000FFCD9 /* TableCellTableViewCell.h */,
+				1823744D1D4F183C000FFCD9 /* TableCellTableViewCell.m */,
 				189549671D483F3300EB13AB /* DoggyInfoTableViewCell.h */,
 				189549681D483F3300EB13AB /* DoggyInfoTableViewCell.m */,
 			);
@@ -1948,6 +1953,7 @@
 				5EFBEA111D388F0900FE838A /* LoginViewController.m in Sources */,
 				F4D2FED51D3CBF67002B927D /* RecordViewController.m in Sources */,
 				5EFBEC6F1D38CD2C00FE838A /* NearByController.m in Sources */,
+				1823744E1D4F183C000FFCD9 /* TableCellTableViewCell.m in Sources */,
 				5EFBEA321D3890AD00FE838A /* RecordController.m in Sources */,
 				5EFBEA0D1D388F0900FE838A /* DoggyCell.m in Sources */,
 				5EFBEA3D1D3890E300FE838A /* CircleOfFriendsController.m in Sources */,

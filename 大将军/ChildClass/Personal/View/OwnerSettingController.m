@@ -94,7 +94,7 @@
     _famaleSelectImag.image = [UIImage imageNamed:@""];
     _sex = @1;
     [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:@"ownerSex"];
-    self.sexView.image = [UIImage imageNamed:@"男性选中"];
+    self.sexView.image = [UIImage imageNamed:@"男性未选中"];
 
 //    [self.ownerIcon setImage:[UIImage imageNamed:@"ownerMale.jpeg"] forState:UIControlStateNormal];
 }
