@@ -104,26 +104,55 @@
     [AVUser logInWithUsernameInBackground:self.accountTextField.text password:self.passwordTextField.text block:^(AVUser *user, NSError *error) {
         if (user != nil) {
             
-            BOOL flag = [Owner insertOwnerToSQLiterWithContext:[Context context] Account:user.username   Password:@"1"];
-            if (flag == YES) {
-                [self.view endEditing:true];
+            BOOL check = [Owner duplicateCheckingOwnerWithContext:[Context context] Account:self.accountTextField.text];
+            
+            if (check == YES) {
                 
+                BOOL flag = [Owner insertOwnerToSQLiterWithContext:[Context context] Account:user.username   Password:@"1"];
+                
+                if (flag == YES) {
+                    
+                    BOOL flag1 = [Owner insertOwnerToSQLiterWithContext:[Context context] Account:user.username   Password:@"1"];
+                    
+                    if (flag1 == YES) {
+                        [self.view endEditing:true];
+                        [self showAlertWithMessage:@"登陆成功成功!" dismiss:^(void){
+                            [[NSUserDefaults standardUserDefaults] setObject:user.username forKey:@"ownerAccount"];
+                            [self.navigationController pushViewController:[[AddDogViewController alloc] init] animated:YES];
+                        }];
+                        
+                    }else {
+                        [self showAlertWithMessage:@"注册失败!" dismiss:nil];
+                        return;
+                    }
+        
+                    
+            
+                }
+            } else {
+                
+                [self.view endEditing:true];
                 [self showAlertWithMessage:@"登陆成功!" dismiss:^(void){
                     [[NSUserDefaults standardUserDefaults] setObject:self.accountTextField.text forKey:@"ownerAccount"];
                 }];
-                
                 [UIApplication sharedApplication].keyWindow.rootViewController = [MainTabbarController new];
+                
             }
+            
         } else {
             
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
-                [[self fetchViewControllerByView:self.view] presentViewController:alertController animated:YES completion:nil];
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:error.localizedDescription preferredStyle:UIAlertControllerStyleAlert];
+            [[self fetchViewControllerByView:self.view] presentViewController:alertController animated:YES completion:nil];
             
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [alertController dismissViewControllerAnimated:YES completion:nil];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [alertController dismissViewControllerAnimated:YES completion:nil];
             });
-
+            
         }
+    
+            
+            
+            
     }];
     
 }
