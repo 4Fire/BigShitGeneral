@@ -73,6 +73,7 @@ static NSString *tableCellInfoCellID = @"tableCellInfoCell";
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.allowsSelection = NO;
+        _tableView.backgroundColor = BACKGROUNDCOLOR;
         //注册原型cell
         [_tableView registerClass:[TableCellTableViewCell class] forCellReuseIdentifier:tableCellInfoCellID];
     }
