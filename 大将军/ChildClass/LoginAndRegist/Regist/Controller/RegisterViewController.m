@@ -198,6 +198,8 @@
     if (!_accountTextField) {
         _accountTextField = [self createTextFieldWithCenterH:SCREEN_HEIGHT * 0.21 Placeholder:@" 请输入大将军暗号" SecureTextEntry:NO LeftLabelText:@"大将军: " ];
         _accountTextField.delegate = self;
+        [_accountTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
+        [_accountTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
         _accountTextField.keyboardType = UIKeyboardTypeAlphabet;
     }
     return _accountTextField;
